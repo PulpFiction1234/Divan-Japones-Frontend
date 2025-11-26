@@ -1,0 +1,63 @@
+/* ActivitiesPage styles (skeleton) */
+.activities-page {
+	/* page wrapper - kept minimal */
+	min-height: 100vh;
+	background-color: var(--color-background);
+	color: var(--color-text);
+}
+
+.activities__header {
+	/* header spacing for activities page */
+	margin-bottom: 1rem;
+}
+
+.activities__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 2rem;
+	justify-items: start;
+}
+
+/* Static layout used across several pages */
+.static-layout {
+	width: min(900px, 100% - 4rem);
+}
+
+.empty-state {
+	font-family: var(--font-body);
+	color: var(--color-muted);
+}
+
+/* Remove white card backgrounds for activity cards only on the Activities page
+	 Keep this scoped to `.activities-page` so other usages remain unchanged. */
+.activities-page .activity-card,
+.activities-page .activity-card__link,
+.activities-page .activity-card__body {
+	background-color: transparent !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.activities-page .activity-card__media img {
+	border-bottom: none !important;
+}
+
+/* Align activity card text flush to the left on Activities page */
+.activities-page .activity-card {
+	align-items: flex-start;
+}
+
+.activities-page .activity-card__body {
+	padding-left: 0 !important;
+	margin-left: 0 !important;
+	text-align: left !important;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.activities-page .activity-card__body > * {
+	margin-left: 0 !important;
+	padding-left: 0 !important;
+}
+

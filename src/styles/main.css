@@ -1,0 +1,29 @@
+/* Main CSS bundle - imports all component and page styles */
+
+/* Component styles */
+@import './components/Header.css';
+@import './components/Footer.css';
+@import './components/AboutSection.css';
+@import './components/AuthorPill.css';
+@import './components/ExperienceSection.css';
+@import './components/MagazineFlipbookModal.css';
+@import './components/MenuSection.css';
+@import './components/ReservationSection.css';
+@import './components/TiptapEditor.css';
+@import './components/TrendingPostsSection.css';
+
+/* Page styles */
+@import './pages/HomePage.css';
+@import './pages/AboutPage.css';
+@import './pages/ActivitiesPage.css';
+@import './pages/AdminPage.css';
+@import './pages/ArticlePage.css';
+@import './pages/CategoryPage.css';
+@import './pages/ContactPage.css';
+@import './pages/LoginPage.css';
+@import './pages/MagazineDetailPage.css';
+@import './pages/MagazinePage.css';
+@import './pages/PublicationsPage.css';
+
+/* Override styles - must be last */
+@import './shared/zeroRadius.css';

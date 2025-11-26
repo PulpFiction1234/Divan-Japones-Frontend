@@ -1,0 +1,271 @@
+/* Menu / Latest section styles (skeleton) */
+.latest {
+}
+
+.latest__grid {
+  display: grid;
+}
+
+.feature-card {
+}
+
+.feature-card__link {}
+
+.latest-card {}
+
+.latest-card__link {}
+
+/* Copied from App.css to restore latest/feature card styles */
+.latest {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.latest__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+  /* Make grid rows size based on content so cards don't stretch too tall */
+  grid-auto-rows: auto;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.feature-card {
+  grid-row: span 2;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  /* Limit feature card maximum height so it doesn't appear too long vertically */
+  max-height: 56rem;
+  overflow: hidden;
+}
+
+.feature-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.feature-card img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  width: 100%;
+}
+
+.feature-card__body {
+  padding: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+}
+
+.feature-card__body h3 {
+  font-family: var(--font-title);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.15;
+  margin: 0 0 0.5rem 0;
+}
+
+.feature-card__body p {
+  margin: 0 0 0.75rem 0;
+  color: var(--color-text);
+}
+
+.article-category {
+  font-size: 0.85rem;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  display: inline-block;
+  font-family: var(--font-subtitle);
+  font-style: italic;
+}
+
+.article-author {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  display: block;
+}
+
+.latest-card {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* Slightly reduce the vertical size of small cards for a more symmetric grid */
+  max-height: 22.5rem;
+  overflow: hidden;
+}
+
+/* Ensure categories in this section are shown in italic (override other page rules) */
+.latest-card__body .article-category,
+.feature-card__body .article-category {
+  font-style: italic;
+}
+
+/* Ensure latest cards fully fill their grid cells and override duplicate rules */
+.latest__grid > .latest-card,
+.latest__grid > .feature-card {
+  align-self: stretch;
+  justify-self: stretch;
+  box-sizing: border-box;
+  max-width: none !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.latest__grid .latest-card__link,
+.latest__grid .feature-card__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Remove inline gaps from images inside grid cards */
+.latest__grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.latest-card__body {
+  padding: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  background: transparent !important;
+}
+
+.latest-card__body h3 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+/* Images: remove any visible borders/backgrounds and keep large aspect */
+.latest__grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Make category appear above title and author below, with smaller weight */
+.latest-card__body .article-category {
+  margin-bottom: 0.25rem;
+}
+
+.latest-card__body .article-author {
+  margin-top: 0.5rem;
+}
+
+/* Override global card background from zeroRadius.css for this section */
+.latest__grid .latest-card,
+.latest__grid a.latest-card__link,
+.latest__grid .latest-card__body,
+.latest__grid .feature-card,
+.latest__grid a.feature-card__link,
+.latest__grid .feature-card__body,
+.page .latest .latest__grid .latest-card__body,
+.page .latest .latest__grid a.latest-card__link {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Make small cards visually match the featured: category above, author below, compact body */
+.latest-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.latest-card__body {
+  padding: 0.75rem 0 0;
+}
+
+.latest-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Reduce visual separation between right-column cards */
+.latest__grid {
+  gap: 1.25rem;
+}
+
+/* Ensure text content aligns flush with images inside this grid
+   (override other section/global rules that add horizontal padding) */
+.latest__grid > .latest-card .latest-card__body,
+.latest__grid > .feature-card .feature-card__body {
+  padding: 0.75rem 0 0;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+/* Stronger override: remove any left margin/padding from children so text starts
+   exactly at the left edge of the image. Use specific selector and !important
+   to override other page-level rules if needed. */
+.latest__grid .latest-card__body,
+.latest__grid .latest-card__body h3,
+.latest__grid .latest-card__body .article-category,
+.latest__grid .latest-card__body .article-author,
+.latest__grid .feature-card__body,
+.latest__grid .feature-card__body h3,
+.latest__grid .feature-card__body .article-category,
+.latest__grid .feature-card__body .article-author {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-align: left;
+}
+
+/* Extra overrides to force zero horizontal padding/margins inside each card
+   so text aligns exactly with the left edge of the image. These selectors are
+   intentionally specific and limited to `.latest__grid`. */
+.latest__grid > .latest-card,
+.latest__grid > .feature-card,
+.latest__grid > .latest-card a.latest-card__link,
+.latest__grid > .feature-card a.feature-card__link {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+
+.latest__grid > .latest-card .latest-card__link,
+.latest__grid > .feature-card .feature-card__link {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  align-items: stretch !important;
+  width: 100% !important;
+}
+
+.latest__grid .latest-card__body,
+.latest__grid .feature-card__body {
+  padding: 0.5rem 0 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Reset margins/paddings on immediate child text elements */
+.latest__grid .latest-card__body > *,
+.latest__grid .feature-card__body > * {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+

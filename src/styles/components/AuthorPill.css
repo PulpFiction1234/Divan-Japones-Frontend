@@ -1,0 +1,46 @@
+.author-pill {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--color-muted, #6b7280);
+  font-family: var(--font-subtitle, sans-serif);
+  font-size: 0.9rem;
+}
+
+.author-pill__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 32px;
+}
+
+.author-pill__meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-pill__by {
+  font-size: 0.75rem;
+  color: var(--color-muted, #6b7280);
+  text-transform: none;
+  margin-bottom: 0.25rem;
+}
+
+.author-pill__name {
+  font-weight: 700;
+  color: var(--color-text, #111827);
+  line-height: 1;
+}
+
+.author-pill__date {
+  color: var(--color-muted, #6b7280);
+  font-size: 0.85rem;
+}
+
+.author-pill__bio {
+  margin: 0.5rem 0 0 0;
+  color: var(--color-muted, #6b7280);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}

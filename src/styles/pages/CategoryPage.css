@@ -1,0 +1,128 @@
+/* ========================================
+   CATEGORY PAGE STYLES
+   ======================================== */
+
+/* Page Header */
+.category-page .site-header {
+  border-bottom: none;
+}
+
+/* Layout */
+.category-layout {
+  width: min(1400px, 100% - 4rem);
+  gap: 2.5rem;
+}
+
+/* Category Grid */
+.category-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.category-grid__header {
+  border-bottom: 1px solid var(--color-line);
+  padding: 2.5rem 0 1.75rem;
+}
+
+.category-grid__header h1 {
+  margin: 0;
+  font-family: var(--font-subtitle);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* Grid Items */
+.category-grid__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 3rem 2.5rem;
+  padding: 2.5rem 0 3rem 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  justify-items: start;
+}
+
+/* Category Card */
+.category-grid__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+  justify-self: start;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-line);
+  padding: 2rem;
+}
+
+.category-grid__media {
+  display: block;
+  border: 1px solid var(--color-line);
+  width: 100%;
+  max-width: 260px;
+}
+
+.category-grid__media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  max-height: 180px;
+  object-fit: cover;
+}
+
+.category-grid__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 260px;
+  text-align: left;
+}
+
+.category-grid__date {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-family: var(--font-subtitle);
+}
+
+.category-grid__body h2 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  line-height: 1.3;
+}
+
+.category-grid__body h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.category-grid__excerpt {
+  margin: 0;
+  color: var(--color-muted);
+  font-family: var(--font-body);
+}
+
+.category-grid__author {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-family: var(--font-subtitle);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 960px) {
+  .category-grid__items {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem 2rem;
+  }
+}

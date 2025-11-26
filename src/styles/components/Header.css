@@ -1,0 +1,134 @@
+/* ========================================
+   HEADER COMPONENT - TopBar Styles
+   ======================================== */
+
+/* TopBar Base */
+.topbar {
+  background-color: var(--color-invert);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem clamp(1rem, 5vw, 3rem);
+  gap: 1rem;
+}
+
+/* Social Links */
+.topbar__social {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.topbar__social a {
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.topbar__social a:hover,
+.topbar__social a:focus {
+  background-color: #ffffff;
+  color: var(--color-invert);
+}
+
+.topbar__social svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+/* Search */
+.topbar__search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.topbar__search input {
+  width: 180px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.topbar__search input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.topbar__search button {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  color: var(--color-invert);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Admin Button */
+.topbar__admin {
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  color: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.45rem 1.2rem;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-family: var(--font-subtitle);
+}
+
+.topbar__admin:hover,
+.topbar__admin:focus {
+  background-color: #ffffff;
+  color: var(--color-invert);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* Accessibility helpers copied from global styles so Header is self-contained */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+

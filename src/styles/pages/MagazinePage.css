@@ -1,0 +1,245 @@
+/* ========================================
+	 MAGAZINE PAGE STYLES
+	 ======================================== */
+
+/* Intro */
+.magazine-intro {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	font-family: var(--font-body);
+}
+
+.magazine-intro h1 {
+	margin: 0;
+	font-family: var(--font-title);
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	font-size: clamp(1.9rem, 4vw, 2.6rem);
+}
+
+.magazine-intro p {
+	margin: 0;
+	color: var(--color-muted);
+}
+
+/* Gallery */
+.magazine-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 2.2rem;
+	justify-items: start;
+	align-items: start;
+	padding: 1.5rem 0 2.5rem 0;
+}
+
+/* Compact card */
+.magazine-card--compact {
+	background: #fff;
+	border-radius: 0;
+	box-shadow: 0 6px 28px -10px rgba(0, 0, 0, 0.18);
+	/* keep the white card compact */
+	width: 200px;
+	min-height: 280px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	/* small padding so content can occupy more space */
+	padding: 0.35rem 0.35rem 0.5rem;
+	margin: 0 auto;
+	gap: 0.35rem;
+}
+
+.magazine-card__compact-btn {
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3rem;
+	cursor: pointer;
+}
+
+.magazine-card__compact-btn:hover {
+	opacity: 0.95;
+}
+
+.magazine-card__cover--compact {
+	/* let the cover fill card width so the image is visually larger */
+	width: 100%;
+	aspect-ratio: 4 / 5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	background: #f7f7f7;
+}
+
+.magazine-card__cover--compact img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0;
+}
+
+.magazine-card__compact-title {
+	font-family: var(--font-title);
+	/* larger title so it occupies more space */
+	font-size: 1.15rem;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	text-align: center;
+	margin: 0.25rem 0 0 0;
+}
+
+.magazine-card__compact-date {
+	font-family: var(--font-body);
+	font-size: 0.95rem;
+	color: var(--color-muted);
+	text-align: center;
+	margin: 0;
+}
+
+/* Standard magazine card */
+.magazine-card--compact {
+	background: #fff;
+	border-radius: 0;
+	box-shadow: 0 6px 28px -10px rgba(0, 0, 0, 0.2);
+	/* make the white background noticeably smaller */
+	width: 220px;
+	min-height: 350px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	/* reduce padding so content can grow visually */
+	padding: 0.35rem 0.35rem 0.5rem;
+	margin: 0 auto;
+	gap: 0.35rem;
+}
+.magazine-card__cover--compact {
+	/* make the cover fill the card width so content appears larger */
+	width: 100%;
+	aspect-ratio: 4 / 5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	background: #f7f7f7;
+}
+.magazine-card__cover--compact img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0;
+}
+
+.magazine-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+	padding: 1rem 1rem 1.2rem 1rem;
+	font-family: var(--font-body);
+	/* slightly larger title so it occupies more of the card */
+	font-size: 1.15rem;
+	font-weight: 800;
+	text-align: center;
+}
+
+.magazine-card__body header h2 {
+	margin: 0.2rem 0 0.1rem 0;
+	font-family: var(--font-title);
+	font-size: 1.05rem;
+	/* increase date size a bit */
+	font-size: 0.95rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-align: center;
+}
+
+.magazine-card__body header p {
+	margin: 0.1rem 0 0.2rem 0;
+	color: var(--color-muted);
+	font-size: 0.92rem;
+}
+
+.magazine-card__meta {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin: 0.2rem 0 0.1rem 0;
+	font-size: 0.85rem;
+	color: #444;
+}
+
+.magazine-card__meta-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.4rem;
+	font-size: 0.78rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--color-muted);
+	font-family: var(--font-subtitle);
+}
+
+.magazine-card__cta {
+	font-family: var(--font-title);
+	font-size: 0.98rem;
+	font-weight: 600;
+	letter-spacing: 0.07em;
+	background: #111;
+	color: #fff;
+	border: none;
+	border-radius: 0.7rem;
+	padding: 0.55rem 1.1rem;
+	margin-top: 0.5rem;
+	cursor: pointer;
+	transition: background 0.18s;
+	box-shadow: 0 2px 8px -4px rgba(0,0,0,0.10);
+}
+.magazine-card__cta:hover,
+.magazine-card__cta:focus-visible {
+	background: #222;
+}
+
+.magazine-card__cta:disabled {
+	background: #eaeaea;
+	color: #aaa;
+	cursor: not-allowed;
+}
+
+.magazine-card__note {
+	font-family: var(--font-body);
+	color: #ffbdbd;
+	text-align: center;
+	font-size: 0.85rem;
+	margin-top: 0.2rem;
+}
+
+.magazine-card--compact {
+	border-radius: 0;
+	overflow: hidden;
+}
+
+/* Remove white backgrounds and shadows for magazine cards when viewing magazine pages
+	 Scoped to `.page.magazine-page` so other areas keep their styles. */
+.page.magazine-page .magazine-card--compact,
+.page.magazine-page .magazine-card__compact-btn,
+.page.magazine-page .magazine-card__body,
+.page.magazine-page .magazine-card__cover--compact {
+	background: transparent !important;
+	background-color: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.page.magazine-page .magazine-card__body {
+	padding: 0 !important;
+	text-align: left;
+}

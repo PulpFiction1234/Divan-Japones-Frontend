@@ -1,0 +1,262 @@
+/* TiptapEditor - Editor de texto enriquecido */
+.tiptap-editor {
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 0.65rem;
+  background: white;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Toolbar */
+.tiptap-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  background: rgba(17, 17, 17, 0.02);
+}
+
+.tiptap-toolbar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: transparent;
+  color: rgba(17, 17, 17, 0.6);
+  cursor: pointer;
+  border-radius: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.tiptap-toolbar button:hover:not(:disabled) {
+  background: rgba(17, 17, 17, 0.08);
+  color: #000;
+}
+
+.tiptap-toolbar button.is-active {
+  background: rgba(17, 17, 17, 0.12);
+  color: #000;
+}
+
+.tiptap-toolbar button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.tiptap-toolbar__divider {
+  width: 1px;
+  height: 2rem;
+  background: rgba(17, 17, 17, 0.12);
+  margin: 0 0.25rem;
+}
+
+/* Contenedor del editor */
+.tiptap-content {
+  min-height: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Área de edición */
+.tiptap-content .tiptap {
+  outline: none;
+  padding: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  min-height: 300px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Párrafos */
+.tiptap-content .tiptap p {
+  margin: 0 0 1em 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.tiptap-content .tiptap p:last-child {
+  margin-bottom: 0;
+}
+
+/* Listas */
+.tiptap-content .tiptap ul,
+.tiptap-content .tiptap ol {
+  padding-left: 1.5rem;
+  margin: 0 0 1em 0;
+}
+
+.tiptap-content .tiptap ul li,
+.tiptap-content .tiptap ol li {
+  margin-bottom: 0.25em;
+}
+
+/* Enlaces */
+.tiptap-content .tiptap a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Imágenes base */
+.tiptap-content .tiptap img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  cursor: move;
+  transition: all 0.2s ease;
+}
+
+.tiptap-content .tiptap img:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tiptap-content .tiptap img.ProseMirror-selectednode {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+/* Imágenes flotantes - estilos directos en img */
+.tiptap-content .tiptap img[style*="float: left"],
+.tiptap-content .tiptap img[style*="float:left"] {
+  float: left;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tiptap-content .tiptap img[style*="float: right"],
+.tiptap-content .tiptap img[style*="float:right"] {
+  float: right;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tiptap-content .tiptap img[style*="display: block"],
+.tiptap-content .tiptap img[style*="display:block"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Wrappers de imágenes con float */
+.tiptap-content .tiptap > div[style*="float: left"],
+.tiptap-content .tiptap p > div[style*="float: left"] {
+  float: left !important;
+  margin: 0.5rem 1.5rem 1rem 0 !important;
+  max-width: 45% !important;
+}
+
+.tiptap-content .tiptap > div[style*="float: right"],
+.tiptap-content .tiptap p > div[style*="float: right"] {
+  float: right !important;
+  margin: 0.5rem 0 1rem 1.5rem !important;
+  max-width: 45% !important;
+}
+
+.tiptap-content .tiptap > div[style*="display: block"],
+.tiptap-content .tiptap p > div[style*="display: block"] {
+  float: none !important;
+  display: block !important;
+  margin: 1.5rem auto !important;
+  max-width: 80% !important;
+}
+
+/* Extensión de redimensionamiento */
+.tiptap-content .tiptap .image-resizer {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+
+.tiptap-content .tiptap .image-resizer[style*="float: left"] {
+  float: left !important;
+  margin: 0.5rem 1.5rem 1rem 0 !important;
+}
+
+.tiptap-content .tiptap .image-resizer[style*="float: right"] {
+  float: right !important;
+  margin: 0.5rem 0 1rem 1.5rem !important;
+}
+
+.tiptap-content .tiptap .image-resizer[style*="display: block"] {
+  float: none !important;
+  display: block !important;
+  margin: 1.5rem auto !important;
+}
+
+.tiptap-content .tiptap .image-resizer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Manejadores de redimensionamiento */
+.tiptap-content .tiptap .image-resizer__handler {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #2563eb;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tiptap-content .tiptap .image-resizer__handler--nw {
+  top: -5px;
+  left: -5px;
+  cursor: nw-resize;
+}
+
+.tiptap-content .tiptap .image-resizer__handler--ne {
+  top: -5px;
+  right: -5px;
+  cursor: ne-resize;
+}
+
+.tiptap-content .tiptap .image-resizer__handler--sw {
+  bottom: -5px;
+  left: -5px;
+  cursor: sw-resize;
+}
+
+.tiptap-content .tiptap .image-resizer__handler--se {
+  bottom: -5px;
+  right: -5px;
+  cursor: se-resize;
+}
+
+/* Focus */
+.tiptap-content .tiptap.ProseMirror-focused {
+  outline: none;
+}
+
+/* Placeholder */
+.tiptap-content .tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: rgba(17, 17, 17, 0.4);
+  pointer-events: none;
+  height: 0;
+}
+
+/* Clearfix para párrafos sin imágenes flotantes */
+.tiptap-content .tiptap p:not(:has(> div[style*="float"]))::after {
+  content: "";
+  display: table;
+  clear: both;
+}

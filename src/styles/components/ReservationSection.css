@@ -1,0 +1,68 @@
+/* Reservation / Newsletter section styles (skeleton) */
+.newsletter {
+}
+
+.newsletter__content {}
+
+.newsletter__title {}
+
+.newsletter__form {}
+
+.newsletter__controls {}
+
+/* Copied from App.css to restore newsletter/reservation styles */
+.newsletter {
+	background-color: var(--color-invert);
+	color: #ffffff;
+	padding: 3rem clamp(1.5rem, 5vw, 4rem);
+	display: grid;
+	gap: 2rem;
+	border-radius: 0.5rem;
+}
+
+.newsletter__content {
+	font-family: var(--font-body);
+	max-width: 60ch;
+}
+
+.newsletter__title {
+	font-family: var(--font-title);
+	font-size: 1.6rem;
+	margin-bottom: 1rem;
+}
+
+.newsletter__form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.newsletter__controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.newsletter__controls input {
+	flex: 1 1 260px;
+	padding: 0.9rem 1.2rem;
+	border: 1px solid #ffffff;
+	background-color: transparent;
+	color: #ffffff;
+}
+
+.newsletter__controls input::placeholder {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.newsletter__controls button {
+	padding: 0.95rem 2rem;
+	border: 1px solid #ffffff;
+	background-color: #ffffff;
+	color: var(--color-invert);
+	font-weight: 600;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+

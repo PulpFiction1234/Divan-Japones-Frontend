@@ -1,0 +1,763 @@
+/* ========================================
+   ARTICLE PAGE STYLES
+   ======================================== */
+
+/* Small Components */
+.article-category {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-muted);
+  display: inline-block;
+  font-family: var(--font-subtitle);
+}
+
+.article-author {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* Article Page Header */
+.article-page .site-header {
+  border-bottom: none;
+}
+
+/* Article Main Container */
+.article-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 0 -4rem 0;
+}
+
+.article-layout {
+  gap: 2rem;
+}
+
+.article {
+  display: block;
+}
+
+/* ========================================
+   ARTICLE HERO SECTION
+   ======================================== */
+
+.article-hero {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-invert);
+  color: #f5efe6;
+  border: 1px solid #050505;
+  margin: 0;
+  width: 100%;
+}
+
+.article-hero__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  max-height: 80vh;
+  background: var(--color-invert, #111);
+}
+
+.article-hero__media img {
+  width: 60vw;
+  max-width: 60vw;
+  height: 80vh;
+  max-height: 80vh;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0 auto;
+  display: block;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 32px -12px rgba(0, 0, 0, 0.45);
+}
+
+.article-hero__overlay {
+  padding: clamp(1rem, 3.5vw, 1.5rem) clamp(0.75rem, 3vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+}
+
+/* Allow long titles/excerpts to break and wrap inside the centered overlay */
+.article-hero__overlay,
+.article-hero__overlay h1,
+.article-hero__excerpt {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.article-hero__category {
+  font-family: var(--font-subtitle);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0 auto 0.35rem auto;
+  opacity: 0.8;
+}
+
+.article-hero__overlay h1 {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  letter-spacing: 0.06em;
+  margin: 0 0 0 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.article-hero__excerpt {
+  margin: 0.25em auto 0 auto;
+  max-width: 48ch;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.article-hero__meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.6em auto 0 auto;
+  font-size: 0.98rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.article-hero__meta-chip {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ========================================
+   ARTICLE BODY
+   ======================================== */
+
+.article-body {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.article-body__content {
+  display: block;
+  font-family: var(--font-body);
+  line-height: 1.9;
+  font-size: 1.02rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+.article-body__content > * {
+  margin-bottom: 1.75rem;
+}
+
+.article-body__content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Paragraphs */
+.article-body__content p {
+  margin: 0 0 1em 0;
+  text-align: justify;
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 100%;
+  clear: none;
+}
+
+.article-body__content p:last-child {
+  margin-bottom: 0;
+}
+
+.article-body__content p:has(img) {
+  overflow: visible;
+  display: block;
+}
+
+/* Text Formatting */
+.article-body__content strong,
+.article-body__content b {
+  font-weight: 600;
+}
+
+.article-body__content em,
+.article-body__content i {
+  font-style: italic;
+}
+
+/* Lists */
+.article-body__content ul,
+.article-body__content ol {
+  margin: 0 0 1em 0;
+  padding-left: 1.5rem;
+}
+
+.article-body__content ul li,
+.article-body__content ol li {
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+.article-body__content a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.article-body__content a:hover {
+  color: #1d4ed8;
+}
+
+/* ========================================
+   ARTICLE BODY - IMAGES
+   ======================================== */
+
+/* Images in Paragraphs */
+.article-body__content p img {
+  max-width: 256px;
+  width: auto;
+  height: auto;
+  float: left;
+  margin: 0 1.5rem 0.5rem 0;
+  border-radius: 0.5rem;
+  shape-outside: margin-box;
+  flex-shrink: 0;
+  vertical-align: top;
+}
+
+.article-body__content p {
+  display: block;
+}
+
+/* Direct Images */
+.article-body__content > img,
+.article-body__content .image-resizer,
+.article-body__content span[style*="position: relative"] {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Support direct images flowing with text: if an image is a direct child and not forced to display:block, allow it to float by default
+   This helps when content contains plain <img> elements (not wrapped in <p>) so text can flow beside them. */
+.article-body__content > img:not([style*="display: block"]):not([style*="float"]) {
+  float: left;
+  margin: 0.5rem 1.5rem 1rem 0;
+  max-width: 45%;
+  width: auto;
+  height: auto;
+}
+
+/* Utility classes for explicit floats when editing directly */
+.article-body__content img.float-left,
+.article-body__content .float-left {
+  float: left !important;
+  margin: 0.5rem 1.5rem 1rem 0 !important;
+  max-width: 45% !important;
+}
+
+.article-body__content img.float-right,
+.article-body__content .float-right {
+  float: right !important;
+  margin: 0.5rem 0 1rem 1.5rem !important;
+  max-width: 45% !important;
+}
+
+.article-body__content img {
+  border-radius: 0.5rem;
+}
+
+/* Make only the article content fill the inner area of the centered layout
+   without changing the overall layout container. This pulls the content to
+   the layout edges while keeping the sidebar and header unaffected. */
+@media (min-width: 760px) {
+  .page.article-page .article-body__content {
+    max-width: none !important;
+    width: calc(100% + 3rem) !important;
+    margin-left: -1.5rem !important;
+    margin-right: -1.5rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .page.article-page .article-body__content > * {
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 759px) {
+  .page.article-page .article-body__content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* Make the layout container full width for article pages so content fills the section */
+/* (reverted) layout full-width rule removed to avoid affecting whole page */
+
+.article-body__content .image-resizer img,
+.article-body__content span[style*="position: relative"] img {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  float: none;
+  border-radius: 0.5rem;
+}
+
+/* Centered Images (Default) */
+.article-body__content .image-resizer:not([style*="float"]),
+.article-body__content > img:not([style*="float"]),
+.article-body__content > div:not([style*="float"]) {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 80%;
+}
+
+/* Float Left */
+.article-body__content > div[style*="float: left"],
+.article-body__content img[style*="float: left"],
+.article-body__content .image-resizer[style*="float: left"],
+.article-body__content span[style*="float: left"] {
+  float: left !important;
+  margin: 0.5rem 1.5rem 1rem 0 !important;
+  max-width: 45% !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.article-body__content > div[style*="float: left"] img,
+.article-body__content .image-resizer[style*="float: left"] img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Float Right */
+.article-body__content > div[style*="float: right"],
+.article-body__content img[style*="float: right"],
+.article-body__content .image-resizer[style*="float: right"],
+.article-body__content span[style*="float: right"] {
+  float: right !important;
+  margin: 0.5rem 0 1rem 1.5rem !important;
+  max-width: 45% !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.article-body__content > div[style*="float: right"] img,
+.article-body__content .image-resizer[style*="float: right"] img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Float None */
+.article-body__content img[style*="float: none"],
+.article-body__content img[style*="display: block"],
+.article-body__content .image-resizer[style*="float: none"],
+.article-body__content .image-resizer[style*="display: block"],
+.article-body__content span[style*="display: block"] {
+  display: block;
+  margin: 1.5rem auto;
+  float: none;
+  max-width: 100%;
+}
+
+/* Support editor-specific attributes: wrapperstyle / containerstyle (some posts store styles there)
+   Normalize wrappers that mistakenly use `display:flex` with float and ensure images/text flow */
+.article-body__content [wrapperstyle*="float: left"],
+.article-body__content [containerstyle*="float: left"],
+.article-body__content [wrapperstyle*="float:left"],
+.article-body__content [containerstyle*="float:left"] {
+  display: block !important;
+  float: left !important;
+  margin: 0.5rem 1.5rem 1rem 0 !important;
+  max-width: 45% !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.article-body__content [wrapperstyle*="float: right"],
+.article-body__content [containerstyle*="float: right"],
+.article-body__content [wrapperstyle*="float:right"],
+.article-body__content [containerstyle*="float:right"] {
+  display: block !important;
+  float: right !important;
+  margin: 0.5rem 0 1rem 1.5rem !important;
+  max-width: 45% !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Ensure images inside those wrappers scale correctly */
+.article-body__content [wrapperstyle] img,
+.article-body__content [containerstyle] img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Remove unexpected inner margins from wrapper divs created by editor */
+.article-body__content > div[wrapperstyle],
+.article-body__content > div[containerstyle] {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Clearfix */
+.article-body__content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.article-body__content > div:not([style*="float"])::after,
+.article-body__content > p:not(:has(> div[style*="float"]))::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Text Alignment */
+.article-body__content p[style*="text-align: center"] {
+  text-align: center;
+}
+
+.article-body__content p[style*="text-align: right"] {
+  text-align: right;
+}
+
+.article-body__content p[style*="text-align: left"] {
+  text-align: left;
+}
+
+.article-body__content p[style*="text-align: justify"] {
+  text-align: justify;
+}
+
+/* ========================================
+   ARTICLE BODY - DETAILS & FOOTER
+   ======================================== */
+
+.article-body__details {
+  border: 1px solid var(--color-line);
+  padding: 1.5rem;
+  background-color: var(--color-card);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.article-body__details h2 {
+  margin: 0;
+  font-family: var(--font-subtitle);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.article-body__details ul {
+  margin: 0;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.article-body__details li {
+  font-size: 0.95rem;
+}
+
+.article-body__footer {
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.5rem;
+  font-family: var(--font-subtitle);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.article-body__footer a {
+  text-decoration: none;
+}
+
+/* ========================================
+   ARTICLE SIDEBAR
+   ======================================== */
+
+.article-body__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page.article-page .article-sidebar__card {
+  /* Remove the white card background and outer border on article pages
+     Keep internal separators (list item borders) intact. Use !important to
+     override global card rules from shared styles. */
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.article-sidebar__card h2 {
+  font-family: var(--font-subtitle);
+  font-size: 0.85rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+}
+
+.article-sidebar__author-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.article-sidebar__author-desc {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.article-sidebar__author {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+.article-sidebar__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.article-sidebar__list-item {
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 1rem;
+}
+
+.article-sidebar__list-item:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* On article pages remove internal separators between recent-post items
+   and instead use vertical spacing to match the provided reference */
+.page.article-page .article-sidebar__list-item {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 1.25rem;
+}
+
+.page.article-page .article-sidebar__list-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.article-sidebar__list-link {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  align-items: start;
+}
+
+.page.article-page .article-sidebar__thumb {
+  width: 88px;
+  height: 66px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  border: none !important;
+}
+
+/* Add a subtle separator between sidebar cards (e.g., "Notas recientes" and "Categorias")
+   only on article pages. This keeps the visual dividers while the cards themselves
+   have transparent backgrounds. */
+.page.article-page .article-sidebar__card + .article-sidebar__card {
+  border-top: 1px solid var(--color-line);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Style the categories list to show bullet points and spacing like the reference */
+.page.article-page .article-sidebar__tags {
+  display: block;
+  padding-left: 1.1rem; /* leave room for the bullet */
+  margin: 0;
+}
+
+.page.article-page .article-sidebar__tags li {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin: 0.35rem 0;
+}
+
+.page.article-page .article-sidebar__tags li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Underline the heading of the last sidebar card (usually 'Categorias') to match reference */
+.page.article-page .article-sidebar__card:last-of-type h2 {
+  display: inline-block;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--color-line);
+}
+
+/* Underline the heading of the recent posts card (second card) to match 'Categorías' */
+.page.article-page .article-sidebar__card:nth-of-type(2) h2 {
+  display: inline-block;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--color-line);
+}
+
+/* Underline the heading of the author card (first card) */
+.page.article-page .article-sidebar__card:nth-of-type(1) h2 {
+  display: inline-block;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--color-line);
+}
+
+/* Layout tweaks for author block on article pages to match reference */
+.page.article-page .article-sidebar__author-block {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.page.article-page .article-sidebar__author-desc {
+  margin: 0.25rem 0 0 0;
+  color: var(--color-muted);
+}
+
+.page.article-page .author-pill__avatar {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 4px;
+}
+
+.page.article-page .author-pill__name {
+  font-size: 1rem;
+}
+
+/* Animated underline for category links in article sidebar (hover and focus) */
+.page.article-page .article-sidebar__tags li a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.page.article-page .article-sidebar__tags li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--color-line);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms ease, opacity 220ms ease;
+  opacity: 0;
+}
+
+.page.article-page .article-sidebar__tags li a:hover::after,
+.page.article-page .article-sidebar__tags li a:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.page.article-page .article-sidebar__tags li a:hover {
+  color: var(--color-text);
+}
+
+.article-sidebar__list-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.article-sidebar__list-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+
+.article-sidebar__list-date {
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.article-sidebar__tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.article-sidebar__tags a {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 960px) {
+  .article-body {
+    grid-template-columns: 1fr;
+  }
+
+  .article-body__sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .article-sidebar__card {
+    flex: 1 1 clamp(240px, 45%, 320px);
+  }
+}

@@ -1,0 +1,95 @@
+/* Global overrides to remove rounded corners from cards, images, buttons, inputs, and containers */
+
+/* Reset border-radius for common elements */
+img,
+picture,
+video,
+canvas,
+svg,
+.card,
+.card *,
+.card img,
+.feature-card,
+.latest-card,
+.trending-card,
+.publications-card,
+.magazine-section-card,
+.publication-card,
+.article-card,
+.site-card,
+.button,
+button,
+.btn,
+.btn *,
+input,
+textarea,
+select,
+.form-control,
+.site-header,
+.header,
+.site-footer,
+.site-footer *,
+.modal,
+.modal *,
+.chip,
+.tag,
+.avatar,
+.badge,
+.card-like,
+.recuadro,
+.card-container {
+  border-radius: 0 !important;
+}
+
+/* Also force images to not clip into rounded corners */
+.trending-card__media img,
+.latest-card img,
+.feature-card img,
+.publications-card__media img,
+.magazine-hero__cover img,
+.magazine-hero__cover,
+.article-body__content img {
+  border-radius: 0 !important;
+}
+
+/* Ensure shadows and outlines remain but corners are squared */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* Specific override for any inline style with border-radius (last resort) */
+[style*="border-radius"],
+[style*="borderRadius"] {
+  border-radius: 0 !important;
+}
+
+/* Accessibility: keep focus outlines visible */
+*:focus {
+  outline-offset: 2px;
+}
+
+/* Ensure common card components use the card background (white) */
+.card,
+.latest-card,
+.trending-card,
+.publications-card,
+.feature-card,
+.publications-card__body,
+.trending-card__body,
+.latest-card__body,
+.site-card,
+.article-sidebar__card,
+.admin-card,
+.menu-card {
+  background-color: var(--color-card) !important;
+}
+
+/* Make sure link-wrapped cards show background correctly */
+a.publications-card,
+a.trending-card,
+a.latest-card {
+  display: block;
+  background-color: var(--color-card) !important;
+}

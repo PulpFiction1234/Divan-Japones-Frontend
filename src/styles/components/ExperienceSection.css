@@ -1,0 +1,197 @@
+/* Experience / Activities section styles (skeleton) */
+.activities {
+}
+
+.activities__grid {
+}
+
+.activity-card {}
+
+.activity-card__link {}
+
+.activity-card__media {}
+
+.activity-card__body {}
+
+.activity-card__meta {}
+
+/* Copied from App.css to restore activities styles */
+.activities {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.activities__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 1.25rem;
+	justify-items: start;
+	max-width: 100%;
+}
+
+/* Keep items left-aligned so a single card starts at the left like Trending */
+
+@supports (grid-template-columns: repeat(4, 1fr)) {
+	.activities__grid {
+		grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 3.75rem) / 4)), 1fr));
+	}
+  
+	@media (max-width: 1200px) {
+		.activities__grid {
+			grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 2.5rem) / 3)), 1fr));
+		}
+	}
+  
+	@media (max-width: 900px) {
+		.activities__grid {
+			grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 1.25rem) / 2)), 1fr));
+		}
+	}
+}
+
+.activity-card {
+	display: flex;
+	flex-direction: column;
+	background-color: #ffffff;
+	border: 1px solid rgba(17, 17, 17, 0.08);
+	max-width: 283px;
+	width: 100%;
+	margin: 0;
+}
+
+.activity-card__media img {
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.activity-card__body {
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.activity-card__category {
+	font-size: 0.8rem;
+	text-transform: none;
+	letter-spacing: 0.05em;
+	color: var(--color-muted);
+	font-family: var(--font-subtitle);
+	font-style: italic;
+}
+
+.activity-card__body h3 {
+	margin: 0;
+	font-family: var(--font-title);
+	font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+	line-height: 1.25;
+}
+
+.activity-card__body p {
+	margin: 0;
+	font-family: var(--font-body);
+	font-size: 0.95rem;
+	color: var(--color-text);
+}
+
+.activity-card__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem 0.75rem;
+	font-size: 0.8rem;
+	letter-spacing: 0.05em;
+	text-transform: none;
+	color: var(--color-muted);
+	font-family: var(--font-subtitle);
+}
+
+.activity-card__meta-item--date {
+	font-variant-numeric: tabular-nums;
+}
+
+.activity-card__meta-item--price {
+	font-weight: 600;
+}
+
+.activity-card__link {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	color: inherit;
+	text-decoration: none;
+}
+
+/* SVG icon sizing for react-icons */
+.activity-card__meta-item svg {
+	width: 1rem;
+	height: 1rem;
+	flex-shrink: 0;
+	color: var(--color-muted);
+	margin-right: 0.35rem;
+}
+
+/* Compact list layout used on the home page */
+.activities__grid.activities__list {
+	display: grid; /* same grid behavior as Trending */
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 1.25rem;
+	justify-items: start;
+}
+
+/* Make list cards visually match Trending: image full width, transparent card */
+.page #activities .activities__grid.activities__list .activity-card,
+.page #activities .activities__grid.activities__list .activity-card__link,
+.page #activities .activities__grid.activities__list .activity-card__body {
+	background-color: transparent !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+/* Card layout matches Trending: column with full-width image */
+.activities__grid.activities__list .activity-card {
+	display: flex;
+	flex-direction: column;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	width: 100%;
+	max-width: 100%;
+}
+
+.activities__grid.activities__list .activity-card__media {
+	width: 100%;
+	margin: 0;
+}
+
+.activities__grid.activities__list .activity-card__media img {
+	width: 100%;
+	aspect-ratio: 4/3;
+	object-fit: cover;
+	display: block;
+	border-bottom: none;
+}
+
+/* Align text flush with image edges and match Trending padding */
+.activities__grid.activities__list .activity-card__body,
+.activities__grid.activities__list .activity-card__body > *,
+.activities__grid.activities__list .activity-card__category {
+	margin-left: 0 !important;
+	padding-left: 0 !important;
+	text-align: left !important;
+}
+
+.activities__grid.activities__list .activity-card__body {
+	padding: 1.35rem 0 1.3rem !important;
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+	box-sizing: border-box;
+}
+
+
+

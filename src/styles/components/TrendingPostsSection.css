@@ -1,0 +1,147 @@
+/* ========================================
+   TRENDING POSTS SECTION
+   ======================================== */
+
+/* Trending Card */
+.trending-card {
+  display: flex;
+  flex-direction: column;
+  /* Make trending cards visually match the "latest" section: no background, no border */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.trending-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.trending-card__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-bottom: none;
+}
+
+.trending-card__body {
+  /* Align text flush with image edges: remove horizontal padding */
+  padding: 1.35rem 0 1.3rem !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  box-sizing: border-box;
+}
+
+.trending-card__category {
+  font-family: var(--font-subtitle);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  letter-spacing: 0.05em;
+}
+
+.trending-card__body h3 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  line-height: 1.3;
+}
+
+.trending-card__author {
+  font-family: var(--font-subtitle);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+/* Force left alignment and remove inner margins so category/title/author start
+   exactly at the left edge of the image (same visual as .latest section) */
+.trending-card__body,
+.trending-card__body > *,
+.trending-card__category {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-align: left !important;
+}
+
+/* Very specific overrides to ensure no white card backgrounds remain.
+   These selectors are deliberately specific and scoped to `.page .trending`
+   to override shared/global rules (which may use !important). */
+.page .trending .trending__grid .trending-card,
+.page .trending .trending__grid .trending-card__link,
+.page .trending .trending__grid .trending-card__body {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Also ensure any anchor-wrapped card doesn't get a background from global rules */
+.page .trending a.trending-card__link {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Trending container & responsive grid (copied from App.css) */
+.trending {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trending__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  justify-items: start;
+  max-width: 100%;
+}
+
+@supports (grid-template-columns: repeat(4, 1fr)) {
+  .trending__grid {
+    grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 3.75rem) / 4)), 1fr));
+  }
+  
+  @media (max-width: 1200px) {
+    .trending__grid {
+      grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 2.5rem) / 3)), 1fr));
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .trending__grid {
+      grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 1.25rem) / 2)), 1fr));
+    }
+  }
+}
+
+.trending__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trending__featured {
+  margin-bottom: 1rem;
+}
+
+.trending-card--large {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.trending-card--large .trending-card__thumb {
+  width: 45%;
+  flex: 0 0 45%;
+}
+
+.trending-card--large .trending-card__title {
+  font-size: 1.05rem;
+}

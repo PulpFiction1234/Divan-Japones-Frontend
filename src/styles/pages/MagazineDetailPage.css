@@ -1,0 +1,199 @@
+/* MagazineDetailPage styles (skeleton) */
+
+/* Copied from App.css to make MagazineDetailPage self-contained */
+.magazine-hero {
+	background: #fff;
+	border-radius: 0;
+	box-shadow: 0 6px 32px -12px rgba(0, 0, 0, 0.2);
+	padding: clamp(1.75rem, 3vw, 2.75rem);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: clamp(1.5rem, 3vw, 2rem);
+	align-items: stretch;
+}
+
+.magazine-hero__cover {
+	min-height: 420px;
+	border-radius: 0;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: flex-end;
+	padding: 1rem;
+}
+
+.magazine-hero__cover-label {
+	font-family: var(--font-subtitle);
+	font-size: 0.75rem;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.35);
+	border-radius: 999px;
+	padding: 0.35rem 0.8rem;
+}
+
+.magazine-hero__content {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: center;
+}
+
+.magazine-hero__meta {
+	margin: 0;
+	font-size: 0.9rem;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+}
+
+.magazine-hero__description {
+	margin: 0;
+	font-family: var(--font-body);
+	color: #3a3a3a;
+}
+
+.magazine-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.65rem;
+	margin-top: 0.5rem;
+}
+
+.magazine-hero__btn,
+.magazine-hero__btn--ghost {
+	border: none;
+	border-radius: 0;
+	padding: 0.65rem 1.25rem;
+	font-family: var(--font-title);
+	font-size: 0.95rem;
+	letter-spacing: 0.05em;
+	cursor: pointer;
+	transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.magazine-hero__btn {
+	background: #111;
+	color: #fff;
+}
+
+.magazine-hero__btn--ghost {
+	background: transparent;
+	color: #111;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.magazine-hero__btn:hover,
+.magazine-hero__btn--ghost:hover {
+	opacity: 0.85;
+	transform: translateY(-1px);
+}
+
+.magazine-hero__link {
+	align-self: center;
+	font-size: 0.9rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--color-text);
+}
+
+/* Magazine sections (copied from App.css) */
+.magazine-sections {
+	margin-top: 3rem;
+}
+
+.magazine-sections__header {
+	margin-bottom: 1.5rem;
+}
+
+.magazine-sections__header p {
+	margin: 0.45rem 0 0;
+	color: var(--color-muted);
+	font-size: 0.95rem;
+}
+
+.magazine-sections__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 1.1rem;
+}
+
+.magazine-section-card {
+		border-radius: 0;
+		padding: 1.5rem;
+		background: #fff;
+		box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.25);
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+}
+
+/* Make hero and section cards transparent on magazine pages
+	 NOTE: do NOT override the background of `.magazine-hero__cover` here because
+	 that element receives an inline background-image (gradient + URL). Overriding
+	 the `background` shorthand with !important removes the inline image. */
+.page.magazine-page .magazine-hero,
+.page.magazine-page .magazine-section-card {
+	background: transparent !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+
+/* Keep the cover's background-image (set inline) but remove any shadow/border
+	 so the image integrates with the page background. */
+.page.magazine-page .magazine-hero__cover {
+	box-shadow: none !important;
+	border: none !important;
+}
+
+.page.magazine-page .magazine-hero {
+	padding: 0 !important;
+}
+
+.magazine-section-card__label {
+	font-family: var(--font-subtitle);
+	font-size: 0.75rem;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+	margin: 0;
+}
+
+.magazine-section-card h3 {
+	font-size: 1.15rem;
+	margin: 0;
+	font-family: var(--font-title);
+}
+
+.magazine-section-card__author {
+	margin: 0;
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.magazine-section-card__excerpt {
+	margin: 0;
+	color: var(--color-muted);
+	font-size: 0.9rem;
+}
+
+.magazine-section-card__link {
+	margin-top: auto;
+	font-family: var(--font-title);
+	font-size: 0.9rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #111;
+}
+
+.magazine-sections__empty {
+	font-size: 0.95rem;
+	color: var(--color-muted);
+}
+
