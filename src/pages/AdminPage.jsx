@@ -40,6 +40,40 @@ const initialFormState = {
   hasActivity: false,
 }
 
+function DebugLastPayload() {
+  const [payload, setPayload] = useState(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('debug_last_article_payload')
+      if (raw) setPayload(JSON.parse(raw))
+    } catch (e) {
+      setPayload(null)
+    }
+  }, [])
+
+  if (!payload) return null
+
+  return (
+    <div className="admin-debug-panel" style={{ margin: '1rem 0', padding: '0.75rem', background: '#fff8', borderRadius: 6 }}>
+      <button type="button" onClick={() => setVisible((v) => !v)} style={{ marginBottom: 8 }}>
+        {visible ? 'Ocultar último payload enviado' : 'Mostrar último payload enviado'}
+      </button>
+      {visible ? (
+        <pre style={{ whiteSpace: 'pre-wrap', maxHeight: 240, overflow: 'auto', background: '#fff', padding: '0.5rem', borderRadius: 4 }}>
+          {JSON.stringify(payload, null, 2)}
+        </pre>
+      ) : null}
+      <div style={{ marginTop: 8 }}>
+        <button type="button" onClick={() => { localStorage.removeItem('debug_last_article_payload'); setPayload(null); setVisible(false) }}>
+          Borrar registro de depuración
+        </button>
+      </div>
+    </div>
+  )
+}
+
 const initialMagazineFormState = {
   title: '',
   description: '',
@@ -948,6 +982,11 @@ export default function AdminPage() {
                   </button>
                 </div>
               </form>
+
+              {/* Debug: mostrar último payload enviado (útil para verificar desde móvil) */}
+              {typeof window !== 'undefined' ? (
+                <DebugLastPayload />
+              ) : null}
 
               {/* Lista de publicaciones existentes */}
               <div className="admin-posts__list">
