@@ -99,6 +99,17 @@
    MOBILE (< 768px)
    ======================================== */
 @media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
   /* Remove side margins for full-width header/footer */
   body {
     margin: 0;
@@ -107,6 +118,8 @@
 
   .page {
     padding: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   /* Full-width header and footer */
@@ -291,11 +304,15 @@
 
   .publications-layout {
     width: 100%;
+    max-width: 100vw;
+    margin: 0;
   }
 
   .publications-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .publications-sidebar {
@@ -305,6 +322,7 @@
     padding-right: 0;
     padding-bottom: 1.5rem;
     margin-bottom: 0;
+    width: 100%;
   }
 
   /* Show mobile dropdown, hide desktop nav */
@@ -314,6 +332,40 @@
 
   .publications-sidebar__desktop {
     display: none;
+  }
+
+  .publications-sidebar__select {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .publications-results {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .publications-results ul {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .publications-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .publications-card__media {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .publications-card__media img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
 
   .publications-header {
