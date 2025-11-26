@@ -13,12 +13,12 @@ async function parseResponse(response) {
 }
 
 export async function fetchArticles({ signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/articles`, { signal })
+  const response = await fetch(`${API_BASE_URL}/api/articles`, { signal })
   return parseResponse(response)
 }
 
 export async function createArticle(payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/articles`, {
+  const response = await fetch(`${API_BASE_URL}/api/articles`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -29,7 +29,7 @@ export async function createArticle(payload, { signal } = {}) {
 }
 
 export async function updateArticle(id, payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/articles/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/api/articles/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -40,7 +40,7 @@ export async function updateArticle(id, payload, { signal } = {}) {
 }
 
 export async function deleteArticle(id, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/articles/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/api/articles/${id}`, {
     method: 'DELETE',
     signal,
   })
@@ -49,12 +49,12 @@ export async function deleteArticle(id, { signal } = {}) {
 }
 
 export async function fetchMagazines({ signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines`, { signal })
+  const response = await fetch(`${API_BASE_URL}/api/magazines`, { signal })
   return parseResponse(response)
 }
 
 export async function createMagazine(payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines`, {
+  const response = await fetch(`${API_BASE_URL}/api/magazines`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -65,7 +65,7 @@ export async function createMagazine(payload, { signal } = {}) {
 }
 
 export async function updateMagazine(id, payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/api/magazines/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -76,7 +76,7 @@ export async function updateMagazine(id, payload, { signal } = {}) {
 }
 
 export async function deleteMagazine(id, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/api/magazines/${id}`, {
     method: 'DELETE',
     signal,
   })
@@ -85,12 +85,12 @@ export async function deleteMagazine(id, { signal } = {}) {
 }
 
 export async function fetchMagazineArticles(magazineId, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines/${magazineId}/articles`, { signal })
+  const response = await fetch(`${API_BASE_URL}/api/magazines/${magazineId}/articles`, { signal })
   return parseResponse(response)
 }
 
 export async function createMagazineArticle(magazineId, payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines/${magazineId}/articles`, {
+  const response = await fetch(`${API_BASE_URL}/api/magazines/${magazineId}/articles`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -101,7 +101,7 @@ export async function createMagazineArticle(magazineId, payload, { signal } = {}
 }
 
 export async function updateMagazineArticle(magazineId, articleId, payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines/${magazineId}/articles/${articleId}`, {
+  const response = await fetch(`${API_BASE_URL}/api/magazines/${magazineId}/articles/${articleId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -112,7 +112,7 @@ export async function updateMagazineArticle(magazineId, articleId, payload, { si
 }
 
 export async function deleteMagazineArticle(magazineId, articleId, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/magazines/${magazineId}/articles/${articleId}`, {
+  const response = await fetch(`${API_BASE_URL}/api/magazines/${magazineId}/articles/${articleId}`, {
     method: 'DELETE',
     signal,
   })
@@ -127,12 +127,12 @@ export function getApiBaseUrl() {
 // ===== CATEGORIES API =====
 
 export async function fetchCategories({ signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/categories`, { signal })
+  const response = await fetch(`${API_BASE_URL}/api/categories`, { signal })
   return parseResponse(response)
 }
 
 export async function createCategory(payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/categories`, {
+  const response = await fetch(`${API_BASE_URL}/api/categories`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -143,7 +143,7 @@ export async function createCategory(payload, { signal } = {}) {
 }
 
 export async function deleteCategory(id, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/categories/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
     method: 'DELETE',
     signal,
   })
@@ -154,12 +154,12 @@ export async function deleteCategory(id, { signal } = {}) {
 // ===== AUTHORS API =====
 
 export async function fetchAuthors({ signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/authors`, { signal })
+  const response = await fetch(`${API_BASE_URL}/api/authors`, { signal })
   return parseResponse(response)
 }
 
 export async function createAuthor(payload, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/authors`, {
+  const response = await fetch(`${API_BASE_URL}/api/authors`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -170,7 +170,7 @@ export async function createAuthor(payload, { signal } = {}) {
 }
 
 export async function deleteAuthor(id, { signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/authors/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/api/authors/${id}`, {
     method: 'DELETE',
     signal,
   })
