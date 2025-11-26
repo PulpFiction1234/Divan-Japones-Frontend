@@ -72,8 +72,8 @@ export default function MagazineDetailPage() {
         section: 'Artículo',
         title: article.title,
         author: article.author || 'Sin autor',
-        excerpt: article.pageNumber ? `Página ${article.pageNumber}` : '',
-        pdfUrl: article.pdfUrl,
+        excerpt: article.page_number || article.pageNumber ? `Página ${article.page_number || article.pageNumber}` : '',
+        pdfUrl: article.pdf_url || article.pdfUrl,
       }))
     }
 
