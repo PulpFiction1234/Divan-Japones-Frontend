@@ -58,13 +58,13 @@ function normalizePost(rawPost) {
   }
 
   const baseType = rawPost.type === 'activity' ? 'activity' : 'publication'
-  const isActivity = rawPost.isActivity === true || baseType === 'activity'
+  const isActivity = rawPost.is_activity === true || rawPost.isActivity === true || baseType === 'activity'
   const type = baseType
-  const publishedAt = rawPost.publishedAt ? new Date(rawPost.publishedAt).toISOString() : new Date().toISOString()
-  const scheduledAt = rawPost.scheduledAt ? new Date(rawPost.scheduledAt).toISOString() : null
+  const publishedAt = rawPost.published_at || rawPost.publishedAt ? new Date(rawPost.published_at || rawPost.publishedAt).toISOString() : new Date().toISOString()
+  const scheduledAt = rawPost.scheduled_at || rawPost.scheduledAt ? new Date(rawPost.scheduled_at || rawPost.scheduledAt).toISOString() : null
   const price = typeof rawPost.price === 'string' ? rawPost.price : rawPost.price?.toString?.() ?? ''
   const location = rawPost.location ?? ''
-  const viewCount = Number(rawPost.viewCount) || 0
+  const viewCount = Number(rawPost.view_count || rawPost.viewCount) || 0
   const category = rawPost.category?.trim?.() ?? (type === 'activity' ? '' : 'General')
   const subcategory = rawPost.subcategory?.trim?.() ?? ''
 
@@ -76,7 +76,7 @@ function normalizePost(rawPost) {
     author: rawPost.author ?? DEFAULT_AUTHOR,
     excerpt: rawPost.excerpt ?? '',
     content: rawPost.content ?? '',
-    image: rawPost.image ?? '',
+    image: rawPost.image_url || rawPost.image || '',
     publishedAt,
     type,
     isActivity,
@@ -92,14 +92,14 @@ function normalizeMagazine(rawMagazine) {
     return null
   }
 
-  const pdfSource = typeof rawMagazine.pdfSource === 'string' ? rawMagazine.pdfSource.trim() : ''
-  const viewerUrl = rawMagazine.viewerUrl?.trim() || ''
-  const createdAt = rawMagazine.createdAt ? new Date(rawMagazine.createdAt).toISOString() : new Date().toISOString()
-  const releaseDate = rawMagazine.releaseDate ? new Date(rawMagazine.releaseDate).toISOString() : null
-  const coverImage = rawMagazine.coverImage?.trim() || DEFAULT_MAGAZINE_COVER
+  const pdfSource = typeof rawMagazine.pdfSource === 'string' ? rawMagazine.pdfSource.trim() : (rawMagazine.pdf_source || rawMagazine.pdf_url || '')
+  const viewerUrl = rawMagazine.viewerUrl?.trim() || rawMagazine.viewer_url?.trim() || ''
+  const createdAt = rawMagazine.createdAt || rawMagazine.created_at ? new Date(rawMagazine.createdAt || rawMagazine.created_at).toISOString() : new Date().toISOString()
+  const releaseDate = rawMagazine.releaseDate || rawMagazine.release_date ? new Date(rawMagazine.releaseDate || rawMagazine.release_date).toISOString() : null
+  const coverImage = rawMagazine.coverImage?.trim() || rawMagazine.cover_image?.trim() || rawMagazine.cover_url?.trim() || DEFAULT_MAGAZINE_COVER
   const hasPdf = Boolean(pdfSource)
   const hasViewer = Boolean(viewerUrl)
-  const isPdfPersisted = rawMagazine.isPdfPersisted === false ? false : hasPdf
+  const isPdfPersisted = rawMagazine.isPdfPersisted === false || rawMagazine.is_pdf_persisted === false ? false : hasPdf
 
   return {
     id:
@@ -112,7 +112,7 @@ function normalizeMagazine(rawMagazine) {
     coverImage,
     createdAt,
     releaseDate,
-    fileName: rawMagazine.fileName?.trim() || '',
+    fileName: rawMagazine.fileName?.trim() || rawMagazine.file_name?.trim() || '',
     hasPdf,
     hasViewer,
     isPdfPersisted,
