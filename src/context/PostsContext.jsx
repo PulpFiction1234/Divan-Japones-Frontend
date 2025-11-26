@@ -126,7 +126,8 @@ function normalizeMagazine(rawMagazine) {
 
 function createPost(payload) {
   const resolvedType = payload.type === 'activity' ? 'activity' : 'publication'
-  const includesActivity = payload.isActivity === true || resolvedType === 'activity'
+  // Accept both `isActivity` and `hasActivity` (admin form uses hasActivity)
+  const includesActivity = payload.isActivity === true || payload.hasActivity === true || resolvedType === 'activity'
   const base = {
     ...payload,
     id: payload.id ?? (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `post-${Date.now()}`),
@@ -136,9 +137,11 @@ function createPost(payload) {
     subcategory: payload.subcategory?.trim?.() ?? '',
     publishedAt: payload.publishedAt ? new Date(payload.publishedAt).toISOString() : new Date().toISOString(),
     viewCount: Number(payload.viewCount) || 0,
-    scheduledAt: includesActivity && payload.scheduledAt ? new Date(payload.scheduledAt).toISOString() : null,
-    price: includesActivity ? payload.price ?? '' : '',
-    location: includesActivity ? payload.location ?? '' : '',
+    // Normalize image and activity-related fields coming from different sources/forms
+    image: payload.image || payload.imageUrl || payload.image_url || '',
+    scheduledAt: includesActivity && (payload.scheduledAt || payload.scheduled_at) ? new Date(payload.scheduledAt || payload.scheduled_at).toISOString() : null,
+    price: includesActivity ? (payload.price ?? '') : '',
+    location: includesActivity ? (payload.location ?? '') : '',
   }
 
   return normalizePost(base)
