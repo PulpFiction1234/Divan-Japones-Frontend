@@ -258,7 +258,7 @@ export function PostsProvider({ children }) {
     }
 
     try {
-      const saved = await createArticle({
+      const payloadToSend = {
         title: prepared.title,
         category: prepared.category,
         subcategory: prepared.subcategory,
@@ -272,7 +272,15 @@ export function PostsProvider({ children }) {
         scheduledAt: prepared.scheduledAt,
         location: prepared.location,
         price: prepared.price,
-      })
+      }
+
+      try {
+        localStorage.setItem('debug_last_article_payload', JSON.stringify(payloadToSend))
+      } catch (e) {
+        /* ignore storage errors */
+      }
+
+      const saved = await createArticle(payloadToSend)
 
       const normalized = createPost(saved)
       dispatchPosts({ type: 'ADD_POST', payload: normalized })
@@ -318,7 +326,7 @@ export function PostsProvider({ children }) {
     }
 
     try {
-      const saved = await updateArticle(id, {
+      const payloadToSend = {
         title: prepared.title,
         category: prepared.category,
         subcategory: prepared.subcategory,
@@ -332,7 +340,13 @@ export function PostsProvider({ children }) {
         scheduledAt: prepared.scheduledAt,
         location: prepared.location,
         price: prepared.price,
-      })
+      }
+
+      try {
+        localStorage.setItem('debug_last_article_payload', JSON.stringify(payloadToSend))
+      } catch (e) {}
+
+      const saved = await updateArticle(id, payloadToSend)
 
       const normalized = createPost(saved)
       dispatchPosts({ type: 'UPDATE_POST', payload: normalized })
