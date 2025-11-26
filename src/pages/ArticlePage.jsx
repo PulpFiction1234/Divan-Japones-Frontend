@@ -25,7 +25,7 @@ function formatDate(value) {
 
 export default function ArticlePage() {
   const { postId } = useParams()
-  const { posts } = usePosts()
+  const { posts, publications, categories } = usePosts()
 
   const post = useMemo(() => {
     return posts.find(p => p.slug === postId || p.id === postId)
