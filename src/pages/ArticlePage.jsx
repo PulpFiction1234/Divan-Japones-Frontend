@@ -156,7 +156,7 @@ export default function ArticlePage() {
                         <ul className="article-sidebar__tags">
                           {categoryIndex.map((category) => (
                             <li key={category.slug}>
-                              <Link to={`/category/${category.slug}`}>{category.name}</Link>
+                              <Link to={`/publicaciones?category=${category.slug}`}>{category.name}</Link>
                             </li>
                           ))}
                         </ul>

@@ -193,7 +193,7 @@ export default function MagazineDetailPage() {
                           Descargar artículo
                         </a>
                       ) : section.slug ? (
-                        <Link to={`/category/${section.slug}`} className="magazine-section-card__link">
+                        <Link to={`/publicaciones?category=${section.slug}`} className="magazine-section-card__link">
                           Leer sección completa
                         </Link>
                       ) : null}
