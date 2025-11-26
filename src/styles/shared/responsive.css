@@ -1,0 +1,451 @@
+/* ========================================
+   GLOBAL RESPONSIVE STYLES
+   Mobile-first approach with breakpoints:
+   - Mobile: < 768px
+   - Tablet: 768px - 1024px
+   - Desktop: > 1024px
+   ======================================== */
+
+/* ========================================
+   TABLET AND MOBILE (< 1024px)
+   ======================================== */
+@media (max-width: 1024px) {
+  /* Header adjustments */
+  .topbar {
+    flex-wrap: wrap;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .topbar__search {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .topbar__search input {
+    flex: 1;
+    width: 100%;
+  }
+
+  /* Menu Section */
+  .feature-card {
+    min-height: 400px;
+  }
+
+  .latest__grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Publications Grid */
+  .publications-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Magazine Grid */
+  .magazine-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  /* Article Layout */
+  .article-main {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .article-body {
+    max-width: none;
+  }
+
+  .article-sidebar {
+    max-width: none;
+  }
+
+  /* Admin Panel */
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   MOBILE (< 768px)
+   ======================================== */
+@media (max-width: 768px) {
+  /* Typography adjustments */
+  h1, .section-heading {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+  }
+
+  /* Header */
+  .topbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .topbar__social {
+    gap: 0.5rem;
+  }
+
+  .topbar__social a {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .topbar__social svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .topbar__admin {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* About Section */
+  .about-section {
+    padding: 2rem 1rem;
+  }
+
+  .about-section__title {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+  }
+
+  .about-section__subtitle {
+    font-size: clamp(0.7rem, 3vw, 0.9rem);
+  }
+
+  /* Menu Section */
+  .latest__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature-card {
+    min-height: 350px;
+  }
+
+  .feature-card__category,
+  .latest-card__category {
+    font-size: 0.65rem;
+  }
+
+  .feature-card__title {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+
+  .latest-card__title {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+
+  /* Trending Posts */
+  .trending__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .trending-card__media {
+    height: 250px;
+  }
+
+  /* Experience/Activities */
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .activity-card {
+    min-height: 350px;
+  }
+
+  /* Publications */
+  .publications-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .publications-filters {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .publications-filters__list {
+    flex-wrap: nowrap;
+    min-width: min-content;
+  }
+
+  .publications-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Magazine Pages */
+  .magazine-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .magazine-hero {
+    padding: 2rem 1rem;
+  }
+
+  .magazine-hero__title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .magazine-hero__actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .magazine-hero__btn {
+    width: 100%;
+  }
+
+  .magazine-sections__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Article Page */
+  .article-hero {
+    padding: 2rem 1rem;
+    min-height: 400px;
+  }
+
+  .article-hero__title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .article-hero__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .article-body {
+    padding: 2rem 1rem;
+  }
+
+  .article-body__content {
+    font-size: 1rem;
+  }
+
+  .article-body__content img {
+    margin: 1.5rem 0;
+  }
+
+  .article-sidebar {
+    padding: 1.5rem 1rem;
+  }
+
+  .article-sidebar__card {
+    padding: 1.5rem;
+  }
+
+  /* Category Page */
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .category-grid__media {
+    height: 250px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 2rem 1rem;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Admin Page */
+  .admin-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .admin-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-tabs__list {
+    flex-wrap: nowrap;
+    min-width: min-content;
+  }
+
+  .admin-form {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form__actions {
+    flex-direction: column;
+  }
+
+  .admin-form__actions button {
+    width: 100%;
+  }
+
+  .admin-list {
+    overflow-x: auto;
+  }
+
+  /* Contact Page */
+  .contact-form {
+    padding: 2rem 1rem;
+  }
+
+  .contact-form__fields {
+    grid-template-columns: 1fr;
+  }
+
+  /* Activities Page */
+  .activities-header {
+    padding: 2rem 1rem;
+  }
+
+  .activities-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Author Pill */
+  .author-pill {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .author-pill__avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Magazine Flipbook Modal */
+  .flipbook-modal__content {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .flipbook-modal__header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .flipbook-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .flipbook-viewer {
+    height: 60vh;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE (< 480px)
+   ======================================== */
+@media (max-width: 480px) {
+  /* Further reduce padding and spacing */
+  .topbar {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .about-section {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+  }
+
+  /* Cards */
+  .feature-card,
+  .latest-card,
+  .trending-card,
+  .activity-card {
+    min-height: 300px;
+  }
+
+  .feature-card__title {
+    font-size: 1.8rem;
+  }
+
+  .latest-card__title,
+  .trending-card h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Article */
+  .article-hero {
+    min-height: 350px;
+    padding: 1.5rem 0.75rem;
+  }
+
+  .article-body {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .article-body__content {
+    font-size: 0.95rem;
+  }
+
+  /* Forms */
+  .admin-form__group label,
+  .contact-form__field label {
+    font-size: 0.9rem;
+  }
+
+  .admin-form__group input,
+  .admin-form__group textarea,
+  .admin-form__group select,
+  .contact-form__field input,
+  .contact-form__field textarea {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  /* Buttons */
+  button,
+  .admin-form__btn,
+  .magazine-hero__btn,
+  .contact-form__submit {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* ========================================
+   LANDSCAPE MOBILE (max-height: 500px)
+   ======================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .article-hero,
+  .magazine-hero,
+  .feature-card,
+  .activity-card {
+    min-height: 250px;
+  }
+
+  .flipbook-viewer {
+    height: 80vh;
+  }
+}

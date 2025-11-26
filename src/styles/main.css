@@ -25,5 +25,8 @@
 @import './pages/MagazinePage.css';
 @import './pages/PublicationsPage.css';
 
+/* Shared styles */
+@import './shared/responsive.css';
+
 /* Override styles - must be last */
 @import './shared/zeroRadius.css';
