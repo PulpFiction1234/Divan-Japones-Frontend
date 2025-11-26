@@ -88,7 +88,26 @@ export default function PublicationsPage() {
         <div className="publications-grid">
           <aside className="publications-sidebar" aria-label="Filtros de categoría">
             <h2>Publicaciones</h2>
-            <nav>
+            
+            {/* Mobile dropdown */}
+            <div className="publications-sidebar__mobile">
+              <label htmlFor="category-select" className="sr-only">Seleccionar categoría</label>
+              <select 
+                id="category-select"
+                value={activeSlug} 
+                onChange={(e) => setActiveSlug(e.target.value)}
+                className="publications-sidebar__select"
+              >
+                {categoriesWithAll.map((category) => (
+                  <option key={category.slug} value={category.slug}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Desktop navigation */}
+            <nav className="publications-sidebar__desktop">
               <ul>
                 {categoriesWithAll.map((category) => (
                   <li key={category.slug}>
