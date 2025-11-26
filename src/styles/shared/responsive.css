@@ -225,28 +225,34 @@
 
   /* Menu/Latest Section */
   .latest {
-    padding: 2rem 1rem;
+    /* reduced vertical padding on mobile to avoid large gaps */
+    padding: 1rem 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .latest__grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .feature-card,
   .latest-card {
+    /* allow cards to grow with content on small screens */
     min-height: auto;
+    max-height: none !important;
+    overflow: visible !important;
   }
 
   .feature-card img,
   .latest-card img {
     aspect-ratio: 4 / 3;
     height: auto;
+    width: 100%;
   }
 
   .feature-card__body,
   .latest-card__body {
-    padding: 1.5rem 0 0;
+    padding: 0.75rem 0 0;
   }
 
   .feature-card__body h3 {
