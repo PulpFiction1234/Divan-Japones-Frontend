@@ -675,7 +675,22 @@
   .latest-card,
   .trending-card,
   .activity-card {
-    min-height: 300px;
+    /* remove enforced tall min-height on very small screens to avoid blank gaps */
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Ensure grid rows size to content and feature card doesn't span rows on narrow screens */
+  .latest__grid {
+    grid-auto-rows: auto !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.9rem !important;
+  }
+
+  .latest__grid > .feature-card {
+    grid-row: auto !important;
+    align-self: stretch !important;
   }
 
   .feature-card__title {
