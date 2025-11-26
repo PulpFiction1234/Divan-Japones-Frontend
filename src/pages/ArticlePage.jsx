@@ -25,9 +25,11 @@ function formatDate(value) {
 
 export default function ArticlePage() {
   const { postId } = useParams()
-  const { getPostById, publications, categories } = usePosts()
+  const { posts } = usePosts()
 
-  const post = getPostById(postId)
+  const post = useMemo(() => {
+    return posts.find(p => p.slug === postId || p.id === postId)
+  }, [posts, postId])
   const isActivity = post?.isActivity
   const baseCategory = post?.category || 'General'
   const categoryLabel = formatCategoryLabel(post, {
@@ -130,7 +132,7 @@ export default function ArticlePage() {
                         <ul className="article-sidebar__list">
                           {recentPosts.map((item) => (
                             <li key={item.id} className="article-sidebar__list-item">
-                              <Link to={`/article/${item.id}`} className="article-sidebar__list-link">
+                              <Link to={`/article/${item.slug}`} className="article-sidebar__list-link">
                                 <img
                                   className="article-sidebar__thumb"
                                   src={item.image || FALLBACK_IMAGE}

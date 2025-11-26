@@ -33,7 +33,7 @@ export default function TrendingPostsSection() {
       <div className="trending__grid">
         {trendingPosts.map((post) => (
           <article key={post.id} className="trending-card">
-            <Link to={`/article/${post.id}`} className="trending-card__link">
+            <Link to={`/article/${post.slug}`} className="trending-card__link">
               <div className="trending-card__media">
                 <img src={post.image || FALLBACK_IMAGE} alt={post.title} loading="lazy" />
               </div>

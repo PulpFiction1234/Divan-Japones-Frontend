@@ -112,7 +112,7 @@ export default function PublicationsPage() {
                 {publications.map((post) => (
                   <li key={post.id}>
                     <article>
-                      <Link to={`/article/${post.id}`} className="publications-card">
+                      <Link to={`/article/${post.slug}`} className="publications-card">
                         <div className="publications-card__media">
                           <img src={post.image || FALLBACK_IMAGE} alt={post.title} loading="lazy" />
                         </div>

@@ -47,7 +47,7 @@ export default function ActivitiesSection() {
 
           return (
             <article key={activity.id} className="activity-card">
-              <Link to={`/article/${activity.id}`} className="activity-card__link" aria-label={`Ver detalles de ${activity.title}`}>
+              <Link to={`/article/${activity.slug}`} className="activity-card__link" aria-label={`Ver detalles de ${activity.title}`}>
                 <div className="activity-card__media">
                   <img src={activity.image || FALLBACK_IMAGE} alt={activity.title} loading="lazy" />
                 </div>

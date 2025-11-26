@@ -35,7 +35,7 @@ export default function LatestSection() {
       <h2 className="section-heading">Últimas notas</h2>
       <div className="latest__grid">
         <article className="feature-card">
-          <Link className="feature-card__link" to={`/article/${feature.id}`}>
+          <Link className="feature-card__link" to={`/article/${feature.slug}`}>
             <img src={feature.image || FALLBACK_IMAGE} alt={feature.title} loading="lazy" />
             <div className="feature-card__body">
               <span className="article-category">{formatCategoryLabel(feature, { fallback: 'Publicaciones' })}</span>
@@ -55,7 +55,7 @@ export default function LatestSection() {
 
         {secondary.map((article) => (
           <article key={article.id} className="latest-card">
-            <Link className="latest-card__link" to={`/article/${article.id}`}>
+            <Link className="latest-card__link" to={`/article/${article.slug}`}>
               <img src={article.image || FALLBACK_IMAGE} alt={article.title} loading="lazy" />
               <div className="latest-card__body">
                 <span className="article-category">{formatCategoryLabel(article, { fallback: 'Publicaciones' })}</span>

@@ -41,13 +41,13 @@ export default function CategoryPage() {
               <div className="category-grid__items">
                 {posts.map((post) => (
                   <article key={post.id} className="category-grid__card">
-                    <Link to={`/article/${post.id}`} className="category-grid__media">
+                    <Link to={`/article/${post.slug}`} className="category-grid__media">
                       <img src={post.image || FALLBACK_IMAGE} alt={post.title} loading="lazy" />
                     </Link>
                     <div className="category-grid__body">
                       <p className="category-grid__date">{formatDate(post.publishedAt)}</p>
                       <h2>
-                        <Link to={`/article/${post.id}`}>{post.title}</Link>
+                        <Link to={`/article/${post.slug}`}>{post.title}</Link>
                       </h2>
                       {post.excerpt ? <p className="category-grid__excerpt">{post.excerpt}</p> : null}
                       <p className="category-grid__author">{post.author || ''}</p>

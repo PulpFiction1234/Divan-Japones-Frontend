@@ -60,6 +60,7 @@ function normalizePost(rawPost) {
   const baseType = rawPost.type === 'activity' ? 'activity' : 'publication'
   const isActivity = rawPost.is_activity === true || rawPost.isActivity === true || baseType === 'activity'
   const type = baseType
+  const title = rawPost.title ?? 'Sin título'
   const publishedAt = rawPost.published_at || rawPost.publishedAt ? new Date(rawPost.published_at || rawPost.publishedAt).toISOString() : new Date().toISOString()
   const scheduledAt = rawPost.scheduled_at || rawPost.scheduledAt ? new Date(rawPost.scheduled_at || rawPost.scheduledAt).toISOString() : null
   const price = typeof rawPost.price === 'string' ? rawPost.price : rawPost.price?.toString?.() ?? ''
@@ -67,10 +68,12 @@ function normalizePost(rawPost) {
   const viewCount = Number(rawPost.view_count || rawPost.viewCount) || 0
   const category = rawPost.category?.trim?.() ?? (type === 'activity' ? '' : 'General')
   const subcategory = rawPost.subcategory?.trim?.() ?? ''
+  const slug = rawPost.slug || slugify(title)
 
   return {
     id: rawPost.id,
-    title: rawPost.title ?? 'Sin título',
+    slug,
+    title,
     category,
     subcategory,
     author: rawPost.author ?? DEFAULT_AUTHOR,
