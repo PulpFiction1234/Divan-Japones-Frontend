@@ -92,7 +92,8 @@ export default function MagazineDetailPage() {
   }, [magazineArticles, publications])
 
   const handleOpenMagazine = useCallback(() => {
-    if (magazine?.pdfSource) {
+    // Open modal when we have either a direct PDF or an external viewer URL
+    if (magazine?.pdfSource || magazine?.viewerUrl) {
       setSelectedMagazineId(magazine.id)
     }
   }, [magazine])

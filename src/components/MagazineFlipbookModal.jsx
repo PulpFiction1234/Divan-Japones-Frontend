@@ -10,7 +10,8 @@ const LOADING_TIMEOUT_MS = 10000
 export default function MagazineFlipbookModal({ magazine, onClose }) {
   const modalRef = useRef(null)
   const loadTimeoutRef = useRef(null)
-  const pdfUrl = magazine?.pdfSource ?? ''
+  // Prefer a direct PDF source, but fall back to an external viewer URL when available
+  const pdfUrl = magazine?.pdfSource || magazine?.viewerUrl || ''
   const [isLoading, setIsLoading] = useState(() => Boolean(pdfUrl))
   const [error, setError] = useState(() => (pdfUrl ? '' : NO_PDF_ERROR))
 
