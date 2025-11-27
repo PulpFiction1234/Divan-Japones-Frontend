@@ -210,8 +210,8 @@
 	.activity-card__body {
 		position: relative;
 		z-index: 1;
-		margin-top: 0.35rem;
-		padding-top: 0.35rem;
+		margin-top: 0.0625rem; /* ~1px gap */
+		padding-top: 0.0625rem; /* ~1px breathing room */
 	}
 }
 

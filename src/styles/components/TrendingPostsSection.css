@@ -163,7 +163,7 @@
   .trending-card__body {
     position: relative;
     z-index: 1; /* keep text above background but below any absolute overlays */
-    margin-top: 0.35rem; /* small gap so text doesn't sit flush on the image */
-    padding-top: 0.35rem; /* ensure breathing room on very narrow devices */
+    margin-top: 0.0625rem; /* ~1px gap */
+    padding-top: 0.0625rem; /* ~1px breathing room */
   }
 }
