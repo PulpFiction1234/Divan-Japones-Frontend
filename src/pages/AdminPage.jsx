@@ -251,6 +251,8 @@ export default function AdminPage() {
 
     try {
       const imageUrl = ensureImageValue()
+      // Normalize fields explicitly to avoid empty strings or non-ISO dates
+      const normalizedScheduledAt = formState.scheduledAt ? new Date(formState.scheduledAt).toISOString() : null
       const baseData = {
         title: formState.title.trim(),
         category: formState.category,
@@ -260,6 +262,11 @@ export default function AdminPage() {
         content: formState.content || '',
         imageUrl,
         publishedAt: formState.publishedAt || new Date().toISOString(),
+        // activity fields
+        hasActivity: Boolean(formState.hasActivity),
+        scheduledAt: normalizedScheduledAt,
+        location: formState.location || null,
+        price: formState.price || null,
       }
 
       if (formState.hasActivity) {
