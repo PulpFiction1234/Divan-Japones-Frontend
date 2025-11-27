@@ -145,3 +145,25 @@
 .trending-card--large .trending-card__title {
   font-size: 1.05rem;
 }
+
+/* Mobile fix: ensure the card body doesn't overlap the image on small screens */
+@media (max-width: 680px) {
+  .trending-card__media {
+    display: block;
+    overflow: hidden;
+  }
+
+  .trending-card__media img {
+    display: block;
+    width: 100%;
+    height: auto; /* prefer intrinsic height so layout pushes body down */
+    max-height: none;
+  }
+
+  .trending-card__body {
+    position: relative;
+    z-index: 1; /* keep text above background but below any absolute overlays */
+    margin-top: 0.35rem; /* small gap so text doesn't sit flush on the image */
+    padding-top: 0.35rem; /* ensure breathing room on very narrow devices */
+  }
+}

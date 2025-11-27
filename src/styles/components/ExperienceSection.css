@@ -193,5 +193,27 @@
 	box-sizing: border-box;
 }
 
+/* Mobile fix: ensure activity card body does not overlap the image on small screens */
+@media (max-width: 680px) {
+	.activity-card__media {
+		display: block;
+		overflow: hidden;
+	}
+
+	.activity-card__media img {
+		display: block;
+		width: 100%;
+		height: auto; /* use intrinsic height so the body is pushed below */
+		max-height: none;
+	}
+
+	.activity-card__body {
+		position: relative;
+		z-index: 1;
+		margin-top: 0.35rem;
+		padding-top: 0.35rem;
+	}
+}
+
 
 
