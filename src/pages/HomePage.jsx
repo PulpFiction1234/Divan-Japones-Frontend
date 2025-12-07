@@ -12,9 +12,7 @@ export default function HomePage() {
       <SiteHeader />
       <main className="layout">
         <LatestSection />
-        <hr className="section-divider" />
         <ActivitiesSection />
-        <hr className="section-divider" />
         <TrendingPostsSection />
       </main>
       <SiteFooter />

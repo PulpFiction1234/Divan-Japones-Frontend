@@ -27,7 +27,8 @@
   grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
   /* Make grid rows size based on content so cards don't stretch too tall */
   grid-auto-rows: auto;
-  gap: 2rem;
+  row-gap: 1.5rem;
+  column-gap: 2.25rem;
   align-items: stretch;
 }
 
@@ -204,7 +205,8 @@
 
 /* Reduce visual separation between right-column cards */
 .latest__grid {
-  gap: 1.25rem;
+  row-gap: 1.5rem;
+  column-gap: 2.25rem;
 }
 
 /* Ensure text content aligns flush with images inside this grid
