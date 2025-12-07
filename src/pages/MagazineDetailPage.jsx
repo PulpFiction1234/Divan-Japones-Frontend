@@ -143,7 +143,6 @@ export default function MagazineDetailPage() {
               <div className="magazine-hero__content">
                 <p className="magazine-hero__meta">
                   {releaseLabel}
-                  {magazine.fileName ? ` · ${magazine.fileName}` : ''}
                 </p>
                 <h1>{magazine.title}</h1>
                 <p className="magazine-hero__description">

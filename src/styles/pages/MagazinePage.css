@@ -26,29 +26,29 @@
 /* Gallery */
 .magazine-gallery {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-	gap: 2.2rem;
-	justify-items: start;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 2.4rem;
+	justify-items: center;
 	align-items: start;
 	padding: 1.5rem 0 2.5rem 0;
 }
 
 /* Compact card */
+
 .magazine-card--compact {
 	background: #fff;
 	border-radius: 0;
-	box-shadow: 0 6px 28px -10px rgba(0, 0, 0, 0.18);
-	/* keep the white card compact */
-	width: 200px;
-	min-height: 280px;
+	box-shadow: 0 6px 28px -10px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	max-width: 260px;
+	min-height: 330px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
-	/* small padding so content can occupy more space */
-	padding: 0.35rem 0.35rem 0.5rem;
+	padding: 0.35rem 0.35rem 0.6rem;
 	margin: 0 auto;
-	gap: 0.35rem;
+	gap: 0.4rem;
 }
 
 .magazine-card__compact-btn {
@@ -59,7 +59,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.3rem;
+	gap: 0.4rem;
 	cursor: pointer;
 }
 
@@ -68,9 +68,8 @@
 }
 
 .magazine-card__cover--compact {
-	/* let the cover fill card width so the image is visually larger */
 	width: 100%;
-	aspect-ratio: 4 / 5;
+	aspect-ratio: 3 / 4;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -87,12 +86,11 @@
 
 .magazine-card__compact-title {
 	font-family: var(--font-title);
-	/* larger title so it occupies more space */
 	font-size: 1.15rem;
 	font-weight: 800;
 	letter-spacing: 0.04em;
 	text-align: center;
-	margin: 0.25rem 0 0 0;
+	margin: 0.2rem 0 0 0;
 }
 
 .magazine-card__compact-date {
@@ -101,40 +99,6 @@
 	color: var(--color-muted);
 	text-align: center;
 	margin: 0;
-}
-
-/* Standard magazine card */
-.magazine-card--compact {
-	background: #fff;
-	border-radius: 0;
-	box-shadow: 0 6px 28px -10px rgba(0, 0, 0, 0.2);
-	/* make the white background noticeably smaller */
-	width: 220px;
-	min-height: 350px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	/* reduce padding so content can grow visually */
-	padding: 0.35rem 0.35rem 0.5rem;
-	margin: 0 auto;
-	gap: 0.35rem;
-}
-.magazine-card__cover--compact {
-	/* make the cover fill the card width so content appears larger */
-	width: 100%;
-	aspect-ratio: 4 / 5;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	background: #f7f7f7;
-}
-.magazine-card__cover--compact img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: 0;
 }
 
 .magazine-card__body {
