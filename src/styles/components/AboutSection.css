@@ -1,18 +1,17 @@
-/* AboutSection component styles (skeleton) */
+/* AboutSection component styles */
 .site-header {
-  /* layout & branding */
+  background-color: var(--color-invert);
+  color: #ffffff;
+  padding: 1rem 0.5rem 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #1f1f1f;
 }
 
 .site-header__branding {
-}
-
-.site-header__logo {
-}
-
-.site-header__descriptor {
-}
-
-.site-header__nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0rem;
 }
 
 .site-header__logo {
@@ -23,6 +22,7 @@
   line-height: 1.05;
   font-weight: 700;
 }
+
 .site-header__descriptor {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.72);
@@ -32,26 +32,6 @@
   font-style: italic;
   line-height: 1.2;
   margin-top: 0.25rem;
-}
-  gap: 0rem;
-}
-
-.site-header__logo {
-  font-family: var(--font-title);
-  font-size: clamp(2.8rem, 8vw, 4.5rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  line-height: 1.05;
-}
-
-.site-header__descriptor {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-family: var(--font-subtitle);
-  line-height: 1.2;
-  margin-top: 0.15rem;
 }
 
 .site-header__nav {
@@ -81,4 +61,5 @@
 .site-header__nav a:focus {
   text-decoration: underline;
 }
+  justify-content: center;
 
