@@ -32,7 +32,7 @@
 .magazine-hero__cover-label {
 	position: absolute;
 	left: 1rem;
-	bottom: calc(1rem + 20px);
+	bottom: calc(1rem);
 	font-family: var(--font-subtitle);
 	font-size: 0.75rem;
 	letter-spacing: 0.3em;

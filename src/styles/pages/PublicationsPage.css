@@ -1,7 +1,8 @@
 /* PublicationsPage styles (skeleton) */
 .publications-layout {
-	width: min(1240px, 100% - 4rem);
+	width: min(1200px, 100% - 3rem);
 	max-width: 100%;
+	margin: 2rem auto 3rem;
 	overflow-x: hidden;
 }
 
