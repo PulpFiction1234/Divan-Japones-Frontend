@@ -1,8 +1,9 @@
-import { useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import TopBar from '../components/Header'
 import SiteHeader from '../components/AboutSection'
 import SiteFooter from '../components/Footer'
+import MagazineFlipbookModal from '../components/MagazineFlipbookModal'
+import { fetchMagazineArticles } from '../services/api'
 import { usePosts } from '../context/PostsContext'
 
 const FALLBACK_MAGAZINE_COVER =
@@ -21,24 +22,174 @@ function formatReleaseDate(value) {
 
 export default function MagazinePage() {
   const { magazines } = usePosts()
-  const navigate = useNavigate()
-  const editions = useMemo(() => [...magazines], [magazines])
+  const sectionsRef = useRef(null)
+  const [selectedMagazineId, setSelectedMagazineId] = useState(null)
+  const [selectedMagazineArticles, setSelectedMagazineArticles] = useState([])
+  const [articlesCache, setArticlesCache] = useState({})
+  const [loadingArticles, setLoadingArticles] = useState(false)
+  const [viewerMagazineId, setViewerMagazineId] = useState(null)
+
+  const editions = useMemo(() => {
+    return [...magazines].sort((a, b) => new Date(b.releaseDate || b.createdAt || 0) - new Date(a.releaseDate || a.createdAt || 0))
+  }, [magazines])
+
+  useEffect(() => {
+    if (!editions.length) return
+    setSelectedMagazineId((prev) => prev ?? editions[0].id)
+  }, [editions])
+
+  const selectedMagazine = useMemo(() => {
+    if (!selectedMagazineId) return null
+    return editions.find((m) => m.id === selectedMagazineId) || null
+  }, [editions, selectedMagazineId])
+
+  const loadArticles = useCallback(async (magazineId) => {
+    if (!magazineId) return
+    if (articlesCache[magazineId]) {
+      setSelectedMagazineArticles(articlesCache[magazineId])
+      return
+    }
+    setLoadingArticles(true)
+    try {
+      const data = await fetchMagazineArticles(magazineId)
+      setArticlesCache((prev) => ({ ...prev, [magazineId]: data || [] }))
+      setSelectedMagazineArticles(data || [])
+    } catch (err) {
+      console.error('Error loading magazine articles:', err)
+      setSelectedMagazineArticles([])
+    } finally {
+      setLoadingArticles(false)
+    }
+  }, [articlesCache])
+
+  useEffect(() => {
+    if (!selectedMagazineId) return
+    loadArticles(selectedMagazineId)
+  }, [loadArticles, selectedMagazineId])
+
+  const sectionHighlights = useMemo(() => {
+    if (!selectedMagazineArticles.length) return []
+    return selectedMagazineArticles.map((article) => ({
+      id: article.id,
+      section: 'Artículo',
+      title: article.title,
+      author: article.author || 'Sin autor',
+      excerpt: article.excerpt || (article.page_number || article.pageNumber ? `Página ${article.page_number || article.pageNumber}` : ''),
+      pdfUrl: article.pdf_url || article.pdfUrl,
+    }))
+  }, [selectedMagazineArticles])
+
+  const releaseLabel = useMemo(() => formatReleaseDate(selectedMagazine?.releaseDate), [selectedMagazine?.releaseDate])
+
+  const handleOpenMagazine = useCallback(() => {
+    if (selectedMagazine?.pdfSource || selectedMagazine?.viewerUrl) {
+      setViewerMagazineId(selectedMagazine.id)
+    }
+  }, [selectedMagazine])
+
+  const handleCloseViewer = useCallback(() => setViewerMagazineId(null), [])
+
+  const handleScrollToSections = useCallback(() => {
+    sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
+  const handleSelectMagazine = useCallback((id) => {
+    setSelectedMagazineId(id)
+  }, [])
 
   return (
     <div className="page magazine-page">
       <TopBar />
       <SiteHeader />
       <main className="layout static-layout">
-        <section className="magazine-gallery" aria-label="Ediciones disponibles">
-          {editions.length ? (
-            editions.map((magazine) => {
-              const releaseLabel = formatReleaseDate(magazine.releaseDate)
+        {selectedMagazine ? (
+          <>
+            <section className="magazine-hero" aria-label="Vista previa de la revista seleccionada">
+              <div className="magazine-hero__cover">
+                <img
+                  className="magazine-hero__cover-img"
+                  src={selectedMagazine.coverImage || FALLBACK_MAGAZINE_COVER}
+                  alt={`Portada de ${selectedMagazine.title}`}
+                  loading="lazy"
+                />
+                <span className="magazine-hero__cover-label">Edición completa</span>
+              </div>
+              <div className="magazine-hero__content">
+                <p className="magazine-hero__meta">{releaseLabel}</p>
+                <h1>{selectedMagazine.title}</h1>
+                <p className="magazine-hero__description">
+                  {selectedMagazine.description || 'Una mirada íntima a la escritura colectiva de Diván Japonés.'}
+                </p>
+                <div className="magazine-hero__actions">
+                  <button type="button" className="magazine-hero__btn" onClick={handleOpenMagazine}>
+                    Ver revista completa
+                  </button>
+                  {sectionHighlights.length ? (
+                    <button type="button" className="magazine-hero__btn magazine-hero__btn--ghost" onClick={handleScrollToSections}>
+                      Ver secciones
+                    </button>
+                  ) : null}
+                  {selectedMagazine.pdfSource ? (
+                    <a className="magazine-hero__link" href={selectedMagazine.pdfSource} target="_blank" rel="noreferrer">
+                      Descargar revista
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </section>
+
+            {sectionHighlights.length ? (
+              <section ref={sectionsRef} className="magazine-sections" aria-label="Secciones destacadas de la revista">
+                <div className="magazine-sections__header">
+                  <p>Secciones</p>
+                </div>
+                <div className="magazine-sections__grid">
+                  {sectionHighlights.map((section) => (
+                    <article key={section.id} className="magazine-section-card">
+                      <p className="magazine-section-card__label">{section.section}</p>
+                      <h3>{section.title}</h3>
+                      <p className="magazine-section-card__author">por {section.author}</p>
+                      {section.excerpt && <p className="magazine-section-card__excerpt">{section.excerpt}</p>}
+                      {section.pdfUrl ? (
+                        <a 
+                          href={section.pdfUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="magazine-section-card__link"
+                        >
+                          Descargar artículo
+                        </a>
+                      ) : null}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ) : loadingArticles ? (
+              <p className="magazine-sections__empty">Cargando artículos...</p>
+            ) : null}
+          </>
+        ) : (
+          <div className="empty-state">
+            <h3>Estamos preparando la primera edición</h3>
+            <p>
+              Aún no hay revistas publicadas. Vuelve pronto o revisa nuestras{' '}
+              <a href="/publicaciones">publicaciones recientes</a>.
+            </p>
+          </div>
+        )}
+
+        {editions.length ? (
+          <section className="magazine-gallery" aria-label="Ediciones disponibles">
+            {editions.map((magazine) => {
+              const releaseLabelCard = formatReleaseDate(magazine.releaseDate)
+              const isActive = magazine.id === selectedMagazineId
               return (
-                <article key={magazine.id} className="magazine-card magazine-card--compact">
+                <article key={magazine.id} className={`magazine-card magazine-card--compact ${isActive ? 'magazine-card--active' : ''}`}>
                   <button
                     type="button"
                     className="magazine-card__compact-btn"
-                    onClick={() => navigate(`/revista/${magazine.id}`)}
+                    onClick={() => handleSelectMagazine(magazine.id)}
+                    aria-pressed={isActive}
                   >
                     <div className="magazine-card__cover magazine-card__cover--compact">
                       <img
@@ -48,23 +199,22 @@ export default function MagazinePage() {
                       />
                     </div>
                     <div className="magazine-card__compact-title">{magazine.title}</div>
-                    <div className="magazine-card__compact-date">{releaseLabel}</div>
+                    <div className="magazine-card__compact-date">{releaseLabelCard}</div>
                   </button>
                 </article>
               )
-            })
-          ) : (
-            <div className="empty-state">
-              <h3>Estamos preparando la primera edición</h3>
-              <p>
-                Aún no hay revistas publicadas. Vuelve pronto o revisa nuestras{' '}
-                <a href="/publicaciones">publicaciones recientes</a>.
-              </p>
-            </div>
-          )}
-        </section>
+            })}
+          </section>
+        ) : null}
       </main>
       <SiteFooter />
+
+      {viewerMagazineId ? (
+        <MagazineFlipbookModal
+          magazine={editions.find((m) => m.id === viewerMagazineId)}
+          onClose={handleCloseViewer}
+        />
+      ) : null}
     </div>
   )
 }

@@ -51,6 +51,12 @@
 	gap: 0.4rem;
 }
 
+.magazine-card--active {
+	outline: 2px solid var(--color-line, #000000);
+	outline-offset: 4px;
+	background: rgba(0,0,0,0.02);
+}
+
 .magazine-card__compact-btn {
 	width: 100%;
 	background: none;
