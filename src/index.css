@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Merriweather:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
 :root {
   color-scheme: light;
   font-family: var(--font-body);
   line-height: 1.7;
   font-weight: 400;
-  --font-title: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
-  --font-subtitle: 'Avenir Next', 'Avenir', 'Helvetica Neue', Arial, sans-serif;
+  --font-title: 'Merriweather', 'Times New Roman', serif;
+  --font-subtitle: 'Lora', 'Times New Roman', serif;
   --font-body: 'Noto Sans JP', 'Noto Sans CJK JP', 'Noto Sans CJK', 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
   --color-background: #e8e1d9;
   --color-card: #ffffff;

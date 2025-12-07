@@ -29,8 +29,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border: 1px solid #ffffff;
   border-radius: 999px;
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -43,8 +43,8 @@
 }
 
 .topbar__social svg {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 /* Search */
@@ -56,8 +56,8 @@
 }
 
 .topbar__search input {
-  width: 180px;
-  padding: 0.4rem 0.75rem;
+  width: 130px;
+  padding: 0.35rem 0.6rem;
   border: 1px solid #ffffff;
   background-color: transparent;
   color: #ffffff;
@@ -68,12 +68,13 @@
 }
 
 .topbar__search button {
-  padding: 0.45rem 0.9rem;
+  padding: 0.35rem 0.75rem;
   border: 1px solid #ffffff;
   background-color: #ffffff;
   color: var(--color-invert);
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.85rem;
 }
 
 /* Admin Button */
