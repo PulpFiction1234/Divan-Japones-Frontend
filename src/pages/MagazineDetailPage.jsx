@@ -168,11 +168,6 @@ export default function MagazineDetailPage() {
             <section ref={sectionsRef} className="magazine-sections" aria-label="Secciones destacadas de la revista">
               <div className="magazine-sections__header">
                 <p>Secciones</p>
-                <h2>Explora cada capítulo, ensayo y conversación</h2>
-                <p>
-                  Cada edición abre puertas a voces distintas. Elige una categoría y descubre el contenido completo de
-                  nuestras publicaciones más recientes.
-                </p>
               </div>
               <div className="magazine-sections__grid">
                 {loadingArticles ? (
