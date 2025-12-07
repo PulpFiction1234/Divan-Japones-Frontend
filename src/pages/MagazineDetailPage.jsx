@@ -150,15 +150,13 @@ export default function MagazineDetailPage() {
               </div>
             </section>
 
-            <section ref={sectionsRef} className="magazine-sections" aria-label="Secciones destacadas de la revista">
-              <div className="magazine-sections__header">
-                <p>Secciones</p>
-              </div>
-              <div className="magazine-sections__grid">
-                {loadingArticles ? (
-                  <p className="magazine-sections__empty">Cargando artículos...</p>
-                ) : sectionHighlights.length ? (
-                  sectionHighlights.map((section) => (
+            {sectionHighlights.length ? (
+              <section ref={sectionsRef} className="magazine-sections" aria-label="Secciones destacadas de la revista">
+                <div className="magazine-sections__header">
+                  <p>Secciones</p>
+                </div>
+                <div className="magazine-sections__grid">
+                  {sectionHighlights.map((section) => (
                     <article key={section.id} className="magazine-section-card">
                       <p className="magazine-section-card__label">{section.section}</p>
                       <h3>{section.title}</h3>
@@ -175,14 +173,10 @@ export default function MagazineDetailPage() {
                         </a>
                       ) : null}
                     </article>
-                  ))
-                ) : (
-                  <p className="magazine-sections__empty">
-                    Todavía no tenemos secciones para esta edición. Sube artículos desde el panel de admin para mostrarlos aquí.
-                  </p>
-                )}
-              </div>
-            </section>
+                  ))}
+                </div>
+              </section>
+            ) : null}
           </>
         ) : (
           <div className="empty-state">
