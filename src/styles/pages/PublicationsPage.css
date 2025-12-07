@@ -127,6 +127,15 @@
 		gap: 2rem;
 }
 
+.publications-results li {
+	padding: 1.25rem 0 2rem;
+	border-bottom: 2px solid var(--color-line, #000000);
+}
+
+.publications-results li:last-child {
+	border-bottom: none;
+}
+
 
 .publications-results a.publications-card,
 .publications-results .publications-card {
