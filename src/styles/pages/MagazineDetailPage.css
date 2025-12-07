@@ -7,10 +7,11 @@
 	box-shadow: 0 6px 32px -12px rgba(0, 0, 0, 0.2);
 	padding: clamp(1.75rem, 3vw, 2.75rem);
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	grid-template-columns: minmax(300px, 480px) 1fr;
 	gap: clamp(1.5rem, 3vw, 2rem);
 	align-items: stretch;
-	--cover-height: clamp(480px, 55vw, 680px);
+	--cover-height: clamp(520px, 60vw, 740px);
+	grid-auto-rows: var(--cover-height);
 }
 
 .magazine-hero__cover {
@@ -23,7 +24,7 @@
 	margin: 0 auto;
 	border-radius: 0;
 	overflow: hidden;
-	height: var(--cover-height);
+	height: 100%;
 	aspect-ratio: auto;
 	background: var(--color-background);
 }
@@ -54,9 +55,9 @@
 	flex-direction: column;
 	gap: 1rem;
 	justify-content: space-between;
-	height: var(--cover-height);
-	padding: 0.25rem 0;
-	overflow: auto;
+	height: 100%;
+	padding: 0.35rem 0;
+	overflow: hidden;
 }
 
 .magazine-hero__meta {
@@ -112,6 +113,8 @@
 @media (max-width: 900px) {
 	.magazine-hero {
 		--cover-height: auto;
+		grid-auto-rows: auto;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 	}
 
 	.magazine-hero__cover {
