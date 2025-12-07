@@ -20,7 +20,8 @@
 
 /* Static layout used across several pages */
 .static-layout {
-	width: min(900px, 100% - 4rem);
+	width: min(1200px, 100% - 3rem);
+	margin: 2rem auto 3rem;
 }
 
 .empty-state {
