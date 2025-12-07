@@ -91,6 +91,13 @@
   max-width: 100%;
 }
 
+/* Asegurar que cursiva se muestre incluso con fuentes sin variante italic */
+.tiptap-content .tiptap em,
+.tiptap-content .tiptap i {
+  font-style: italic;
+  font-synthesis: style;
+}
+
 .tiptap-content .tiptap p:last-child {
   margin-bottom: 0;
 }

@@ -1,11 +1,13 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
+import Underline from '@tiptap/extension-underline'
 import ResizableImageExtension from 'tiptap-extension-resize-image'
 import TextAlign from '@tiptap/extension-text-align'
 import { 
   FaBold, 
   FaItalic, 
+  FaUnderline,
   FaListUl, 
   FaListOl, 
   FaLink, 
@@ -26,6 +28,7 @@ export default function TiptapEditor({ content, onChange, placeholder }) {
         // Deshabilitar el link de StarterKit para usar nuestra configuración personalizada
         link: false,
       }),
+      Underline,
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
@@ -156,6 +159,14 @@ export default function TiptapEditor({ content, onChange, placeholder }) {
           title="Cursiva"
         >
           <FaItalic />
+        </button>
+        <button
+          type="button"
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className={editor.isActive('underline') ? 'is-active' : ''}
+          title="Subrayado"
+        >
+          <FaUnderline />
         </button>
         
         <div className="tiptap-toolbar__divider" />
