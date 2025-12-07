@@ -5,7 +5,6 @@ import SiteHeader from '../components/AboutSection'
 import SiteFooter from '../components/Footer'
 import { usePosts } from '../context/PostsContext'
 import MagazineFlipbookModal from '../components/MagazineFlipbookModal'
-import slugify from '../utils/slugify'
 import { fetchMagazineArticles } from '../services/api'
 
 const FALLBACK_MAGAZINE_COVER =
@@ -23,7 +22,7 @@ function formatReleaseDate(value) {
 }
 
 export default function MagazineDetailPage() {
-  const { magazines, publications } = usePosts()
+  const { magazines } = usePosts()
   const { magazineId } = useParams()
   const sectionsRef = useRef(null)
   const [selectedMagazineId, setSelectedMagazineId] = useState(null)
@@ -65,31 +64,19 @@ export default function MagazineDetailPage() {
   }, [magazine?.id])
 
   const sectionHighlights = useMemo(() => {
-    // Use magazine articles if available, otherwise fallback to general publications
-    if (magazineArticles.length > 0) {
-      return magazineArticles.map((article) => ({
-        id: article.id,
-        section: 'Artículo',
-        title: article.title,
-        author: article.author || 'Sin autor',
-        excerpt: article.page_number || article.pageNumber ? `Página ${article.page_number || article.pageNumber}` : '',
-        pdfUrl: article.pdf_url || article.pdfUrl,
-      }))
-    }
-
-    if (!publications.length) {
+    if (!magazineArticles.length) {
       return []
     }
 
-    return publications.slice(0, 12).map((post) => ({
-      id: post.id,
-      section: post.category || 'General',
-      title: post.title,
-      author: post.author,
-      excerpt: post.excerpt,
-      slug: slugify(post.category || 'General'),
+    return magazineArticles.map((article) => ({
+      id: article.id,
+      section: 'Artículo',
+      title: article.title,
+      author: article.author || 'Sin autor',
+      excerpt: article.excerpt || (article.page_number || article.pageNumber ? `Página ${article.page_number || article.pageNumber}` : ''),
+      pdfUrl: article.pdf_url || article.pdfUrl,
     }))
-  }, [magazineArticles, publications])
+  }, [magazineArticles])
 
   const handleOpenMagazine = useCallback(() => {
     // Open modal when we have either a direct PDF or an external viewer URL
@@ -186,17 +173,12 @@ export default function MagazineDetailPage() {
                         >
                           Descargar artículo
                         </a>
-                      ) : section.slug ? (
-                        <Link to={`/publicaciones?category=${section.slug}`} className="magazine-section-card__link">
-                          Leer sección completa
-                        </Link>
                       ) : null}
                     </article>
                   ))
                 ) : (
                   <p className="magazine-sections__empty">
-                    Todavía no tenemos secciones destacadas, pero puedes explorar todas las publicaciones en la sección{' '}
-                    <Link to="/publicaciones">Publicaciones</Link>.
+                    Todavía no tenemos secciones para esta edición. Sube artículos desde el panel de admin para mostrarlos aquí.
                   </p>
                 )}
               </div>
