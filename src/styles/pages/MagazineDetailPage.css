@@ -13,20 +13,17 @@
 }
 
 .magazine-hero__cover {
-	min-height: 420px;
-	border-radius: 0;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 	position: relative;
-	overflow: hidden;
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-start;
-	padding: 1.25rem;
 	width: 100%;
 	max-width: 520px;
 	margin: 0 auto;
+	border-radius: 0;
+	overflow: hidden;
+	aspect-ratio: 3 / 4;
+	background: #111;
 }
 
 .magazine-hero__cover-label {
@@ -41,6 +38,21 @@
 	background: rgba(0, 0, 0, 0.35);
 	border-radius: 999px;
 	padding: 0.35rem 0.8rem;
+}
+
+.magazine-hero__cover-img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	display: block;
+}
+
+.magazine-hero__cover::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.6) 100%);
+	pointer-events: none;
 }
 
 .magazine-hero__content {

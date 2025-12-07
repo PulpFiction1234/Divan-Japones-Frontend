@@ -130,14 +130,13 @@ export default function MagazineDetailPage() {
         {magazine ? (
           <>
             <section className="magazine-hero" aria-label="Vista previa de la revista seleccionada">
-              <div
-                className="magazine-hero__cover"
-                style={{
-                  backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.6) 100%), url("${
-                    magazine.coverImage || FALLBACK_MAGAZINE_COVER
-                  }")`,
-                }}
-              >
+              <div className="magazine-hero__cover">
+                <img
+                  className="magazine-hero__cover-img"
+                  src={magazine.coverImage || FALLBACK_MAGAZINE_COVER}
+                  alt={`Portada de ${magazine.title}`}
+                  loading="lazy"
+                />
                 <span className="magazine-hero__cover-label">Edición completa</span>
               </div>
               <div className="magazine-hero__content">
