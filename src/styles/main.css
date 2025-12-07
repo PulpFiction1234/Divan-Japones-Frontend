@@ -11,6 +11,7 @@
 @import './components/ReservationSection.css';
 @import './components/TiptapEditor.css';
 @import './components/TrendingPostsSection.css';
+@import './components/CategoriesSection.css';
 
 /* Page styles */
 @import './pages/HomePage.css';
