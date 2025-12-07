@@ -22,22 +22,8 @@
 	margin: 0 auto;
 	border-radius: 0;
 	overflow: hidden;
-	aspect-ratio: 3 / 4;
-	background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 100%);
-}
-
-.magazine-hero__cover::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background-image: var(--cover-url, none);
-	background-size: cover;
-	background-position: center;
-	filter: blur(18px) saturate(0.9);
-	opacity: 0.45;
-	transform: scale(1.05);
-	transform-origin: center;
-	pointer-events: none;
+	aspect-ratio: 2 / 3;
+	background: #111;
 }
 
 .magazine-hero__cover-label {
@@ -59,14 +45,6 @@
 	height: 100%;
 	object-fit: contain;
 	display: block;
-}
-
-.magazine-hero__cover::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.6) 100%);
-	pointer-events: none;
 }
 
 .magazine-hero__content {
