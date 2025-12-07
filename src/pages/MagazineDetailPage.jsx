@@ -5,6 +5,7 @@ import SiteHeader from '../components/AboutSection'
 import SiteFooter from '../components/Footer'
 import { usePosts } from '../context/PostsContext'
 import MagazineFlipbookModal from '../components/MagazineFlipbookModal'
+import CategoriesSection from '../components/CategoriesSection'
 import { fetchMagazineArticles } from '../services/api'
 
 const FALLBACK_MAGAZINE_COVER =
@@ -138,9 +139,11 @@ export default function MagazineDetailPage() {
                   <button type="button" className="magazine-hero__btn" onClick={handleOpenMagazine}>
                     Ver revista completa
                   </button>
-                  <button type="button" className="magazine-hero__btn magazine-hero__btn--ghost" onClick={handleScrollToSections}>
-                    Ver secciones
-                  </button>
+                  {sectionHighlights.length ? (
+                    <button type="button" className="magazine-hero__btn magazine-hero__btn--ghost" onClick={handleScrollToSections}>
+                      Ver secciones
+                    </button>
+                  ) : null}
                   {magazine.pdfSource ? (
                     <a className="magazine-hero__link" href={magazine.pdfSource} target="_blank" rel="noreferrer">
                       Descargar revista
@@ -177,6 +180,8 @@ export default function MagazineDetailPage() {
                 </div>
               </section>
             ) : null}
+
+            <CategoriesSection />
           </>
         ) : (
           <div className="empty-state">
