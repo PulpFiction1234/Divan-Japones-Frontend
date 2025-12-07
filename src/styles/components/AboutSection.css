@@ -39,6 +39,7 @@
   font-size: clamp(2.8rem, 8vw, 4.5rem);
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  line-height: 1.05;
 }
 
 .site-header__descriptor {
@@ -47,6 +48,8 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: var(--font-subtitle);
+  line-height: 1.2;
+  margin-top: 0.15rem;
 }
 
 .site-header__nav {
