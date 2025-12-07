@@ -103,7 +103,7 @@ export default function ArticlePage() {
 
                     {activityDetails.length ? (
                       <aside className="article-body__details">
-                        <h2>Logística del encuentro</h2>
+                        <h2>Datos de la actividad</h2>
                         <ul>
                           {activityDetails.map((item, index) => (
                             <li key={index}>{item}</li>

@@ -39,7 +39,7 @@ export default function SiteFooter() {
         </nav>
 
         <p className="site-footer__copy">
-          &copy; {currentYear} Divan Japones.
+          &copy; {currentYear} DIVÁN JAPONÉS. SANTIAGO DE CHILE
         </p>
       </div>
     </footer>
