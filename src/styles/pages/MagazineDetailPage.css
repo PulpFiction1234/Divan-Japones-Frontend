@@ -10,6 +10,7 @@
 	grid-template-columns: minmax(300px, 480px) 1fr;
 	gap: clamp(1.5rem, 3vw, 2rem);
 	align-items: start;
+	--cover-height: clamp(520px, 60vw, 740px);
 }
 
 .magazine-hero__cover {
@@ -22,8 +23,8 @@
 	margin: 0 auto;
 	border-radius: 0;
 	overflow: hidden;
-	height: auto;
-	aspect-ratio: auto;
+	height: var(--cover-height);
+	aspect-ratio: 2 / 3;
 	padding: 0;
 	background: var(--color-background);
 }
@@ -44,7 +45,7 @@
 
 .magazine-hero__cover-img {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	object-fit: cover;
 	display: block;
 }
