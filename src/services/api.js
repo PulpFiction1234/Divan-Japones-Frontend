@@ -169,6 +169,17 @@ export async function createAuthor(payload, { signal } = {}) {
   return parseResponse(response)
 }
 
+export async function updateAuthor(id, payload, { signal } = {}) {
+  const response = await fetch(`${API_BASE_URL}/api/authors/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    signal,
+  })
+
+  return parseResponse(response)
+}
+
 export async function deleteAuthor(id, { signal } = {}) {
   const response = await fetch(`${API_BASE_URL}/api/authors/${id}`, {
     method: 'DELETE',

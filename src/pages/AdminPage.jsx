@@ -18,6 +18,7 @@ import {
   deleteCategory,
   fetchAuthors,
   createAuthor,
+  updateAuthor,
   deleteAuthor
 } from '../services/api'
 import slugify from '../utils/slugify'
@@ -148,6 +149,7 @@ export default function AdminPage() {
   const [newCategoryName, setNewCategoryName] = useState('')
   const [newAuthorName, setNewAuthorName] = useState('')
   const [newAuthorImageUrl, setNewAuthorImageUrl] = useState('')
+  const [editingAuthorId, setEditingAuthorId] = useState(null)
   const [categoryError, setCategoryError] = useState('')
   const [categorySuccess, setCategorySuccess] = useState('')
   const [authorError, setAuthorError] = useState('')
@@ -685,15 +687,22 @@ export default function AdminPage() {
         payload.avatar = newAuthorImageUrl.trim()
       }
 
-      const newAuthor = await createAuthor(payload)
+      if (editingAuthorId) {
+        const updated = await updateAuthor(editingAuthorId, payload)
+        setDbAuthors(dbAuthors.map((a) => (a.id === editingAuthorId ? updated : a)))
+        setAuthorSuccess(`Autor "${newAuthorName}" actualizado`)
+      } else {
+        const newAuthor = await createAuthor(payload)
+        setDbAuthors([...dbAuthors, newAuthor])
+        setAuthorSuccess(`Autor "${newAuthorName}" agregado exitosamente`)
+      }
 
-      setDbAuthors([...dbAuthors, newAuthor])
-      setAuthorSuccess(`Autor "${newAuthorName}" agregado exitosamente`)
       setNewAuthorName('')
       setNewAuthorImageUrl('')
+      setEditingAuthorId(null)
       setTimeout(() => setAuthorSuccess(''), 3000)
     } catch (error) {
-      setAuthorError(error.message || 'Error al agregar el autor')
+      setAuthorError(error.message || 'Error al guardar el autor')
     }
   }
 
@@ -712,6 +721,22 @@ export default function AdminPage() {
         setAuthorError(error.message || 'Error al eliminar el autor')
       }
     }
+  }
+
+  const handleEditAuthor = (author) => {
+    setEditingAuthorId(author.id)
+    setNewAuthorName(author.name || '')
+    setNewAuthorImageUrl(author.avatar || '')
+    setAuthorError('')
+    setAuthorSuccess('')
+  }
+
+  const handleCancelEditAuthor = () => {
+    setEditingAuthorId(null)
+    setNewAuthorName('')
+    setNewAuthorImageUrl('')
+    setAuthorError('')
+    setAuthorSuccess('')
   }
 
   const handleLogout = () => {
@@ -1484,9 +1509,16 @@ export default function AdminPage() {
                   {authorError && <p className="admin-form__error">{authorError}</p>}
                   {authorSuccess && <p className="admin-form__success">{authorSuccess}</p>}
 
-                  <button type="submit" className="admin-form__primary">
-                    Agregar autor
-                  </button>
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <button type="submit" className="admin-form__primary">
+                      {editingAuthorId ? 'Actualizar autor' : 'Agregar autor'}
+                    </button>
+                    {editingAuthorId ? (
+                      <button type="button" className="admin-form__secondary" onClick={handleCancelEditAuthor}>
+                        Cancelar edición
+                      </button>
+                    ) : null}
+                  </div>
                 </fieldset>
               </form>
 
@@ -1501,14 +1533,24 @@ export default function AdminPage() {
                         <div className="author-item__info">
                           <span className="author-name">{author.name}</span>
                         </div>
-                        <button
-                          type="button"
-                          className="author-delete-btn"
-                          onClick={() => handleDeleteAuthor(author.id, author.name)}
-                          aria-label={`Eliminar autor ${author.name}`}
-                        >
-                          Eliminar
-                        </button>
+                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                          <button
+                            type="button"
+                            className="author-delete-btn"
+                            onClick={() => handleEditAuthor(author)}
+                            aria-label={`Editar autor ${author.name}`}
+                          >
+                            Editar
+                          </button>
+                          <button
+                            type="button"
+                            className="author-delete-btn"
+                            onClick={() => handleDeleteAuthor(author.id, author.name)}
+                            aria-label={`Eliminar autor ${author.name}`}
+                          >
+                            Eliminar
+                          </button>
+                        </div>
                       </li>
                     ))}
                   </ul>
