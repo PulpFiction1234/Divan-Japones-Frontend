@@ -9,13 +9,10 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer__container">
         <p className="site-footer__intro">
-         Grupo de amantes de lo japonés y el psicoanálisis. Organizamos ciclos de cine y escribimos.
-         <br />
          Cine | Literatura | Manga | Anime | Cultura
         </p>
-
         <p className="site-footer__newsletter-text">
-          Suscríbete a nuestro boletín. Te enviaremos historias frescas y recomendaciones imperdibles.
+          Suscríbete a nuestro newsletter para recibir todas nuestras actividades y escritos.
         </p>
 
         <form className="site-footer__form">
@@ -42,7 +39,7 @@ export default function SiteFooter() {
         </nav>
 
         <p className="site-footer__copy">
-          &copy; {currentYear} Divan Japones. Historias independientes desde Santiago de Chile a Tokio.
+          &copy; {currentYear} Divan Japones.
         </p>
       </div>
     </footer>

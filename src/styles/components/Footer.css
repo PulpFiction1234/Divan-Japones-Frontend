@@ -101,7 +101,7 @@
 
 .site-footer__form input {
   width: min(480px, 100%);
-  padding: 0.85rem 1.2rem;
+  padding: 0.65rem 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-right: none;
   background-color: transparent;
@@ -140,8 +140,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2rem;
+  height: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 999px;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -155,8 +155,8 @@
 }
 
 .site-footer__social svg {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 /* Footer Navigation */
@@ -172,6 +172,7 @@
 
 .site-footer__nav a {
   color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
 }
 
 .site-footer__nav a:hover,
