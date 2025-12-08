@@ -17,12 +17,12 @@ export default function ContactPage() {
           <ul className="contact-list">
             <li>
               <span>Correo:</span>
-              <a href="mailto:hola@divanjapones.cl">hola@divanjapones.cl</a>
+              <a href="mailto:grupodivanjapones@gmail.com">grupodivanjapones@gmail.com</a>
             </li>
             <li>
               <span>Instagram:</span>
               <a href="https://www.instagram.com/grupodivanjapones/" target="_blank" rel="noreferrer">
-                @divanjapones
+                @grupodivanjapones
               </a>
             </li>
             <li>
