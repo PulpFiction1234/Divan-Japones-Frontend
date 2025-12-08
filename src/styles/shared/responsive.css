@@ -132,6 +132,7 @@
 
   /* HomePage layout spacing */
   .layout {
+    width: calc(100% - 2rem);
     margin: 1rem auto 1.5rem;
     gap: 0.5rem;
   }
@@ -148,6 +149,9 @@
   .admin-container {
     padding-left: 1rem;
     padding-right: 1rem;
+    width: calc(100% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Typography adjustments */
@@ -168,13 +172,24 @@
   /* Header */
   .topbar {
     padding: 0.75rem 1rem;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: row !important;
+    align-items: center !important;
     gap: 0.75rem;
   }
 
   .topbar__social {
     gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+
+  .topbar__search {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  .topbar__search input {
+    width: 100%;
+    max-width: none;
   }
 
   .topbar__social a {
