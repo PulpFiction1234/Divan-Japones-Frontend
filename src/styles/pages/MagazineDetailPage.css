@@ -121,11 +121,13 @@
 	}
 
 	.magazine-hero__cover {
-		min-height: clamp(360px, 85vw, 560px);
-		max-height: 620px;
+		/* Forzar tamaño consistente en móvil */
+		width: min(360px, 92vw);
 		aspect-ratio: 3 / 4;
-		max-width: min(520px, 100%);
+		height: auto;
+		max-height: none;
 		margin: 0 auto;
+		flex: 0 0 auto;
 	}
 
 	.magazine-hero__cover-img {
