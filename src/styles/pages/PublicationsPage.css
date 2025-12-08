@@ -7,7 +7,6 @@
 	display: grid;
 	grid-template-columns: 260px 1fr;
 	gap: 3.5rem;
-	max-width: 100%;
 	overflow: visible;
 }
 
