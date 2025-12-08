@@ -8,9 +8,6 @@ export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="site-footer__container">
-        <p className="site-footer__intro">
-         Cine | Literatura | Manga | Anime | Cultura
-        </p>
         <p className="site-footer__newsletter-text">
           Suscríbete a nuestro newsletter para recibir todas nuestras actividades y escritos.
         </p>
