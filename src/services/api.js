@@ -142,6 +142,17 @@ export async function createCategory(payload, { signal } = {}) {
   return parseResponse(response)
 }
 
+export async function updateCategory(id, payload, { signal } = {}) {
+  const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    signal,
+  })
+
+  return parseResponse(response)
+}
+
 export async function deleteCategory(id, { signal } = {}) {
   const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
     method: 'DELETE',

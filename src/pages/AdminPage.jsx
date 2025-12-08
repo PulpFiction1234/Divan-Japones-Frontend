@@ -16,6 +16,7 @@ import {
   fetchCategories,
   createCategory,
   deleteCategory,
+  updateCategory,
   fetchAuthors,
   createAuthor,
   updateAuthor,
@@ -147,6 +148,7 @@ export default function AdminPage() {
   const [isLoadingCategories, setIsLoadingCategories] = useState(true)
   const [isLoadingAuthors, setIsLoadingAuthors] = useState(true)
   const [newCategoryName, setNewCategoryName] = useState('')
+  const [editingCategoryId, setEditingCategoryId] = useState(null)
   const [newAuthorName, setNewAuthorName] = useState('')
   const [newAuthorImageUrl, setNewAuthorImageUrl] = useState('')
   const [editingAuthorId, setEditingAuthorId] = useState(null)
@@ -176,6 +178,15 @@ export default function AdminPage() {
   const categoryOptions = useMemo(() => {
     return dbCategories.map(cat => cat.name).sort()
   }, [dbCategories])
+
+  const categoryPostCounts = useMemo(() => {
+    const counts = {}
+    posts.forEach((post) => {
+      const slug = slugify(post.category || '')
+      counts[slug] = (counts[slug] || 0) + 1
+    })
+    return counts
+  }, [posts])
 
   const subcategoryOptions = useMemo(() => {
     if (!formState.category) return []
@@ -675,14 +686,36 @@ export default function AdminPage() {
 
     try {
       const slug = slugify(newCategoryName.trim())
-      const newCategory = await createCategory({ name: newCategoryName.trim(), slug })
-      setDbCategories([...dbCategories, newCategory])
-      setCategorySuccess(`Categoría "${newCategoryName}" agregada exitosamente`)
+      if (editingCategoryId) {
+        const updated = await updateCategory(editingCategoryId, { name: newCategoryName.trim(), slug })
+        setDbCategories(dbCategories.map((c) => (c.id === editingCategoryId ? updated : c)))
+        setCategorySuccess(`Categoría "${newCategoryName}" actualizada`)
+        setEditingCategoryId(null)
+      } else {
+        const newCategory = await createCategory({ name: newCategoryName.trim(), slug })
+        setDbCategories([...dbCategories, newCategory])
+        setCategorySuccess(`Categoría "${newCategoryName}" agregada exitosamente`)
+      }
+
       setNewCategoryName('')
       setTimeout(() => setCategorySuccess(''), 3000)
     } catch (error) {
       setCategoryError(error.message || 'Error al agregar la categoría')
     }
+  }
+
+  const handleEditCategory = (category) => {
+    setEditingCategoryId(category.id)
+    setNewCategoryName(category.name || '')
+    setCategoryError('')
+    setCategorySuccess('')
+  }
+
+  const handleCancelEditCategory = () => {
+    setEditingCategoryId(null)
+    setNewCategoryName('')
+    setCategoryError('')
+    setCategorySuccess('')
   }
 
   const handleDeleteCategory = async (categoryId, categoryName) => {
@@ -1474,9 +1507,16 @@ export default function AdminPage() {
                   {categoryError && <p className="admin-form__error">{categoryError}</p>}
                   {categorySuccess && <p className="admin-form__success">{categorySuccess}</p>}
 
-                  <button type="submit" className="admin-form__primary">
-                    Agregar categoría
-                  </button>
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <button type="submit" className="admin-form__primary">
+                      {editingCategoryId ? 'Actualizar categoría' : 'Agregar categoría'}
+                    </button>
+                    {editingCategoryId ? (
+                      <button type="button" className="admin-form__secondary" onClick={handleCancelEditCategory}>
+                        Cancelar edición
+                      </button>
+                    ) : null}
+                  </div>
                 </fieldset>
               </form>
 
@@ -1491,9 +1531,17 @@ export default function AdminPage() {
                         <div className="category-item__info">
                           <span className="category-name">{cat.name}</span>
                           <span className="category-count">
-                            {categories.find(c => c.name === cat.name)?.postCount || 0} publicaciones
+                            {categoryPostCounts[slugify(cat.name)] || 0} publicaciones
                           </span>
                         </div>
+                        <button
+                          type="button"
+                          className="author-delete-btn"
+                          onClick={() => handleEditCategory(cat)}
+                          aria-label={`Editar categoría ${cat.name}`}
+                        >
+                          Editar
+                        </button>
                         <button
                           type="button"
                           className="author-delete-btn"
