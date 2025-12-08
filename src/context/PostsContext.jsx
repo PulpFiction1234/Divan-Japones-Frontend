@@ -2,8 +2,17 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useReducer,
 import initialPosts from '../data/initialPosts'
 import initialMagazines from '../data/initialMagazines'
 import slugify from '../utils/slugify'
-import PUBLICATION_CATEGORIES from '../constants/publicationCategories'
-import { createArticle, fetchArticles, createMagazine, fetchMagazines, updateArticle, deleteArticle, updateMagazine, deleteMagazine } from '../services/api'
+import { 
+  createArticle, 
+  fetchArticles, 
+  createMagazine, 
+  fetchMagazines, 
+  updateArticle, 
+  deleteArticle, 
+  updateMagazine, 
+  deleteMagazine,
+  fetchCategories,
+} from '../services/api'
 
 const DEFAULT_AUTHOR = ''
 const DEFAULT_MAGAZINE_COVER = 'https://placehold.co/900x600?text=Revista'
@@ -166,6 +175,8 @@ export function PostsProvider({ children }) {
   const [postsSyncError, setPostsSyncError] = useState(null)
   const [isSyncingMagazines, setIsSyncingMagazines] = useState(false)
   const [magazinesSyncError, setMagazinesSyncError] = useState(null)
+  const [dbCategories, setDbCategories] = useState([])
+  const [categoriesError, setCategoriesError] = useState(null)
 
   const syncPostsFromApi = useCallback(async ({ signal } = {}) => {
     const remotePosts = await fetchArticles({ signal })
@@ -216,6 +227,35 @@ export function PostsProvider({ children }) {
       : []
     dispatchMagazines({ type: 'INIT', payload: normalized })
     return normalized
+  }, [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+    let isMounted = true
+
+    const syncCategories = async () => {
+      try {
+        const remote = await fetchCategories({ signal: controller.signal })
+        if (isMounted) {
+          setDbCategories(Array.isArray(remote) ? remote : [])
+          setCategoriesError(null)
+        }
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.error('Failed syncing categories', error)
+          if (isMounted) {
+            setCategoriesError('No se pudieron sincronizar las categorías.')
+          }
+        }
+      }
+    }
+
+    syncCategories()
+
+    return () => {
+      isMounted = false
+      controller.abort()
+    }
   }, [])
 
   useEffect(() => {
@@ -438,43 +478,41 @@ export function PostsProvider({ children }) {
   const value = useMemo(() => {
     const categoryMap = new Map()
 
-    PUBLICATION_CATEGORIES.forEach((category) => {
-      categoryMap.set(category.slug, {
+    // Seed with categories from the database (admin-created)
+    dbCategories.forEach((category) => {
+      const slug = category.slug || slugify(category.name || '')
+      categoryMap.set(slug, {
         name: category.name,
-        slug: category.slug,
-        subcategories: (category.subcategories ?? []).map((item) => ({ ...item })),
+        slug,
+        subcategories: [],
       })
     })
 
     const activities = posts.filter((post) => post.isActivity)
     const publications = posts.filter((post) => !post.isActivity)
 
+    // Only add subcategories for categories that exist in the DB map
     posts.forEach((post) => {
-      const baseName = post.category?.trim() || 'General'
+      const baseName = post.category?.trim()
+      if (!baseName) return
       const slug = slugify(baseName)
-      const existing = categoryMap.get(slug)
-      let entry = existing ?? { name: baseName, slug, subcategories: [] }
+      const entry = categoryMap.get(slug)
+      if (!entry) return
 
       const subcategoryName = post.subcategory?.trim()
       if (subcategoryName) {
         const list = entry.subcategories ?? []
         const alreadyIncluded = list.some((item) => item.name.toLowerCase() === subcategoryName.toLowerCase())
         if (!alreadyIncluded) {
-          entry = {
+          categoryMap.set(slug, {
             ...entry,
             subcategories: [...list, { name: subcategoryName, slug: slugify(`${slug}-${subcategoryName}`) }],
-          }
+          })
         }
       }
-
-      categoryMap.set(slug, entry)
     })
 
-    const orderedBase = PUBLICATION_CATEGORIES.map((category) => categoryMap.get(category.slug)).filter(Boolean)
-    const extras = Array.from(categoryMap.values()).filter(
-      (category) => !PUBLICATION_CATEGORIES.find((base) => base.slug === category.slug),
-    )
-    const categories = [...orderedBase, ...extras.sort((a, b) => a.name.localeCompare(b.name))]
+    const categories = Array.from(categoryMap.values()).sort((a, b) => a.name.localeCompare(b.name))
 
     function getPostsByCategorySlug(categorySlug) {
       return posts.filter((post) => slugify(post.category) === categorySlug)
@@ -504,6 +542,7 @@ export function PostsProvider({ children }) {
       postsSyncError,
       isSyncingMagazines,
       magazinesSyncError,
+      categoriesError,
       refreshPosts,
       refreshMagazines,
       getPostsByCategorySlug,
