@@ -896,8 +896,14 @@
   .page.article-page .article-mobile-categories {
     display: block;
     width: calc(100% - 2rem);
-    margin: 2.25rem auto 2rem;
+    margin: 3rem auto 2.5rem;
     gap: 1rem;
+  }
+
+  /* Add extra breathing room after "Notas recientes" card */
+  .page.article-page .article-body__sidebar .article-sidebar__card:nth-of-type(2) {
+    margin-bottom: 1.75rem;
+    padding-bottom: 0.5rem;
   }
 
   /* Tighten vertical spacing between sidebar cards on mobile */

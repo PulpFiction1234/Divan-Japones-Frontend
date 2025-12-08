@@ -51,7 +51,11 @@ export default function CategoriesSection() {
       <h2 className="section-heading">Categorías</h2>
       <div className="categories__list">
         {resolvedCategories.map((category) => (
-          <Link key={category.slug || category.name} to={`/category/${category.slug}`} className="category-chip">
+          <Link
+            key={category.slug || category.name}
+            to={`/publicaciones?category=${category.slug}`}
+            className="category-chip"
+          >
             {category.name}
           </Link>
         ))}
