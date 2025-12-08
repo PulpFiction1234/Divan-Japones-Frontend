@@ -168,6 +168,9 @@
   /* Header */
   .topbar {
     padding: 0.75rem 1rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
   }
 
   .topbar__social {
