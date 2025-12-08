@@ -223,6 +223,20 @@ export default function AdminPage() {
     setSuccessMessage('')
   }
 
+  const clearGeneralFields = () => {
+    setFormState((prev) => ({
+      ...prev,
+      title: '',
+      category: '',
+      subcategory: '',
+      author: '',
+      publishedAt: '',
+      imageUrl: '',
+    }))
+    setError('')
+    setSuccessMessage('')
+  }
+
   const handleCancel = () => {
     resetForm()
   }
@@ -928,6 +942,12 @@ export default function AdminPage() {
                   </div>
                 </fieldset>
 
+                <div className="admin-form__actions" style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+                  <button type="button" className="admin-form__secondary" onClick={clearGeneralFields}>
+                    Limpiar datos generales
+                  </button>
+                </div>
+
                 {formState.hasActivity ? (
                   <fieldset className="admin-card">
                     <legend>Detalles de la actividad</legend>
@@ -1008,9 +1028,11 @@ export default function AdminPage() {
                 {successMessage && <p className="admin-form__success">{successMessage}</p>}
 
                 <div className="admin-form__actions">
-                  <button type="button" className="admin-form__secondary" onClick={handleCancel}>
-                    {editingPostId ? 'Cancelar' : 'Limpiar'}
-                  </button>
+                  {editingPostId ? (
+                    <button type="button" className="admin-form__secondary" onClick={handleCancel}>
+                      Cancelar
+                    </button>
+                  ) : null}
                   <button type="submit" className="admin-form__primary" disabled={isSubmitting}>
                     {isSubmitting ? 'Guardando…' : editingPostId ? 'Actualizar artículo' : 'Publicar artículo'}
                   </button>
