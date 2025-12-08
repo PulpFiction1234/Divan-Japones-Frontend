@@ -125,7 +125,7 @@
 
 	.magazine-hero__cover {
 		/* Forzar tamaño consistente en móvil */
-		width: min(360px, 92vw);
+		width: min(386px, 92vw);
 		aspect-ratio: 3 / 4;
 		height: auto;
 		max-height: none;
