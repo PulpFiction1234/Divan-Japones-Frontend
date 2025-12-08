@@ -1824,9 +1824,7 @@
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
 }
 
-.publications-layout {
-  width: min(1240px, 100% - 4rem);
-}
+
 
 .publications-grid {
   display: grid;
