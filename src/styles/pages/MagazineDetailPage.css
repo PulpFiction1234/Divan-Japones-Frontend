@@ -123,6 +123,15 @@
 	.magazine-hero__cover {
 		height: auto;
 		aspect-ratio: 2 / 3;
+		max-width: min(480px, 100%);
+		margin: 0 auto;
+	}
+
+	.magazine-hero__cover-img {
+		width: 100%;
+		height: auto;
+		object-fit: contain;
+		aspect-ratio: 2 / 3;
 	}
 
 	.magazine-hero__content {
