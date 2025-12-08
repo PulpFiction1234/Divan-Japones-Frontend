@@ -290,8 +290,8 @@
 
   /* Menu/Latest Section */
   .latest {
-    /* reduced vertical padding on mobile to avoid large gaps */
-    padding: 1rem 0.75rem;
+    /* removed padding to unify width with other pages */
+    padding: 0;
     margin-bottom: 0.5rem;
   }
 
@@ -336,7 +336,7 @@
 
   /* Trending Posts */
   .trending {
-    padding: 2rem 1rem;
+    padding: 0;
   }
 
   .trending__grid {
@@ -358,7 +358,7 @@
 
   /* Experience/Activities */
   .experience {
-    padding: 2rem 1rem;
+    padding: 0;
   }
 
   .experience-grid {
