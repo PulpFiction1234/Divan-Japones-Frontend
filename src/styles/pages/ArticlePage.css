@@ -896,7 +896,7 @@
   .page.article-page .article-mobile-categories {
     display: block;
     width: calc(100% - 2rem);
-    margin: 1.5rem auto 1.5rem;
+    margin: 2.25rem auto 2rem;
     gap: 1rem;
   }
 
