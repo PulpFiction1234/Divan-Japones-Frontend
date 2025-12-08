@@ -38,7 +38,6 @@ export default function AboutPage() {
         </section>
 
         <section className="authors-section" aria-label="Autores de Diván Japonés">
-          <h2>Nuestros autores</h2>
           <ul className="authors-list">
             {AUTHORS.map((author) => (
               <li key={author.name} className="author-card">
