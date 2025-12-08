@@ -35,6 +35,9 @@
 .admin-container {
   width: min(1200px, calc(100% - 3rem));
   margin: 2rem auto 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   padding: 0;
 }
 
@@ -183,22 +186,16 @@
   .activities-container,
   .contact-container,
   .admin-container {
-    width: calc(100% - 2rem) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 0 !important;
+    width: calc(100% - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
   }
 
   /* Add padding back to content areas */
   .latest,
   .trending,
-  .experience,
-  .publications-layout,
-  .magazine-container,
-  .category-container,
-  .activities-container,
-  .contact-container,
-  .admin-container {
+  .experience {
     padding-left: 1rem;
     padding-right: 1rem;
     width: calc(100% - 2rem);
