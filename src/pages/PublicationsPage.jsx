@@ -88,7 +88,7 @@ export default function PublicationsPage() {
       <main className="layout publications-layout">
         <div className="publications-grid">
           <aside className="publications-sidebar" aria-label="Filtros de categoría">
-            <h2>Publicaciones</h2>
+            <h1 className="section-heading">Publicaciones</h1>
             
             {/* Mobile dropdown */}
             <div className="publications-sidebar__mobile">

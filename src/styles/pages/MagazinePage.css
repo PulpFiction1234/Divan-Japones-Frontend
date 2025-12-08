@@ -213,3 +213,26 @@
 	padding: 0 !important;
 	text-align: left;
 }
+
+/* Mobile: stack cards full width to avoid overlap */
+@media (max-width: 720px) {
+	.magazine-gallery {
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+
+	.magazine-card--compact {
+		max-width: none;
+		width: 100%;
+		min-height: auto;
+	}
+
+	.magazine-card__compact-btn {
+		width: 100%;
+	}
+
+	.magazine-card__cover--compact {
+		width: 100%;
+		aspect-ratio: 3 / 4;
+	}
+}
