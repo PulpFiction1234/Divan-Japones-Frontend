@@ -509,6 +509,12 @@
   font-size: 0.9rem;
 }
 
+.category-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /* -------------------- Autores -------------------- */
 .author-list {
   list-style: none;

@@ -122,7 +122,8 @@ export default function AdminPage() {
     isSyncingPosts, 
     postsSyncError, 
     isSyncingMagazines, 
-    magazinesSyncError 
+    magazinesSyncError,
+    refreshPosts
   } = usePosts()
 
   // State declarations
@@ -149,6 +150,7 @@ export default function AdminPage() {
   const [isLoadingAuthors, setIsLoadingAuthors] = useState(true)
   const [newCategoryName, setNewCategoryName] = useState('')
   const [editingCategoryId, setEditingCategoryId] = useState(null)
+  const [editingCategoryPreviousName, setEditingCategoryPreviousName] = useState('')
   const [newAuthorName, setNewAuthorName] = useState('')
   const [newAuthorImageUrl, setNewAuthorImageUrl] = useState('')
   const [editingAuthorId, setEditingAuthorId] = useState(null)
@@ -687,10 +689,22 @@ export default function AdminPage() {
     try {
       const slug = slugify(newCategoryName.trim())
       if (editingCategoryId) {
-        const updated = await updateCategory(editingCategoryId, { name: newCategoryName.trim(), slug })
+        const payload = {
+          name: newCategoryName.trim(),
+          slug,
+          previousName: editingCategoryPreviousName,
+          previousSlug: slugify(editingCategoryPreviousName || ''),
+        }
+        const updated = await updateCategory(editingCategoryId, payload)
         setDbCategories(dbCategories.map((c) => (c.id === editingCategoryId ? updated : c)))
         setCategorySuccess(`Categoría "${newCategoryName}" actualizada`)
         setEditingCategoryId(null)
+        setEditingCategoryPreviousName('')
+        try {
+          await refreshPosts()
+        } catch (syncError) {
+          console.error('No se pudo refrescar publicaciones tras editar categoría', syncError)
+        }
       } else {
         const newCategory = await createCategory({ name: newCategoryName.trim(), slug })
         setDbCategories([...dbCategories, newCategory])
@@ -706,6 +720,7 @@ export default function AdminPage() {
 
   const handleEditCategory = (category) => {
     setEditingCategoryId(category.id)
+    setEditingCategoryPreviousName(category.name || '')
     setNewCategoryName(category.name || '')
     setCategoryError('')
     setCategorySuccess('')
@@ -713,6 +728,7 @@ export default function AdminPage() {
 
   const handleCancelEditCategory = () => {
     setEditingCategoryId(null)
+    setEditingCategoryPreviousName('')
     setNewCategoryName('')
     setCategoryError('')
     setCategorySuccess('')
@@ -1534,22 +1550,24 @@ export default function AdminPage() {
                             {categoryPostCounts[slugify(cat.name)] || 0} publicaciones
                           </span>
                         </div>
-                        <button
-                          type="button"
-                          className="author-delete-btn"
-                          onClick={() => handleEditCategory(cat)}
-                          aria-label={`Editar categoría ${cat.name}`}
-                        >
-                          Editar
-                        </button>
-                        <button
-                          type="button"
-                          className="author-delete-btn"
-                          onClick={() => handleDeleteCategory(cat.id, cat.name)}
-                          aria-label={`Eliminar categoría ${cat.name}`}
-                        >
-                          Eliminar
-                        </button>
+                        <div className="category-item__actions">
+                          <button
+                            type="button"
+                            className="author-delete-btn"
+                            onClick={() => handleEditCategory(cat)}
+                            aria-label={`Editar categoría ${cat.name}`}
+                          >
+                            Editar
+                          </button>
+                          <button
+                            type="button"
+                            className="author-delete-btn"
+                            onClick={() => handleDeleteCategory(cat.id, cat.name)}
+                            aria-label={`Eliminar categoría ${cat.name}`}
+                          >
+                            Eliminar
+                          </button>
+                        </div>
                       </li>
                     ))}
                   </ul>
