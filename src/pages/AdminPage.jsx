@@ -864,7 +864,6 @@ export default function AdminPage() {
         <section className="admin-panel">
           <header className="admin-panel__header">
             <h1>Panel editorial</h1>
-            <p>Publica crónicas del colectivo Diván Japonés y coordina los próximos ciclos.</p>
           </header>
 
           <p
