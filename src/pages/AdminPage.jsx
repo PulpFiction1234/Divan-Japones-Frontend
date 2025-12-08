@@ -353,6 +353,20 @@ export default function AdminPage() {
     setMagazineError('')
   }
 
+  const clearMagazineInfo = () => {
+    setMagazineForm((prev) => ({
+      ...prev,
+      title: '',
+      description: '',
+      pdfUrl: '',
+      coverUrl: '',
+      releaseDate: '',
+      viewerUrl: '',
+    }))
+    setMagazineError('')
+    setMagazineSuccess('')
+  }
+
   const handleEditMagazine = async (magazine) => {
     try {
       const articles = await fetchMagazineArticles(magazine.id)
@@ -1228,6 +1242,12 @@ export default function AdminPage() {
                   </div>
                 </fieldset>
 
+                <div className="admin-form__actions" style={{ marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+                  <button type="button" className="admin-form__secondary" onClick={clearMagazineInfo}>
+                    Limpiar información de la edición
+                  </button>
+                </div>
+
                 <fieldset className="admin-card">
                   <legend>Artículos individuales de la revista</legend>
                   <p style={{ margin: '0 0 1rem 0', fontSize: '0.9rem', color: 'var(--color-muted)' }}>
@@ -1380,9 +1400,11 @@ export default function AdminPage() {
                 {magazineSuccess && <p className="admin-form__success">{magazineSuccess}</p>}
 
                 <div className="admin-form__actions">
-                  <button type="button" className="admin-form__secondary" onClick={handleMagazineCancel}>
-                    {editingMagazineId ? 'Cancelar' : 'Limpiar'}
-                  </button>
+                  {editingMagazineId ? (
+                    <button type="button" className="admin-form__secondary" onClick={handleMagazineCancel}>
+                      Cancelar
+                    </button>
+                  ) : null}
                   <button type="submit" className="admin-form__primary" disabled={isSavingMagazine}>
                     {isSavingMagazine ? 'Guardando…' : editingMagazineId ? 'Actualizar revista' : 'Publicar revista'}
                   </button>
