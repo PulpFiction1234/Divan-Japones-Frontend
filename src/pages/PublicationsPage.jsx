@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import TopBar from '../components/Header'
 import SiteHeader from '../components/AboutSection'
+import CategoriesSection from '../components/CategoriesSection'
 import SiteFooter from '../components/Footer'
 import { usePosts } from '../context/PostsContext'
 import { fetchCategories } from '../services/api'
@@ -157,6 +158,7 @@ export default function PublicationsPage() {
             )}
           </section>
         </div>
+        <CategoriesSection />
       </main>
       <SiteFooter />
     </div>

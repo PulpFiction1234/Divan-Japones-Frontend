@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import TopBar from '../components/Header'
 import SiteHeader from '../components/AboutSection'
+import CategoriesSection from '../components/CategoriesSection'
 import SiteFooter from '../components/Footer'
 import { usePosts } from '../context/PostsContext'
 import formatCategoryLabel from '../utils/formatCategoryLabel'
@@ -87,6 +88,7 @@ export default function ActivitiesPage() {
             </div>
           )}
         </section>
+        <CategoriesSection />
       </main>
       <SiteFooter />
     </div>
