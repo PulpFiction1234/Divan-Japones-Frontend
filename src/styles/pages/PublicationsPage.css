@@ -360,8 +360,8 @@
 	.publications-card__media {
 		max-width: none;
 		width: 100%;
-		min-height: 0;
-		aspect-ratio: 16/9;
+		min-height: 220px;
+		aspect-ratio: 4/3;
 	}
 
 	.publications-card__body {
