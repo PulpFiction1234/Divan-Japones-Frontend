@@ -121,7 +121,6 @@
 	}
 
 	.magazine-hero__cover {
-		height: auto;
 		min-height: clamp(360px, 85vw, 560px);
 		max-height: 620px;
 		aspect-ratio: 3 / 4;
