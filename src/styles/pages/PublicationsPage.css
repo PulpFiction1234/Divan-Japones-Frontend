@@ -1,8 +1,6 @@
 /* PublicationsPage styles (skeleton) */
 .publications-layout {
-	width: min(1200px, 100% - 3rem);
 	max-width: 100%;
-	margin: 2rem auto 3rem;
 	overflow: visible;
 }
 
@@ -302,12 +300,6 @@
 }
 
 @media (max-width: 900px) {
-	.publications-layout {
-		width: calc(100% - 2rem) !important;
-		margin: 2.1rem auto 2.25rem !important;
-		padding-top: 0.35rem !important;
-	}
-
 	.publications-grid {
 		grid-template-columns: 1fr;
 		gap: 2rem;

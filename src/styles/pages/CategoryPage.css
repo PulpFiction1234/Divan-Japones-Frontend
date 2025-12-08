@@ -9,7 +9,6 @@
 
 /* Layout */
 .category-layout {
-  width: min(1400px, 100% - 4rem);
   gap: 2.5rem;
 }
 
@@ -128,12 +127,6 @@
 }
 
 @media (max-width: 900px) {
-  .category-layout {
-    width: calc(100% - 2rem) !important;
-    margin: 1rem auto 1.5rem !important;
-    gap: 1.5rem;
-  }
-
   .category-grid__header {
     padding: 1.25rem 0 1rem;
   }
@@ -151,4 +144,7 @@
   .category-grid__body {
     max-width: 100%;
   }
+    .category-layout {
+      gap: 1.5rem;
+    }
 }
