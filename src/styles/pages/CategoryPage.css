@@ -127,7 +127,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .category-layout {
     width: calc(100% - 2rem) !important;
     margin: 1rem auto 1.5rem !important;
