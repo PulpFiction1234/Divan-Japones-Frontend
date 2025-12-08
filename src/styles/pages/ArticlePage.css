@@ -314,15 +314,6 @@
   }
 }
 
-@media (max-width: 768px) {
-	.article-layout,
-	.page.article-page .layout {
-		width: calc(100% - 2rem) !important;
-		margin-left: auto !important;
-		margin-right: auto !important;
-	}
-}
-
 /* Make the layout container full width for article pages so content fills the section */
 /* (reverted) layout full-width rule removed to avoid affecting whole page */
 
