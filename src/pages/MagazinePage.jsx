@@ -193,6 +193,11 @@ export default function MagazinePage() {
                     <div className="magazine-card__cover magazine-card__cover--compact">
                       <img
                         src={magazine.coverImage || FALLBACK_MAGAZINE_COVER}
+                        onError={(e) => {
+                          if (e?.target?.src !== FALLBACK_MAGAZINE_COVER) {
+                            e.target.src = FALLBACK_MAGAZINE_COVER
+                          }
+                        }}
                         alt={`Portada de ${magazine.title}`}
                         loading="lazy"
                       />
