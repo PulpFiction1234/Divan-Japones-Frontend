@@ -3,6 +3,7 @@ import TopBar from '../components/Header'
 import SiteHeader from '../components/AboutSection'
 import SiteFooter from '../components/Footer'
 import MagazineFlipbookModal from '../components/MagazineFlipbookModal'
+import CategoriesSection from '../components/CategoriesSection'
 import { fetchMagazineArticles } from '../services/api'
 import { usePosts } from '../context/PostsContext'
 
@@ -164,8 +165,6 @@ export default function MagazinePage() {
                   ))}
                 </div>
               </section>
-            ) : loadingArticles ? (
-              <p className="magazine-sections__empty">Cargando artículos...</p>
             ) : null}
           </>
         ) : (
@@ -206,6 +205,8 @@ export default function MagazinePage() {
             })}
           </section>
         ) : null}
+
+        <CategoriesSection />
       </main>
       <SiteFooter />
 
