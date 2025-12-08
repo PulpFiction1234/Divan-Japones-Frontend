@@ -234,7 +234,7 @@
 	.publications-card {
 		grid-template-columns: 1fr;
 		gap: 0.75rem;
-		padding: 1rem;
+		padding: 1rem 0;
 	}
 
 	.publications-card__media {
@@ -247,6 +247,7 @@
 		aspect-ratio: 16/9;
 		width: 100%;
 		height: auto;
+		display: block;
 	}
 }
 
@@ -289,12 +290,19 @@
 	}
 
 	.publications-sidebar {
-		display: none;
+		display: block;
+		position: static;
+		padding-right: 0;
+		border-right: none;
 	}
 
 	.publications-sidebar__mobile {
 		display: block;
 		margin: 0 0 1rem;
+	}
+
+	.publications-sidebar__desktop {
+		display: none;
 	}
 
 	.publications-results ul {
@@ -304,7 +312,7 @@
 	.publications-card {
 		grid-template-columns: 1fr;
 		gap: 0.75rem;
-		padding: 0.75rem 0.5rem;
+		padding: 0.75rem 0;
 		align-items: start;
 	}
 
