@@ -14,10 +14,12 @@ import MagazineDetailPage from './pages/MagazineDetailPage'
 import ActivitiesPage from './pages/ActivitiesPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <AuthProvider>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
