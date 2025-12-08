@@ -1,14 +1,46 @@
 /* ========================================
-   GLOBAL RESPONSIVE STYLES
-   Mobile-first approach with breakpoints:
-   - Mobile: < 768px
-   - Tablet: 768px - 1024px
-   - Desktop: > 1024px
-   ======================================== */
+  GLOBAL RESPONSIVE STYLES
+  Mobile-first approach with breakpoints:
+  - Mobile: < 768px
+  - Tablet: 768px - 1024px
+  - Desktop: > 1024px
+  ======================================== */
 
 /* ========================================
-   TABLET AND MOBILE (< 1024px)
-   ======================================== */
+  BASE LAYOUT ALIGNMENT (ALL BREAKPOINTS)
+  Centraliza el ancho y el espaciado del main .layout
+  para que todas las páginas partan del mismo contenedor.
+  ======================================== */
+.layout {
+  width: min(1200px, calc(100% - 3rem));
+  margin: 2rem auto 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+/* Contenedores derivados que reutilizan layout */
+.layout.static-layout,
+.category-layout,
+.article-layout,
+.magazine-layout,
+.admin-layout,
+.login-layout,
+.publications-layout,
+.magazine-container,
+.category-container,
+.activities-container,
+.contact-container,
+.admin-container {
+  width: min(1200px, calc(100% - 3rem));
+  margin: 2rem auto 3rem;
+  padding: 0;
+}
+
+/* ========================================
+  TABLET AND MOBILE (< 1024px)
+  ======================================== */
 @media (max-width: 1024px) {
   /* Base container padding */
   .page {
