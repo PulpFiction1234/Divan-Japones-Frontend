@@ -11,16 +11,7 @@
   Centraliza el ancho y el espaciado del main .layout
   para que todas las páginas partan del mismo contenedor.
   ======================================== */
-.layout {
-  width: min(1200px, calc(100% - 3rem));
-  margin: 2rem auto 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 0;
-}
-
-/* Contenedores derivados que reutilizan layout */
+.layout,
 .layout.static-layout,
 .category-layout,
 .article-layout,
@@ -165,15 +156,8 @@
     margin: 0;
   }
 
-  /* HomePage layout spacing */
-  .layout {
-    width: calc(100% - 2rem);
-    margin: 1rem auto 1.5rem;
-    gap: 0.5rem;
-    padding: 0;
-  }
-
-  /* Unify page layouts width on mobile to match home */
+  /* Unify all layouts on mobile to match home */
+  .layout,
   .layout.static-layout,
   .category-layout,
   .article-layout,
