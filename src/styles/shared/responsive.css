@@ -152,8 +152,9 @@
 
   /* Typography adjustments */
   .section-heading {
-    font-size: clamp(2rem, 7vw, 3rem) !important;
-    margin-bottom: 1.5rem;
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+    letter-spacing: 0.18em;
+    margin-bottom: 1rem;
   }
 
   h2 {
@@ -667,7 +668,8 @@
   }
 
   .section-heading {
-    font-size: 2rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.16em;
   }
 
   /* Cards */
