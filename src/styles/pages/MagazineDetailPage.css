@@ -121,20 +121,20 @@
 	}
 
 	.magazine-hero__cover {
-		/* En móvil dejamos que la imagen use su alto natural para evitar bandas vacías */
 		height: auto;
-		min-height: clamp(360px, 75vw, 640px);
-		aspect-ratio: auto;
-		max-width: min(560px, 100%);
-		max-height: none;
+		min-height: clamp(360px, 85vw, 560px);
+		max-height: 620px;
+		aspect-ratio: 3 / 4;
+		max-width: min(520px, 100%);
 		margin: 0 auto;
 	}
 
 	.magazine-hero__cover-img {
 		width: 100%;
-		height: auto;
+		height: 100%;
 		object-fit: contain;
-		aspect-ratio: auto;
+		object-position: center;
+		aspect-ratio: 3 / 4;
 	}
 
 	.magazine-hero__content {
