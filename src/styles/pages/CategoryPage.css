@@ -126,3 +126,29 @@
     gap: 2.5rem 2rem;
   }
 }
+
+@media (max-width: 768px) {
+  .category-layout {
+    width: calc(100% - 2rem) !important;
+    margin: 1rem auto 1.5rem !important;
+    gap: 1.5rem;
+  }
+
+  .category-grid__header {
+    padding: 1.25rem 0 1rem;
+  }
+
+  .category-grid__items {
+    gap: 1.5rem 1.25rem;
+    padding: 1.25rem 0 1.75rem 0;
+  }
+
+  .category-grid__card {
+    padding: 1.25rem;
+  }
+
+  .category-grid__media,
+  .category-grid__body {
+    max-width: 100%;
+  }
+}

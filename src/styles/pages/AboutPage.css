@@ -4,6 +4,13 @@
 	margin: 2rem auto 3rem;
 }
 
+@media (max-width: 768px) {
+	.static-layout {
+		width: calc(100% - 2rem) !important;
+		margin: 1rem auto 1.5rem !important;
+	}
+}
+
 .static-section {
 	display: flex;
 	flex-direction: column;

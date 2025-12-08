@@ -137,6 +137,24 @@
     gap: 0.5rem;
   }
 
+  /* Unify page layouts width on mobile to match home */
+  .layout.static-layout,
+  .category-layout,
+  .article-layout,
+  .magazine-layout,
+  .admin-layout,
+  .login-layout,
+  .publications-layout,
+  .magazine-container,
+  .category-container,
+  .activities-container,
+  .contact-container,
+  .admin-container {
+    width: calc(100% - 2rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
   /* Add padding back to content areas */
   .latest,
   .trending,

@@ -57,6 +57,13 @@
 	box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+	.static-layout {
+		width: calc(100% - 2rem) !important;
+		margin: 1rem auto 1.5rem !important;
+	}
+}
+
 .activities-page .activity-card__body > * {
 	margin-left: 0 !important;
 	padding-left: 0 !important;
