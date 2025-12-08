@@ -85,7 +85,7 @@ export default function PublicationsPage() {
     <div className="page publications-page">
       <TopBar />
       <SiteHeader />
-      <main className="layout publications-layout">
+      <main className="layout">
         <div className="publications-grid">
           <aside className="publications-sidebar" aria-label="Filtros de categoría">
             <h2>Publicaciones</h2>
