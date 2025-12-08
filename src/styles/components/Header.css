@@ -106,6 +106,14 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
+
+  /* Make Instagram icon match search control height on mobile */
+  .topbar__social a {
+    width: 2.6rem;
+    height: 2.3rem;
+    font-size: 1.2rem;
+    padding: 0;
+  }
 }
 
 /* Accessibility helpers copied from global styles so Header is self-contained */

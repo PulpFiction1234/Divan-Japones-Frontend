@@ -50,8 +50,6 @@
   .topbar__search {
     order: 3;
     width: 100%;
-    margin-left: 0;
-    margin-top: 0.5rem;
   }
 
   .topbar__search input {
@@ -220,16 +218,26 @@
   .topbar__search input {
     width: 100%;
     max-width: none;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    line-height: 1;
   }
 
   .topbar__social a {
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
   }
 
   .topbar__social svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .topbar__search button {
+    height: 2.5rem;
+    padding: 0 0.85rem;
+    line-height: 1;
   }
 
   .topbar__admin {

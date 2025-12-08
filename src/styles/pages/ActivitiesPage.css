@@ -56,3 +56,38 @@
 	padding-left: 0 !important;
 }
 
+@media (max-width: 900px) {
+	.activities__grid {
+		grid-template-columns: 1fr;
+		justify-items: stretch;
+		gap: 1.5rem;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Mirror home activities list spacing on mobile */
+	.activities__grid.activities__list {
+		gap: 1.25rem;
+	}
+
+	.activities-page .activity-card,
+	.activities-page .activity-card__link,
+	.activities-page .activity-card__body,
+	.activities-page .activity-card__media img {
+		width: 100% !important;
+	}
+
+	.activities-page .activity-card__media {
+		width: 100%;
+	}
+
+	.activities-page .activity-card__link {
+		display: block;
+	}
+
+	.activities-page .activities {
+		padding: 0;
+	}
+}
+

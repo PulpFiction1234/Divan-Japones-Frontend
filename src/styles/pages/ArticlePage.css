@@ -60,6 +60,7 @@
   height: 80vh;
   max-height: 80vh;
   background: var(--color-invert, #111);
+  padding: 0;
 }
 
 .article-hero__media img {
@@ -798,6 +799,16 @@
   text-transform: uppercase;
 }
 
+/* Mobile categories handling */
+.article-mobile-categories {
+  display: none;
+  gap: 1rem;
+}
+
+.article-trending {
+  display: block;
+}
+
 /* ========================================
    RESPONSIVE
    ======================================== */
@@ -814,5 +825,115 @@
 
   .article-sidebar__card {
     flex: 1 1 clamp(240px, 45%, 320px);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Show the full hero image on phones instead of cropping it */
+  .page.article-page .article-hero__media {
+    height: auto;
+    max-height: none;
+    padding: 0;
+  }
+
+  .page.article-page .article-hero__media img {
+    height: auto;
+    max-height: 70vh;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  /* Keep author/date in a single centered line on mobile */
+  .page.article-page .article-hero__meta {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.25rem;
+    margin: 0.25rem auto 0;
+    line-height: 1.2;
+  }
+
+  .page.article-page .article-hero__meta span {
+    white-space: nowrap;
+  }
+
+  /* Let article text use the full mobile width with minimal side padding */
+  .page.article-page .article-layout {
+    width: calc(100% - 2rem) !important; /* match global mobile layout gutter */
+    margin: 1rem auto 1.5rem !important;
+    padding: 0 !important;
+  }
+
+  .page.article-page .article-body {
+    padding: 0;
+  }
+
+  .page.article-page .article-body__content {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: justify;
+  }
+
+  /* Remove side/bottom margins from the first div wrapper under the section on mobile */
+  .page.article-page .article-body__content > div {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    text-align: justify;
+    max-width: 100% !important;
+    display: block !important;
+  }
+
+  /* Hide desktop sidebar categories on mobile */
+  .page.article-page .article-sidebar__card--categories {
+    display: none;
+  }
+
+  /* Show main categories section on mobile */
+  .page.article-page .article-mobile-categories {
+    display: block;
+    width: calc(100% - 2rem);
+    margin: 1.5rem auto 1.5rem;
+    gap: 1rem;
+  }
+
+  /* Tighten vertical spacing between sidebar cards on mobile */
+  .page.article-page .article-body__sidebar {
+    gap: 0.75rem;
+  }
+
+  .page.article-page .article-sidebar__card {
+    padding: 0.25rem 0 !important;
+  }
+
+  .page.article-page .article-sidebar__card + .article-sidebar__card {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }
+
+  /* Hide trending section on article pages for mobile */
+  .page.article-page .article-trending {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Restore desktop hero proportions */
+  .page.article-page .article-hero__media {
+    height: 80vh;
+    max-height: 80vh;
+    padding: 0;
+  }
+
+  .page.article-page .article-hero__media img {
+    width: min(72vw, 1100px);
+    max-width: 100%;
+    height: 100%;
+    max-height: 80vh;
+    object-fit: cover;
+    object-position: center;
   }
 }

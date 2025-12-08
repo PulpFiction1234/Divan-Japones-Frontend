@@ -8,6 +8,7 @@ import slugify from '../utils/slugify'
 import formatCategoryLabel from '../utils/formatCategoryLabel'
 import TrendingPostsSection from '../components/TrendingPostsSection'
 import AuthorPill from '../components/AuthorPill'
+import CategoriesSection from '../components/CategoriesSection'
 
 const FALLBACK_IMAGE = 'https://placehold.co/1200x800?text=Divan'
 
@@ -151,7 +152,7 @@ export default function ArticlePage() {
                     ) : null}
 
                     {categoryIndex?.length ? (
-                      <section className="article-sidebar__card">
+                      <section className="article-sidebar__card article-sidebar__card--categories">
                         <h2>Categorias</h2>
                         <ul className="article-sidebar__tags">
                           {categoryIndex.map((category) => (
@@ -179,8 +180,11 @@ export default function ArticlePage() {
           </div>
         )}
       </main>
-      <div className="layout" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
+      <div className="layout article-trending" style={{ marginTop: '2rem', marginBottom: '2rem' }}>
         <TrendingPostsSection />
+      </div>
+      <div className="article-mobile-categories" style={{ marginTop: '0.5rem' }}>
+        <CategoriesSection />
       </div>
       <SiteFooter />
     </div>

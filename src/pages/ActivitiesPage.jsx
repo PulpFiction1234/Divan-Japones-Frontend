@@ -48,7 +48,7 @@ export default function ActivitiesPage() {
           </div>
 
           {upcomingActivities.length ? (
-            <div className="activities__grid">
+            <div className="activities__grid activities__list">
               {upcomingActivities.map((activity) => {
                 const eventDate = formatDate(activity.scheduledAt || activity.publishedAt)
                 const priceLabel = activity.price?.trim()
