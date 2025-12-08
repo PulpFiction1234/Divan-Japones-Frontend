@@ -155,7 +155,7 @@
 .publications-card {
 	display: grid;
 	/* Image left (fixed) + content right */
-	grid-template-columns: 160px 1fr;
+	grid-template-columns: 200px 1fr;
 	gap: 1rem;
 	align-items: center;
 	min-height: 140px;
@@ -168,7 +168,8 @@
 
 .publications-card__media {
 	width: 100%;
-	max-width: 160px;
+	max-width: 200px;
+	min-height: 150px;
 	aspect-ratio: 4/3;
 	overflow: hidden;
 }
@@ -195,13 +196,13 @@
 .publications-results a.publications-card,
 .publications-results .publications-card {
 	display: grid;
-	grid-template-columns: 160px 1fr;
+	grid-template-columns: 200px 1fr;
 	align-items: start;
 }
 
 /* Also ensure link-wrapped card uses our grid and sizing */
 .publications-results a.publications-card .publications-card__media {
-	max-width: 160px;
+	max-width: 200px;
 }
 
 .publications-card__body {
