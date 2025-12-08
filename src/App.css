@@ -19,15 +19,6 @@
   color: var(--color-text);
 }
 
-.layout {
-  width: min(1200px, 100% - 3rem);
-  margin: 4rem auto 6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  padding: 0;
-}
-
 .section-heading {
   font-family: var(--font-subtitle);
   font-size: 0.95rem;
@@ -1824,8 +1815,6 @@
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
 }
 
-
-
 .publications-grid {
   display: grid;
   grid-template-columns: 260px 1fr;
@@ -2643,11 +2632,6 @@
   .site-header__nav ul {
     flex-wrap: wrap;
     gap: 1rem;
-  }
-
-  .layout {
-    padding-bottom: 4rem;
-    gap: 3rem;
   }
 
   .latest__grid {
