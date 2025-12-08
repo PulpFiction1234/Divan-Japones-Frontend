@@ -56,6 +56,14 @@
 	padding-left: 0 !important;
 }
 
+/* Tablet: keep four activity cards in one row */
+@media (min-width: 700px) and (max-width: 1200px) {
+	.activities__grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1rem;
+	}
+}
+
 @media (max-width: 900px) {
 	.activities__grid {
 		grid-template-columns: 1fr;

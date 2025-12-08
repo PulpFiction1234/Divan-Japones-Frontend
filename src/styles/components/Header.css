@@ -68,7 +68,7 @@
 }
 
 .topbar__search button {
-  padding: 0.35rem 0.75rem;
+  padding: calc(0.35rem + 2px) 0.75rem;
   border: 1px solid #ffffff;
   background-color: #ffffff;
   color: var(--color-invert);

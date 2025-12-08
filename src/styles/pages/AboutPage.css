@@ -75,11 +75,9 @@
 	align-items: start;
 	gap: 1rem;
 	padding-bottom: 1.25rem;
-	border-bottom: 1px solid var(--color-line);
 }
 
 .author-card:last-child {
-	border-bottom: none;
 	padding-bottom: 0;
 }
 

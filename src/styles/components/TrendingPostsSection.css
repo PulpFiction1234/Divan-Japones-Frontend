@@ -167,3 +167,11 @@
     padding-top: 0.0625rem; /* ~1px breathing room */
   }
 }
+
+/* Tablet: force four cards per row without changing desktop or phone layouts */
+@media (min-width: 700px) and (max-width: 1200px) {
+  .trending__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
