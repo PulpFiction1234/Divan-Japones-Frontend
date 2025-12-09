@@ -2361,7 +2361,6 @@
   max-width: 45% !important;
   width: auto !important;
   height: auto !important;
-  display: inline-block !important;
 }
 
 .article-body__content > div[style*="float: left"] img,
@@ -2379,7 +2378,6 @@
   max-width: 45% !important;
   width: auto !important;
   height: auto !important;
-  display: inline-block !important;
 }
 
 .article-body__content > div[style*="float: right"] img,
@@ -3036,7 +3034,6 @@
   float: left !important;
   margin: 0.5rem 1.5rem 1rem 0 !important;
   max-width: 45% !important;
-  display: inline-block !important;
 }
 
 .tiptap-content .tiptap > div[style*="float: right"],
@@ -3044,7 +3041,6 @@
   float: right !important;
   margin: 0.5rem 0 1rem 1.5rem !important;
   max-width: 45% !important;
-  display: inline-block !important;
 }
 
 .tiptap-content .tiptap > div[style*="display: block"],
@@ -3059,13 +3055,11 @@
 .tiptap-content .tiptap .image-resizer[style*="float: left"] {
   float: left !important;
   margin: 0.5rem 1.5rem 1rem 0 !important;
-  display: inline-block !important;
 }
 
 .tiptap-content .tiptap .image-resizer[style*="float: right"] {
   float: right !important;
   margin: 0.5rem 0 1rem 1.5rem !important;
-  display: inline-block !important;
 }
 
 .tiptap-content .tiptap .image-resizer[style*="display: block"] {

@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaCalendarAlt, FaExternalLinkAlt, FaFilePdf, FaImage, FaListUl, FaMapMarkerAlt, FaPenNib, FaTag } from 'react-icons/fa'
+import { FaCalendarAlt, FaExternalLinkAlt, FaFilePdf, FaHome, FaImage, FaListUl, FaMapMarkerAlt, FaPenNib, FaTag } from 'react-icons/fa'
 import { MdOutlineSchedule, MdPriceChange } from 'react-icons/md'
 import { HiOutlinePhotograph } from 'react-icons/hi'
 import TiptapEditor from '../components/TiptapEditor'
@@ -854,6 +854,13 @@ export default function AdminPage() {
             >
               <FaPenNib />
               <span>Autores</span>
+            </button>
+            <button
+              className="admin-nav__item"
+              onClick={() => navigate('/')}
+            >
+              <FaHome />
+              <span>Inicio</span>
             </button>
           </nav>
           <button onClick={handleLogout} className="admin-sidebar__logout">
