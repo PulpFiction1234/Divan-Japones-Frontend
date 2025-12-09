@@ -29,6 +29,7 @@ export default function MagazineDetailPage() {
   const [selectedMagazineId, setSelectedMagazineId] = useState(null)
   const [magazineArticles, setMagazineArticles] = useState([])
   const [loadingArticles, setLoadingArticles] = useState(false)
+  const [showSections, setShowSections] = useState(false)
 
   const magazine = useMemo(() => {
     if (!magazineId) {
@@ -42,6 +43,7 @@ export default function MagazineDetailPage() {
   useEffect(() => {
     if (!magazine?.id) {
       setMagazineArticles([])
+      setShowSections(false)
       return
     }
 
@@ -99,7 +101,11 @@ export default function MagazineDetailPage() {
   }, [magazines, selectedMagazineId])
 
   const handleScrollToSections = useCallback(() => {
-    sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+    setShowSections(true)
+    // allow layout to render before scrolling
+    requestAnimationFrame(() => {
+      sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+    })
   }, [])
 
   const releaseLabel = useMemo(() => {
@@ -153,7 +159,7 @@ export default function MagazineDetailPage() {
               </div>
             </section>
 
-            {sectionHighlights.length ? (
+            {sectionHighlights.length && showSections ? (
               <section ref={sectionsRef} className="magazine-sections" aria-label="Secciones destacadas de la revista">
                 <div className="magazine-sections__header">
                   <p>Secciones</p>

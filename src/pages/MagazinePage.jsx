@@ -29,6 +29,7 @@ export default function MagazinePage() {
   const [articlesCache, setArticlesCache] = useState({})
   const [loadingArticles, setLoadingArticles] = useState(false)
   const [viewerMagazineId, setViewerMagazineId] = useState(null)
+  const [showSections, setShowSections] = useState(false)
 
   const editions = useMemo(() => {
     return [...magazines].sort((a, b) => new Date(b.releaseDate || b.createdAt || 0) - new Date(a.releaseDate || a.createdAt || 0))
@@ -48,6 +49,7 @@ export default function MagazinePage() {
     if (!magazineId) return
     if (articlesCache[magazineId]) {
       setSelectedMagazineArticles(articlesCache[magazineId])
+      setShowSections(false)
       return
     }
     setLoadingArticles(true)
@@ -55,9 +57,11 @@ export default function MagazinePage() {
       const data = await fetchMagazineArticles(magazineId)
       setArticlesCache((prev) => ({ ...prev, [magazineId]: data || [] }))
       setSelectedMagazineArticles(data || [])
+      setShowSections(false)
     } catch (err) {
       console.error('Error loading magazine articles:', err)
       setSelectedMagazineArticles([])
+      setShowSections(false)
     } finally {
       setLoadingArticles(false)
     }
@@ -91,11 +95,15 @@ export default function MagazinePage() {
   const handleCloseViewer = useCallback(() => setViewerMagazineId(null), [])
 
   const handleScrollToSections = useCallback(() => {
-    sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+    setShowSections(true)
+    requestAnimationFrame(() => {
+      sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+    })
   }, [])
 
   const handleSelectMagazine = useCallback((id) => {
     setSelectedMagazineId(id)
+    setShowSections(false)
   }, [])
 
   return (
@@ -139,7 +147,7 @@ export default function MagazinePage() {
               </div>
             </section>
 
-            {sectionHighlights.length ? (
+            {sectionHighlights.length && showSections ? (
               <section ref={sectionsRef} className="magazine-sections" aria-label="Secciones destacadas de la revista">
                 <div className="magazine-sections__header">
                   <p>Secciones</p>
