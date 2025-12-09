@@ -10,24 +10,24 @@ const FALLBACK_AVATAR = 'https://placehold.co/240x240?text=Autor'
 
 const AUTHORS = [
   {
-    name: 'Pao Díaz',
-    bio: 'Soy Pao Díaz, Psicoanalista. Me he dedicado a la clínica desde una mirada post-freudiana, mis áreas de interés son lo traumático y lo social. Me apasiona el trabajo clínico y el pensamiento crítico. Me interesa lo japonés en su veta cultural, musical y estética. También me gusta el diseño, leer sobre teoría, tomar café y estar con mi perrita. Lo mío son los perros y el psicoanálisis, en ese orden.',
-    avatar: paoDiazImg,
-  },
-  {
-    name: 'Matías Quintanilla J.',
-    bio: 'Soy Matías Quintanilla J. Me gusta la cerveza, el café y el vino. Me entretiene leer y escribir, mientras escucho música (repitiendo el mismo tema con una misma idea). Dentro de mis intereses de lectura, indago harto en el género seinen y recuentos de vida. Soy Psicólogo (UAH), con Postítulo en Clínica Infanto-Juvenil (U. de Chile) y actualmente hago trabajo de D.O. en INDAP.',
-    avatar: matiasQuintanillaImg,
-  },
-  {
     name: 'Rodrigo Barraza',
     bio: 'Soy Rodrigo Barraza, Psicoanalista y Japonista. Me apasiona la literatura y el cine japonés, así como el anime y manga. De profesión soy Psicólogo y Magíster (Univ. de Chile), y trabajo en el ámbito clínico con adolescencias y subjetividades contemporáneas. Me encanta la docencia, y trato de habilitar espacios de difusión y construcción colaborativos de conocimiento.',
     avatar: rodrigoBarrazaImg,
   },
   {
+    name: 'Pao Díaz',
+    bio: 'Soy Pao Díaz, Psicoanalista. Me he dedicado a la clínica desde una mirada post-freudiana, mis áreas de interés son lo traumático y lo social. Me apasiona el trabajo clínico y el pensamiento crítico. Me interesa lo japonés en su veta cultural, musical y estética. También me gusta el diseño, leer sobre teoría, tomar café y estar con mi perrita. Lo mío son los perros y el psicoanálisis, en ese orden.',
+    avatar: paoDiazImg,
+  },
+  {
     name: 'Raisa Parra',
     bio: 'Soy Raisa Parra, Psicóloga Clínica (Univ. Central), Magíster en Teoría y Clínica Psicoanalítica (Univ. Diego Portales) y Postítulo en Psicoterapia Adultos (Univ. Diego Portales). Trabajo como Docente Colaboradora en el Programa de Especialización en Psiquiatría (Univ. Santiago de Chile y Univ. Mayor). Me encanta la literatura, descubrir novelas, hacer recomendaciones de libros y viajar a través de ellos. Esto es algo que me permite pensar y sostener mi trabajo clínico.',
     avatar: raisaParraImg,
+  },
+  {
+    name: 'Matías Quintanilla J.',
+    bio: 'Soy Matías Quintanilla J. Me gusta la cerveza, el café y el vino. Me entretiene leer y escribir, mientras escucho música (repitiendo el mismo tema con una misma idea). Dentro de mis intereses de lectura, indago harto en el género seinen y recuentos de vida. Soy Psicólogo (UAH), con Postítulo en Clínica Infanto-Juvenil (U. de Chile) y actualmente hago trabajo de D.O. en INDAP.',
+    avatar: matiasQuintanillaImg,
   },
 ]
 
