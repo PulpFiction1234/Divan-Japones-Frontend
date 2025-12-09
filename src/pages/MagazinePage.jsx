@@ -144,23 +144,28 @@ export default function MagazinePage() {
                 <div className="magazine-sections__header">
                   <p>Secciones</p>
                 </div>
-                <div className="magazine-sections__grid">
-                  {sectionHighlights.map((section) => (
-                    <article key={section.id} className="magazine-section-card">
-                      <p className="magazine-section-card__label">{section.section}</p>
-                      <h3>{section.title}</h3>
-                      <p className="magazine-section-card__author">por {section.author}</p>
-                      {section.excerpt && <p className="magazine-section-card__excerpt">{section.excerpt}</p>}
-                      {section.pdfUrl ? (
-                        <a 
-                          href={section.pdfUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="magazine-section-card__link"
-                        >
-                          Descargar artículo
-                        </a>
-                      ) : null}
+                <div className="magazine-sections__list" role="list">
+                  {sectionHighlights.map((section, index) => (
+                    <article key={section.id} className="magazine-section-row" role="listitem">
+                      <span className="magazine-section-row__badge">{String(index + 1).padStart(2, '0')}</span>
+                      <div className="magazine-section-row__body">
+                        <p className="magazine-section-row__label">{section.section}</p>
+                        <h3>{section.title}</h3>
+                        <p className="magazine-section-row__author">Por {section.author}</p>
+                        {section.excerpt ? (
+                          <p className="magazine-section-row__excerpt">{section.excerpt}</p>
+                        ) : null}
+                        {section.pdfUrl ? (
+                          <a 
+                            href={section.pdfUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="magazine-section-row__link"
+                          >
+                            Descargar artículo
+                          </a>
+                        ) : null}
+                      </div>
                     </article>
                   ))}
                 </div>
