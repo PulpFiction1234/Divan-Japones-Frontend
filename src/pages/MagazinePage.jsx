@@ -95,9 +95,14 @@ export default function MagazinePage() {
   const handleCloseViewer = useCallback(() => setViewerMagazineId(null), [])
 
   const handleScrollToSections = useCallback(() => {
-    setShowSections(true)
-    requestAnimationFrame(() => {
-      sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+    setShowSections((prev) => {
+      const next = !prev
+      if (next) {
+        requestAnimationFrame(() => {
+          sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+        })
+      }
+      return next
     })
   }, [])
 
@@ -135,7 +140,7 @@ export default function MagazinePage() {
                   </button>
                   {sectionHighlights.length ? (
                     <button type="button" className="magazine-hero__btn magazine-hero__btn--ghost" onClick={handleScrollToSections}>
-                      Ver secciones
+                      {showSections ? 'Ocultar secciones' : 'Ver secciones'}
                     </button>
                   ) : null}
                   {selectedMagazine.pdfSource ? (

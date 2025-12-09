@@ -101,10 +101,15 @@ export default function MagazineDetailPage() {
   }, [magazines, selectedMagazineId])
 
   const handleScrollToSections = useCallback(() => {
-    setShowSections(true)
-    // allow layout to render before scrolling
-    requestAnimationFrame(() => {
-      sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+    setShowSections((prev) => {
+      const next = !prev
+      if (next) {
+        // allow layout to render before scrolling
+        requestAnimationFrame(() => {
+          sectionsRef.current?.scrollIntoView({ behavior: 'smooth' })
+        })
+      }
+      return next
     })
   }, [])
 
@@ -146,8 +151,12 @@ export default function MagazineDetailPage() {
                     Ver revista completa
                   </button>
                   {sectionHighlights.length ? (
-                    <button type="button" className="magazine-hero__btn magazine-hero__btn--ghost" onClick={handleScrollToSections}>
-                      Ver secciones
+                    <button
+                      type="button"
+                      className="magazine-hero__btn magazine-hero__btn--ghost"
+                      onClick={handleScrollToSections}
+                    >
+                      {showSections ? 'Ocultar secciones' : 'Ver secciones'}
                     </button>
                   ) : null}
                   {magazine.pdfSource ? (
