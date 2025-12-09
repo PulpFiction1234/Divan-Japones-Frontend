@@ -1328,15 +1328,21 @@ export default function AdminPage() {
                       <label htmlFor="article-author">Autor</label>
                       <div className="admin-input-with-icon">
                         <FaPenNib aria-hidden="true" />
-                        <input
+                        <select
                           id="article-author"
                           name="author"
-                          type="text"
                           value={magazineArticleForm.author}
                           onChange={handleMagazineArticleChange}
-                          placeholder="Nombre del autor"
-                        />
+                        >
+                          <option value="">Selecciona un autor</option>
+                          {dbAuthors.map((author) => (
+                            <option key={author.id} value={author.name}>{author.name}</option>
+                          ))}
+                        </select>
                       </div>
+                      {dbAuthors.length === 0 ? (
+                        <small>Primero crea autores en la sección Autores.</small>
+                      ) : null}
                     </div>
                   </div>
 
