@@ -112,6 +112,7 @@ function normalizeMagazine(rawMagazine) {
   const hasPdf = Boolean(pdfSource)
   const hasViewer = Boolean(viewerUrl)
   const isPdfPersisted = rawMagazine.isPdfPersisted === false || rawMagazine.is_pdf_persisted === false ? false : hasPdf
+  const slug = slugify(rawMagazine.title || '')
 
   return {
     id:
@@ -128,6 +129,7 @@ function normalizeMagazine(rawMagazine) {
     hasPdf,
     hasViewer,
     isPdfPersisted,
+    slug,
   }
 }
 

@@ -209,7 +209,7 @@ export default function SearchPage() {
                 <div className="magazine-gallery search-magazines">
                   {magazineResults.map((magazine) => (
                     <article key={magazine.id} className="magazine-card magazine-card--compact">
-                      <Link to={`/revista/${magazine.id}`} className="magazine-card__compact-btn">
+                      <Link to={`/revista/${magazine.slug || magazine.id}`} className="magazine-card__compact-btn">
                         <div className="magazine-card__cover magazine-card__cover--compact">
                           <img
                             src={magazine.coverImage || FALLBACK_MAGAZINE_COVER}

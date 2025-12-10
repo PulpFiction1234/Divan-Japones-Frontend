@@ -210,6 +210,22 @@ export default function AdminPage() {
     })
   }
 
+  const toDateInputValue = (value) => {
+    if (!value) return ''
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return ''
+    const tzOffset = date.getTimezoneOffset() * 60000
+    return new Date(date.getTime() - tzOffset).toISOString().slice(0, 10)
+  }
+
+  const toDateTimeLocalValue = (value) => {
+    if (!value) return ''
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return ''
+    const tzOffset = date.getTimezoneOffset() * 60000
+    return new Date(date.getTime() - tzOffset).toISOString().slice(0, 16)
+  }
+
   // Publication form handlers
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -296,6 +312,7 @@ export default function AdminPage() {
         content: formState.content || '',
         imageUrl,
         publishedAt: normalizedPublishedAt,
+        type: formState.hasActivity ? 'activity' : 'publication',
         // activity fields
         hasActivity: Boolean(formState.hasActivity),
         scheduledAt: normalizedScheduledAt,
@@ -335,12 +352,12 @@ export default function AdminPage() {
       author: post.author || '',
       excerpt: post.excerpt || '',
       content: post.content || '',
-      publishedAt: post.publishedAt ? new Date(post.publishedAt).toISOString().slice(0, 16) : '',
+      publishedAt: toDateTimeLocalValue(post.publishedAt),
       imageUrl: post.image || post.imageUrl || '',
-      scheduledAt: post.scheduledAt ? new Date(post.scheduledAt).toISOString().slice(0, 16) : '',
+      scheduledAt: toDateTimeLocalValue(post.scheduledAt),
       price: post.price || '',
       location: post.location || '',
-      hasActivity: Boolean(post.scheduledAt),
+      hasActivity: Boolean(post.isActivity || post.scheduledAt),
     })
     setEditingPostId(post.id)
     setError('')
@@ -394,7 +411,7 @@ export default function AdminPage() {
         pdfUrl: magazine.pdfSource || '',
         viewerUrl: magazine.viewerUrl || '',
         coverUrl: magazine.coverImage || '',
-        releaseDate: magazine.releaseDate,
+        releaseDate: toDateInputValue(magazine.releaseDate),
         articles: articles.map(art => ({
           id: art.id,
           title: art.title,

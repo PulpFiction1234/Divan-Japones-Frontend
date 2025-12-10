@@ -7,6 +7,7 @@ import { usePosts } from '../context/PostsContext'
 import MagazineFlipbookModal from '../components/MagazineFlipbookModal'
 import CategoriesSection from '../components/CategoriesSection'
 import { fetchMagazineArticles } from '../services/api'
+import slugify from '../utils/slugify'
 
 const FALLBACK_MAGAZINE_COVER =
   'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80'
@@ -36,7 +37,11 @@ export default function MagazineDetailPage() {
       return magazines[0] ?? null
     }
 
-    return magazines.find((item) => item.id === magazineId) ?? null
+    return (
+      magazines.find((item) => item.id === magazineId) ||
+      magazines.find((item) => item.slug === magazineId || slugify(item.title) === magazineId) ||
+      null
+    )
   }, [magazines, magazineId])
 
   // Load magazine articles when magazine changes

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
@@ -49,6 +50,16 @@ export default function TiptapEditor({ content, onChange, placeholder }) {
       onChange(editor.getHTML())
     },
   })
+
+  // Sync external content into the editor when selecting an item to editar
+  useEffect(() => {
+    if (!editor) return
+    const nextValue = content || ''
+    // Avoid unnecessary resets while typing
+    if (editor.getHTML() !== nextValue) {
+      editor.commands.setContent(nextValue, false)
+    }
+  }, [content, editor])
 
   if (!editor) {
     return null
