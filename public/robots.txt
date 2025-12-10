@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://divanjaponés.com/sitemap.xml
+Sitemap: https://divanjapones.cl/sitemap.xml
