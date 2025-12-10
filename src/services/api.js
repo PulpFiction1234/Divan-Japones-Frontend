@@ -199,3 +199,16 @@ export async function deleteAuthor(id, { signal } = {}) {
 
   return parseResponse(response)
 }
+
+// ===== NEWSLETTER API =====
+
+export async function subscribeNewsletter(email, { signal } = {}) {
+  const response = await fetch(`${API_BASE_URL}/api/newsletter/subscribe`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+    signal,
+  })
+
+  return parseResponse(response)
+}

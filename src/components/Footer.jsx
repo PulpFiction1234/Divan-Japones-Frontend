@@ -1,10 +1,32 @@
+import { useState } from 'react'
 import { FaInstagram } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { subscribeNewsletter } from '../services/api'
 
 const INSTAGRAM_URL = 'https://www.instagram.com/grupodivanjapones'
 
 export default function SiteFooter() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState({ message: '', type: '' })
+  const [loading, setLoading] = useState(false)
   const currentYear = new Date().getFullYear()
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    if (!email) return
+
+    try {
+      setLoading(true)
+      setStatus({ message: '', type: '' })
+      await subscribeNewsletter(email)
+      setStatus({ message: '¡Listo! Te enviaremos nuestras novedades.', type: 'success' })
+      setEmail('')
+    } catch (error) {
+      setStatus({ message: error.message || 'No pudimos guardar tu correo. Intenta de nuevo.', type: 'error' })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <footer className="site-footer">
@@ -13,13 +35,36 @@ export default function SiteFooter() {
           Suscríbete a nuestro newsletter para recibir todas nuestras actividades y escritos.
         </p>
 
-        <form className="site-footer__form">
+        <form className="site-footer__form" onSubmit={handleSubmit}>
           <label htmlFor="footer-newsletter" className="visually-hidden">
             Correo electrónico
           </label>
-          <input id="footer-newsletter" type="email" placeholder="Escribe tu correo..." required />
-          <button type="submit">Enviar</button>
+          <input
+            id="footer-newsletter"
+            type="email"
+            placeholder="Escribe tu correo..."
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button type="submit" disabled={loading}>
+            {loading ? 'Enviando...' : 'Enviar'}
+          </button>
         </form>
+
+        {status.message ? (
+          <p
+            className="site-footer__status"
+            style={{
+              color: status.type === 'success' ? '#0f766e' : '#b91c1c',
+              fontSize: '0.95rem',
+              marginTop: '0.5rem'
+            }}
+            aria-live="polite"
+          >
+            {status.message}
+          </p>
+        ) : null}
 
         <ul className="site-footer__social" aria-label="Redes sociales">
           <li>
