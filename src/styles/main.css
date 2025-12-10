@@ -25,6 +25,7 @@
 @import './pages/MagazineDetailPage.css';
 @import './pages/MagazinePage.css';
 @import './pages/PublicationsPage.css';
+@import './pages/SearchPage.css';
 
 /* Shared styles */
 @import './shared/responsive.css';

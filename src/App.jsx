@@ -16,6 +16,7 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
+import SearchPage from './pages/SearchPage'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/terminos-y-condiciones" element={<TermsPage />} />
         <Route path="/category/:slug" element={<CategoryPage />} />
         <Route path="/article/:postId" element={<ArticlePage />} />
+        <Route path="/buscar" element={<SearchPage />} />
       </Routes>
     </AuthProvider>
   )

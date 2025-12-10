@@ -1,0 +1,64 @@
+.search-page .search-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Make activity cards match the home/activities transparent look */
+.search-page .activities__grid .activity-card,
+.search-page .activities__grid .activity-card__link,
+.search-page .activities__grid .activity-card__body {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Magazine results: reuse compact card grid spacing */
+.search-page .search-magazines {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.75rem;
+  justify-items: center;
+}
+
+/* Remove white backgrounds from compact magazine cards inside search */
+.search-page .magazine-card--compact,
+.search-page .magazine-card__compact-btn,
+.search-page .magazine-card__cover--compact,
+.search-page .magazine-card__compact-title,
+.search-page .magazine-card__compact-date {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.search-page .magazine-card__cover--compact img {
+  border: none !important;
+}
+
+@media (max-width: 900px) {
+  .search-page .search-magazines {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+.search-page .activities__grid .activity-card__media img {
+  border-bottom: none !important;
+}
+
+.search-page .activities__grid .activity-card__body,
+.search-page .activities__grid .activity-card__body > *,
+.search-page .activities__grid .activity-card__category {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-align: left !important;
+}
+
+/* Keep grids tidy on mobile */
+@media (max-width: 900px) {
+  .search-page .activities__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
