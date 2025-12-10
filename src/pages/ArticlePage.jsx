@@ -26,11 +26,11 @@ function formatDate(value) {
 
 export default function ArticlePage() {
   const { postId } = useParams()
-  const { posts, publications, categories } = usePosts()
+  const { publishedPosts, publishedPublications, categories } = usePosts()
 
   const post = useMemo(() => {
-    return posts.find(p => p.slug === postId || p.id === postId)
-  }, [posts, postId])
+    return publishedPosts.find(p => p.slug === postId || p.id === postId)
+  }, [publishedPosts, postId])
   const isActivity = post?.isActivity
   const baseCategory = post?.category || 'General'
   const categoryLabel = formatCategoryLabel(post, {
@@ -54,15 +54,15 @@ export default function ArticlePage() {
     : []
 
   const recentPosts = useMemo(() => {
-    if (!publications?.length) {
+    if (!publishedPublications?.length) {
       return []
     }
 
-    return publications
+    return publishedPublications
       .filter((item) => item.id !== postId)
       .sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
       .slice(0, 3)
-  }, [publications, postId])
+  }, [publishedPublications, postId])
 
   const categoryIndex = useMemo(() => {
     return categories?.map((category) => ({

@@ -44,7 +44,7 @@ function formatDate(value) {
 }
 
 export default function SearchPage() {
-  const { publications, activities, magazines } = usePosts()
+  const { publishedPublications, publishedActivities, magazines } = usePosts()
   const location = useLocation()
 
   const query = useMemo(() => {
@@ -67,19 +67,19 @@ export default function SearchPage() {
 
   const publicationResults = useMemo(() => {
     if (!queryWords.length) return []
-    return publications.filter((post) => {
+    return publishedPublications.filter((post) => {
       const combined = `${post.title} ${post.excerpt} ${post.content} ${post.author} ${post.category} ${post.subcategory}`
       return matchWords(combined, queryWords)
     })
-  }, [publications, queryWords])
+  }, [publishedPublications, queryWords])
 
   const activityResults = useMemo(() => {
     if (!queryWords.length) return []
-    return activities.filter((activity) => {
+    return publishedActivities.filter((activity) => {
       const combined = `${activity.title} ${activity.excerpt} ${activity.content} ${activity.author} ${activity.location} ${activity.category} ${activity.subcategory}`
       return matchWords(combined, queryWords)
     })
-  }, [activities, queryWords])
+  }, [publishedActivities, queryWords])
 
   const magazineResults = useMemo(() => {
     if (!queryWords.length) return []

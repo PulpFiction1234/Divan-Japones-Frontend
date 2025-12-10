@@ -19,17 +19,17 @@ function formatDate(value) {
 }
 
 export default function ActivitiesSection() {
-  const { activities } = usePosts()
+  const { publishedActivities } = usePosts()
 
   const upcomingActivities = useMemo(() => {
-    return [...activities]
+    return [...publishedActivities]
       .sort((a, b) => {
         const first = a.scheduledAt ? new Date(a.scheduledAt).getTime() : new Date(a.publishedAt || 0).getTime()
         const second = b.scheduledAt ? new Date(b.scheduledAt).getTime() : new Date(b.publishedAt || 0).getTime()
         return first - second
       })
       .slice(0, 6)
-  }, [activities])
+  }, [publishedActivities])
 
   if (!upcomingActivities.length) {
     return null

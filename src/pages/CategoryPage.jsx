@@ -1,8 +1,10 @@
+import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import TopBar from '../components/Header'
 import SiteHeader from '../components/AboutSection'
 import SiteFooter from '../components/Footer'
 import { usePosts } from '../context/PostsContext'
+import slugify from '../utils/slugify'
 
 const FALLBACK_IMAGE = 'https://placehold.co/900x600?text=Divan'
 const DATE_FORMATTER = new Intl.DateTimeFormat('es-MX', {
@@ -21,10 +23,12 @@ function formatDate(value) {
 
 export default function CategoryPage() {
   const { slug } = useParams()
-  const { getPostsByCategorySlug, getCategoryBySlug } = usePosts()
+  const { publishedPosts, getCategoryBySlug } = usePosts()
 
   const category = getCategoryBySlug(slug)
-  const posts = getPostsByCategorySlug(slug)
+  const posts = useMemo(() => {
+    return publishedPosts.filter((post) => slugify(post.category) === slug)
+  }, [publishedPosts, slug])
 
   return (
     <div className="page category-page">

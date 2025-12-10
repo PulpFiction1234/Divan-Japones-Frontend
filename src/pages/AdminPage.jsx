@@ -126,6 +126,10 @@ export default function AdminPage() {
     refreshPosts
   } = usePosts()
 
+  useEffect(() => {
+    refreshPosts({ includeFuture: true }).catch(() => {})
+  }, [refreshPosts])
+
   // State declarations
   const [activeSection, setActiveSection] = useState('publicaciones')
   const [formState, setFormState] = useState(initialFormState)
@@ -701,7 +705,7 @@ export default function AdminPage() {
         setEditingCategoryId(null)
         setEditingCategoryPreviousName('')
         try {
-          await refreshPosts()
+          await refreshPosts({ includeFuture: true })
         } catch (syncError) {
           console.error('No se pudo refrescar publicaciones tras editar categoría', syncError)
         }

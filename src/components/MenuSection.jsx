@@ -6,20 +6,20 @@ import formatCategoryLabel from '../utils/formatCategoryLabel'
 const FALLBACK_IMAGE = 'https://placehold.co/900x600?text=Divan'
 
 export default function LatestSection() {
-  const { posts } = usePosts()
+  const { publishedPosts } = usePosts()
 
   const { feature, secondary } = useMemo(() => {
-    if (!posts.length) {
+    if (!publishedPosts.length) {
       return { feature: null, secondary: [] }
     }
 
-    const ordered = [...posts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+    const ordered = [...publishedPosts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
 
     return {
       feature: ordered[0],
       secondary: ordered.slice(1, 5),
     }
-  }, [posts])
+  }, [publishedPosts])
 
   if (!feature) {
     return (

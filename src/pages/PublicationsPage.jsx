@@ -25,7 +25,7 @@ function formatDate(value) {
 }
 
 export default function PublicationsPage() {
-  const { posts } = usePosts()
+  const { publishedPublications } = usePosts()
   const [activeSlug, setActiveSlug] = useState('all')
   const [dbCategories, setDbCategories] = useState([])
 
@@ -72,14 +72,14 @@ export default function PublicationsPage() {
   }, [dbCategories])
 
   const publications = useMemo(() => {
-    const sorted = [...posts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+    const sorted = [...publishedPublications].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
 
     if (activeSlug === 'all') {
       return sorted
     }
 
     return sorted.filter((post) => slugify(post.category) === activeSlug)
-  }, [activeSlug, posts])
+  }, [activeSlug, publishedPublications])
 
   return (
     <div className="page publications-page">

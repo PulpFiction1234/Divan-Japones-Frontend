@@ -6,22 +6,22 @@ import formatCategoryLabel from '../utils/formatCategoryLabel'
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1526481280695-3c46987bf1aa?auto=format&fit=crop&w=900&q=80'
 
 export default function TrendingPostsSection() {
-  const { posts } = usePosts()
+  const { publishedPosts } = usePosts()
 
   const trendingPosts = useMemo(() => {
-    if (!posts.length) {
+    if (!publishedPosts.length) {
       return []
     }
 
-    return [...posts]
+    return [...publishedPosts]
       .sort((a, b) => {
         if (b.viewCount === a.viewCount) {
           return new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0)
         }
         return b.viewCount - a.viewCount
       })
-      .slice(0, 4)
-  }, [posts])
+        .slice(0, 4)
+      }, [publishedPosts])
 
   if (!trendingPosts.length) {
     return null

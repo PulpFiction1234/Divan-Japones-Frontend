@@ -12,8 +12,14 @@ async function parseResponse(response) {
   return body
 }
 
-export async function fetchArticles({ signal } = {}) {
-  const response = await fetch(`${API_BASE_URL}/api/articles`, { signal })
+export async function fetchArticles({ signal, includeFuture = false } = {}) {
+  const params = new URLSearchParams()
+  if (includeFuture) {
+    params.set('includeFuture', 'true')
+  }
+
+  const query = params.toString()
+  const response = await fetch(`${API_BASE_URL}/api/articles${query ? `?${query}` : ''}`, { signal })
   return parseResponse(response)
 }
 

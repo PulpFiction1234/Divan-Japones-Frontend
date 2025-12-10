@@ -178,8 +178,8 @@ export function PostsProvider({ children }) {
   const [dbCategories, setDbCategories] = useState([])
   const [categoriesError, setCategoriesError] = useState(null)
 
-  const syncPostsFromApi = useCallback(async ({ signal } = {}) => {
-    const remotePosts = await fetchArticles({ signal })
+  const syncPostsFromApi = useCallback(async ({ signal, includeFuture = false } = {}) => {
+    const remotePosts = await fetchArticles({ signal, includeFuture })
     const normalized = Array.isArray(remotePosts)
       ? remotePosts.map((post) => normalizePost(post)).filter(Boolean)
       : []
@@ -194,7 +194,10 @@ export function PostsProvider({ children }) {
     const sync = async () => {
       setIsSyncingPosts(true)
       try {
-        await syncPostsFromApi({ signal: controller.signal })
+        const includeFuture = Boolean(
+          typeof localStorage !== 'undefined' && localStorage.getItem('authToken')
+        )
+        await syncPostsFromApi({ signal: controller.signal, includeFuture })
         if (isMounted) {
           setPostsSyncError(null)
         }
@@ -447,10 +450,10 @@ export function PostsProvider({ children }) {
     }
   }, [])
 
-  const refreshPosts = useCallback(async () => {
+  const refreshPosts = useCallback(async ({ includeFuture = false } = {}) => {
     setIsSyncingPosts(true)
     try {
-      await syncPostsFromApi()
+      await syncPostsFromApi({ includeFuture })
       setPostsSyncError(null)
     } catch (error) {
       console.error('Manual sync failed', error)
@@ -488,8 +491,22 @@ export function PostsProvider({ children }) {
       })
     })
 
+    const now = Date.now()
+    const publishedPosts = posts.filter((post) => {
+      if (!post?.publishedAt) return true
+      const ts = new Date(post.publishedAt).getTime()
+      return Number.isFinite(ts) ? ts <= now : true
+    })
+    const scheduledPosts = posts.filter((post) => {
+      if (!post?.publishedAt) return false
+      const ts = new Date(post.publishedAt).getTime()
+      return Number.isFinite(ts) ? ts > now : false
+    })
+
     const activities = posts.filter((post) => post.isActivity)
     const publications = posts.filter((post) => !post.isActivity)
+    const publishedActivities = publishedPosts.filter((post) => post.isActivity)
+    const publishedPublications = publishedPosts.filter((post) => !post.isActivity)
 
     // Only add subcategories for categories that exist in the DB map
     posts.forEach((post) => {
@@ -530,6 +547,10 @@ export function PostsProvider({ children }) {
       posts,
       publications,
       activities,
+      publishedPosts,
+      publishedPublications,
+      publishedActivities,
+      scheduledPosts,
       categories,
       magazines,
       addPost,
