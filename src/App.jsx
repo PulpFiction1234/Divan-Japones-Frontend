@@ -14,6 +14,8 @@ import MagazineDetailPage from './pages/MagazineDetailPage'
 import ActivitiesPage from './pages/ActivitiesPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
         <Route path="/actividades" element={<ActivitiesPage />} />
         <Route path="/quienes-somos" element={<AboutPage />} />
         <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/privacidad" element={<PrivacyPage />} />
+        <Route path="/terminos-y-condiciones" element={<TermsPage />} />
         <Route path="/category/:slug" element={<CategoryPage />} />
         <Route path="/article/:postId" element={<ArticlePage />} />
       </Routes>

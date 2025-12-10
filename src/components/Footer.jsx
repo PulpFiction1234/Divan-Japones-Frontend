@@ -1,4 +1,5 @@
 import { FaInstagram } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const INSTAGRAM_URL = 'https://www.instagram.com/grupodivanjapones'
 
@@ -30,9 +31,9 @@ export default function SiteFooter() {
         </ul>
 
         <nav className="site-footer__nav" aria-label="Enlaces secundarios">
-          <a href="#contacto">Contacto</a>
-          <a href="#privacidad">Aviso de Privacidad</a>
-          <a href="#terminos">Términos y Condiciones</a>
+          <Link to="/contacto">Contacto</Link>
+          <Link to="/privacidad">Aviso de Privacidad</Link>
+          <Link to="/terminos-y-condiciones">Términos y Condiciones</Link>
         </nav>
 
         <p className="site-footer__copy">
