@@ -210,6 +210,19 @@ export default function AdminPage() {
     })
   }
 
+  const countWords = (text = '') => {
+    if (!text.trim()) return 0
+    return text.trim().split(/\s+/).filter(Boolean).length
+  }
+
+  const clampExcerptToLimit = (text = '') => {
+    const words = text.trim().split(/\s+/).filter(Boolean)
+    if (words.length <= 100) return text
+    return words.slice(0, 100).join(' ')
+  }
+
+  const excerptWordCount = useMemo(() => countWords(formState.excerpt), [formState.excerpt])
+
   const toDateInputValue = (value) => {
     if (!value) return ''
     const date = new Date(value)
@@ -229,6 +242,12 @@ export default function AdminPage() {
   // Publication form handlers
   const handleChange = (event) => {
     const { name, value } = event.target
+    if (name === 'excerpt') {
+      const limited = clampExcerptToLimit(value)
+      setFormState(prev => ({ ...prev, excerpt: limited }))
+      return
+    }
+
     setFormState(prev => ({ ...prev, [name]: value }))
   }
 
@@ -294,6 +313,12 @@ export default function AdminPage() {
 
     if (formState.hasActivity && (!formState.scheduledAt || !formState.location)) {
       setError('Los campos de actividad (fecha y lugar) son requeridos.')
+      setIsSubmitting(false)
+      return
+    }
+
+    if (excerptWordCount > 100) {
+      setError('El resumen debe tener máximo 100 palabras (99 espacios).')
       setIsSubmitting(false)
       return
     }
@@ -1097,11 +1122,11 @@ export default function AdminPage() {
                       id="excerpt"
                       name="excerpt"
                       rows="3"
-                      maxLength="300"
                       value={formState.excerpt}
                       onChange={handleChange}
-                      placeholder="Describe brevemente el enfoque de la nota o actividad"
+                      placeholder="Describe brevemente el enfoque de la nota o actividad (máximo 100 palabras)"
                     />
+                    <small>{`Palabras: ${excerptWordCount}/100 (máximo 99 espacios)`}</small>
                   </div>
 
                   <div className="admin-form__row">
