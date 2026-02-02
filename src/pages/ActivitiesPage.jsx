@@ -30,7 +30,7 @@ export default function ActivitiesPage() {
       .sort((a, b) => {
         const first = a.scheduledAt ? new Date(a.scheduledAt).getTime() : new Date(a.publishedAt || 0).getTime()
         const second = b.scheduledAt ? new Date(b.scheduledAt).getTime() : new Date(b.publishedAt || 0).getTime()
-        return first - second
+        return second - first
       })
       .filter((activity) => Boolean(activity.scheduledAt || activity.publishedAt))
   }, [publishedActivities])

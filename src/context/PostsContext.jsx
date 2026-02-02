@@ -493,6 +493,22 @@ export function PostsProvider({ children }) {
       })
     })
 
+    // If no DB categories, extract categories from posts as fallback
+    if (categoryMap.size === 0) {
+      posts.forEach((post) => {
+        const baseName = post.category?.trim()
+        if (!baseName || baseName === 'General') return
+        const slug = slugify(baseName)
+        if (!categoryMap.has(slug)) {
+          categoryMap.set(slug, {
+            name: baseName,
+            slug,
+            subcategories: [],
+          })
+        }
+      })
+    }
+
     const now = Date.now()
     const publishedPosts = posts.filter((post) => {
       if (!post?.publishedAt) return true
@@ -510,13 +526,18 @@ export function PostsProvider({ children }) {
     const publishedActivities = publishedPosts.filter((post) => post.isActivity)
     const publishedPublications = publishedPosts.filter((post) => !post.isActivity)
 
-    // Only add subcategories for categories that exist in the DB map
+    // Add subcategories for categories that exist in the category map
     posts.forEach((post) => {
       const baseName = post.category?.trim()
       if (!baseName) return
       const slug = slugify(baseName)
-      const entry = categoryMap.get(slug)
-      if (!entry) return
+      let entry = categoryMap.get(slug)
+      
+      // If category doesn't exist yet, create it (fallback behavior)
+      if (!entry) {
+        entry = { name: baseName, slug, subcategories: [] }
+        categoryMap.set(slug, entry)
+      }
 
       const subcategoryName = post.subcategory?.trim()
       if (subcategoryName) {

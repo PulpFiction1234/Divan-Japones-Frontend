@@ -18,6 +18,11 @@
 	justify-items: start;
 }
 
+.activities__grid > * {
+	min-width: 0;
+	max-width: 100%;
+}
+
 .empty-state {
 	font-family: var(--font-body);
 	color: var(--color-muted);

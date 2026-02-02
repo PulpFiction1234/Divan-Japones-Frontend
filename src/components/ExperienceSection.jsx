@@ -26,9 +26,9 @@ export default function ActivitiesSection() {
       .sort((a, b) => {
         const first = a.scheduledAt ? new Date(a.scheduledAt).getTime() : new Date(a.publishedAt || 0).getTime()
         const second = b.scheduledAt ? new Date(b.scheduledAt).getTime() : new Date(b.publishedAt || 0).getTime()
-        return first - second
+        return second - first
       })
-      .slice(0, 6)
+      .slice(0, 4)
   }, [publishedActivities])
 
   if (!upcomingActivities.length) {

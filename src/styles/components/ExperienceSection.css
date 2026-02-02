@@ -24,29 +24,35 @@
 
 .activities__grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-	gap: 1.25rem;
-	justify-items: start;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+	justify-items: stretch;
 	max-width: 100%;
+}
+
+.activities__grid > * {
+	min-width: 0;
 }
 
 /* Keep items left-aligned so a single card starts at the left like Trending */
 
-@supports (grid-template-columns: repeat(4, 1fr)) {
+@media (max-width: 1200px) {
 	.activities__grid {
-		grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 3.75rem) / 4)), 1fr));
+		grid-template-columns: repeat(3, 1fr);
 	}
-  
-	@media (max-width: 1200px) {
-		.activities__grid {
-			grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 2.5rem) / 3)), 1fr));
-		}
+}
+
+@media (max-width: 900px) {
+	.activities__grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
 	}
-  
-	@media (max-width: 900px) {
-		.activities__grid {
-			grid-template-columns: repeat(auto-fill, minmax(max(220px, calc((100% - 1.25rem) / 2)), 1fr));
-		}
+}
+
+@media (max-width: 600px) {
+	.activities__grid {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
 	}
 }
 
@@ -55,9 +61,11 @@
 	flex-direction: column;
 	background-color: #ffffff;
 	border: 1px solid rgba(17, 17, 17, 0.08);
-	max-width: 283px;
+	max-width: 100%;
 	width: 100%;
 	margin: 0;
+	overflow: hidden;
+	min-width: 0;
 }
 
 .activity-card__media img {
@@ -72,6 +80,8 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.75rem;
+	overflow: hidden;
+	min-width: 0;
 }
 
 .activity-card__category {
@@ -88,6 +98,9 @@
 	font-family: var(--font-title);
 	font-size: clamp(1.2rem, 2.6vw, 1.6rem);
 	line-height: 1.25;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 
 .activity-card__body p {
@@ -99,9 +112,9 @@
 
 .activity-card__meta {
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: 0.5rem 0.75rem;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.35rem;
 	font-size: 0.8rem;
 	letter-spacing: 0.05em;
 	text-transform: none;
@@ -136,10 +149,30 @@
 
 /* Compact list layout used on the home page */
 .activities__grid.activities__list {
-	display: grid; /* same grid behavior as Trending */
-	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-	gap: 1.25rem;
-	justify-items: start;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+	justify-items: stretch;
+}
+
+@media (max-width: 1200px) {
+	.activities__grid.activities__list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 900px) {
+	.activities__grid.activities__list {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+	}
+}
+
+@media (max-width: 600px) {
+	.activities__grid.activities__list {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
 }
 
 /* Make list cards visually match Trending: image full width, transparent card */

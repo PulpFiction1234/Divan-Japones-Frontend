@@ -6,7 +6,6 @@ import SiteHeader from '../components/AboutSection'
 import CategoriesSection from '../components/CategoriesSection'
 import SiteFooter from '../components/Footer'
 import { usePosts } from '../context/PostsContext'
-import { fetchCategories } from '../services/api'
 import slugify from '../utils/slugify'
 import formatCategoryLabel from '../utils/formatCategoryLabel'
 
@@ -25,25 +24,10 @@ function formatDate(value) {
 }
 
 export default function PublicationsPage() {
-  const { publishedPublications } = usePosts()
+  const { publishedPublications, categories } = usePosts()
   const [activeSlug, setActiveSlug] = useState('all')
-  const [dbCategories, setDbCategories] = useState([])
 
   const location = useLocation()
-
-  // Cargar categorías desde la base de datos
-  useEffect(() => {
-    const loadCategories = async () => {
-      try {
-        const data = await fetchCategories()
-        setDbCategories(data)
-      } catch (error) {
-        console.error('Error loading categories:', error)
-      }
-    }
-
-    loadCategories()
-  }, [])
 
   // If a category query param is present (e.g. ?category=manga), set it as active
   useEffect(() => {
@@ -59,17 +43,17 @@ export default function PublicationsPage() {
   }, [location.search])
 
   const categoriesWithAll = useMemo(() => {
-    // Convertir categorías de la BD al formato necesario
-    const dbCats = dbCategories.map(cat => ({
+    // Use categories from context (already loaded)
+    const cats = categories.map(cat => ({
       name: cat.name,
       slug: cat.slug
     }))
 
     return [
       { name: 'Todas las publicaciones', slug: 'all' },
-      ...dbCats
+      ...cats
     ]
-  }, [dbCategories])
+  }, [categories])
 
   const publications = useMemo(() => {
     const sorted = [...publishedPublications].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))

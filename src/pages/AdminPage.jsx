@@ -1669,7 +1669,7 @@ export default function AdminPage() {
                     />
                     {newAuthorImageUrl && isValidUrl(newAuthorImageUrl) ? (
                       <div className="author-image-preview">
-                        <img src={newAuthorImageUrl} alt="Preview" />
+                        <img src={newAuthorImageUrl} alt="Preview" loading="lazy" />
                       </div>
                     ) : null}
                   </div>

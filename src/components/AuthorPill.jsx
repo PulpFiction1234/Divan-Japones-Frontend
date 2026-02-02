@@ -32,7 +32,7 @@ export default function AuthorPill({ name, date }) {
 
   return (
     <span className="author-pill">
-      <img src={avatar} alt={name} className="author-pill__avatar" />
+      <img src={avatar} alt={name} className="author-pill__avatar" loading="lazy" />
       <span className="author-pill__meta">
         {date ? <span className="author-pill__by">Escrito por</span> : <span className="author-pill__by">Escrito por</span>}
         <span className="author-pill__name">{name}</span>
