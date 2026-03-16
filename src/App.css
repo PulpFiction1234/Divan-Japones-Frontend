@@ -321,15 +321,14 @@
 }
 
 .magazine-hero__cover {
-  min-height: 420px;
   border-radius: 0;
-  background-size: cover;
-  background-position: center;
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
-  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  aspect-ratio: 3 / 4;
 }
 
 .magazine-hero__cover-label {
@@ -548,9 +547,8 @@
 }
 
 .magazine-card__cover--compact {
-  /* slightly smaller cover so the whole card is more compact */
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -561,7 +559,7 @@
 .magazine-card__cover--compact img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 0;
 }
 
