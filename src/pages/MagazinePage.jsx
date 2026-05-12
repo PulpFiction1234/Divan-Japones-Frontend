@@ -87,7 +87,11 @@ export default function MagazinePage() {
   const releaseLabel = useMemo(() => formatReleaseDate(selectedMagazine?.releaseDate), [selectedMagazine?.releaseDate])
 
   const handleOpenMagazine = useCallback(() => {
-    if (selectedMagazine?.pdfSource || selectedMagazine?.viewerUrl) {
+    // External viewer URLs (e.g. HeyZine) block iframe embedding — open in new tab.
+    // Only use the in-page modal for direct PDF sources.
+    if (selectedMagazine?.viewerUrl) {
+      window.open(selectedMagazine.viewerUrl, '_blank', 'noopener,noreferrer')
+    } else if (selectedMagazine?.pdfSource) {
       setViewerMagazineId(selectedMagazine.id)
     }
   }, [selectedMagazine])

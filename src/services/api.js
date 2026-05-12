@@ -23,6 +23,11 @@ export async function fetchArticles({ signal, includeFuture = false } = {}) {
   return parseResponse(response)
 }
 
+export async function fetchArticleById(id, { signal } = {}) {
+  const response = await fetch(`${API_BASE_URL}/api/articles/${id}`, { signal })
+  return parseResponse(response)
+}
+
 export async function createArticle(payload, { signal } = {}) {
   const response = await fetch(`${API_BASE_URL}/api/articles`, {
     method: 'POST',

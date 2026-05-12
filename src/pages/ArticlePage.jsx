@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import TopBar from '../components/Header'
 import SiteHeader from '../components/AboutSection'
@@ -9,6 +9,7 @@ import formatCategoryLabel from '../utils/formatCategoryLabel'
 import TrendingPostsSection from '../components/TrendingPostsSection'
 import AuthorPill from '../components/AuthorPill'
 import CategoriesSection from '../components/CategoriesSection'
+import { fetchArticleById } from '../services/api'
 
 const FALLBACK_IMAGE = 'https://placehold.co/1200x800?text=Divan'
 
@@ -27,10 +28,24 @@ function formatDate(value) {
 export default function ArticlePage() {
   const { postId } = useParams()
   const { publishedPosts, publishedPublications, categories } = usePosts()
+  const [fullContent, setFullContent] = useState(null)
+  const [loadingContent, setLoadingContent] = useState(false)
 
   const post = useMemo(() => {
     return publishedPosts.find(p => p.slug === postId || p.id === postId)
   }, [publishedPosts, postId])
+
+  // Fetch full content (including HTML body) by ID — the list endpoint omits content
+  useEffect(() => {
+    if (!post?.id) return
+    const controller = new AbortController()
+    setLoadingContent(true)
+    fetchArticleById(post.id, { signal: controller.signal })
+      .then((full) => { if (full) setFullContent(full.content ?? null) })
+      .catch((err) => { if (err.name !== 'AbortError') console.error('Failed to load article content', err) })
+      .finally(() => setLoadingContent(false))
+    return () => controller.abort()
+  }, [post?.id])
   const isActivity = post?.isActivity
   const baseCategory = post?.category || 'General'
   const categoryLabel = formatCategoryLabel(post, {
@@ -100,7 +115,10 @@ export default function ArticlePage() {
               <article className="article">
                 <div className="article-body">
                   <section className="article-body__content">
-                    <div dangerouslySetInnerHTML={{ __html: post.content || post.excerpt || '' }} />
+                    {loadingContent
+                      ? <p style={{ color: '#888' }}>Cargando contenido...</p>
+                      : <div dangerouslySetInnerHTML={{ __html: fullContent ?? post.excerpt ?? '' }} />
+                    }
 
                     {activityDetails.length ? (
                       <aside className="article-body__details">

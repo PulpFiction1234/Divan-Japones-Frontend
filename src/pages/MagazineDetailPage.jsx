@@ -87,8 +87,11 @@ export default function MagazineDetailPage() {
   }, [magazineArticles])
 
   const handleOpenMagazine = useCallback(() => {
-    // Open modal when we have either a direct PDF or an external viewer URL
-    if (magazine?.pdfSource || magazine?.viewerUrl) {
+    // External viewer URLs (e.g. HeyZine) block iframe embedding — open in new tab.
+    // Only use the in-page modal for direct PDF sources.
+    if (magazine?.viewerUrl) {
+      window.open(magazine.viewerUrl, '_blank', 'noopener,noreferrer')
+    } else if (magazine?.pdfSource) {
       setSelectedMagazineId(magazine.id)
     }
   }, [magazine])
