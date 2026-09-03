@@ -11,6 +11,7 @@ import { useAuth } from '../context/AuthContext'
 import { 
   createMagazineArticle, 
   fetchMagazineArticles, 
+  fetchArticleById,
   updateMagazineArticle,
   deleteMagazineArticle,
   fetchCategories,
@@ -23,6 +24,7 @@ import {
   deleteAuthor
 } from '../services/api'
 import slugify from '../utils/slugify'
+import { buildPostFormState, toDateTimeLocalValue } from '../utils/postEditForm'
 
 const FALLBACK_IMAGE = 'https://placehold.co/900x600?text=Divan'
 const MAGAZINE_FALLBACK_COVER = 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80'
@@ -231,14 +233,6 @@ export default function AdminPage() {
     return new Date(date.getTime() - tzOffset).toISOString().slice(0, 10)
   }
 
-  const toDateTimeLocalValue = (value) => {
-    if (!value) return ''
-    const date = new Date(value)
-    if (Number.isNaN(date.getTime())) return ''
-    const tzOffset = date.getTimezoneOffset() * 60000
-    return new Date(date.getTime() - tzOffset).toISOString().slice(0, 16)
-  }
-
   // Publication form handlers
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -369,23 +363,26 @@ export default function AdminPage() {
     }
   }
 
-  const handleEditPost = (post) => {
-    setFormState({
-      title: post.title,
-      category: post.category,
-      subcategory: post.subcategory || '',
-      author: post.author || '',
-      excerpt: post.excerpt || '',
-      content: post.content || '',
-      publishedAt: toDateTimeLocalValue(post.publishedAt),
-      imageUrl: post.image || post.imageUrl || '',
-      scheduledAt: toDateTimeLocalValue(post.scheduledAt),
-      price: post.price || '',
-      location: post.location || '',
-      hasActivity: Boolean(post.isActivity || post.scheduledAt),
-    })
+  const handleEditPost = async (post) => {
+    try {
+      const fullPost = await fetchArticleById(post.id)
+      const nextFormState = buildPostFormState(post, fullPost)
+      if (!nextFormState) {
+        setError('No se pudo cargar la publicación para edición.')
+        return
+      }
+      setFormState(nextFormState)
+      setError('')
+    } catch (loadError) {
+      console.error('Error loading full post for edit:', loadError)
+      const fallbackFormState = buildPostFormState(post)
+      if (fallbackFormState) {
+        setFormState(fallbackFormState)
+      }
+      setError('No se pudo cargar el contenido completo. Revisa antes de guardar.')
+    }
+
     setEditingPostId(post.id)
-    setError('')
     setSuccessMessage('')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
